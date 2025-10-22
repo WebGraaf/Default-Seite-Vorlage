@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Star, TrendingUp, Users, Award, ArrowRight } from 'lucide-react';
 import logo from '../default_images/logo_default.webp';
-import { Container, Section, Grid, Card, Stack, CTABlock } from '../components/LayoutComponents';
 import {
   Select,
   Checkbox,
@@ -107,35 +106,12 @@ const Components: React.FC = () => {
     <div>
       <CommandPalette isOpen={commandPaletteOpen} onClose={closeCommandPalette} />
 
-      <Section background="transparent" padding="xl">
-        <Container>
-          <div className="grid grid-cols-1 md:grid-cols-7 gap-8 items-center">
-            <div className="col-span-1 md:col-span-5 text-left order-2 md:order-1">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-heading mb-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
-                Wir bringen dich auf die Straße
-                <span className="block text-primary-600 mt-4">Deine Fahrschule</span>
-              </h1>
-              <p className="text-lg md:text-xl text-body mb-8 animate-in fade-in slide-in-from-bottom-6 duration-900">
-                Starte mit uns in deine Freiheit auf vier Rädern. Wir begleiten dich vom ersten Meter bis zur bestandenen Prüfung – mit Geduld, Spaß und Erfahrung.
-              </p>
-              <div className="animate-in fade-in slide-in-from-bottom-8 duration-1000">
-                <Link to="/anmelden" className="px-6 md:px-8 py-3 md:py-4 bg-primary-500 text-white border border-primary-500 rounded-lg font-semibold hover:bg-transparent hover:text-primary-500 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 inline-block text-sm md:text-base">
-                  Jetzt anmelden
-                </Link>
-              </div>
-            </div>
-            <div className="col-span-1 md:col-span-2 flex items-center justify-center order-1 md:order-2">
-              <img src={logo} alt="Logo" className="w-full h-auto max-w-xs md:max-w-sm animate-in fade-in slide-in-from-right-4 duration-700" />
-            </div>
-          </div>
-        </Container>
-      </Section>
 
-      <Section background="transparent" padding="lg">
-        <Container>
-          <Grid cols={3} gap="lg">
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <Card key={index} hover padding="lg" className="group bg-transparent">
+              <div key={index} className="border border-blue-200 rounded-xl p-8 hover:shadow-lg hover:border-blue-300 transition-all duration-300 group bg-transparent">
                 <div className={`${feature.color} w-14 h-14 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-blue-200`}>
                   <feature.icon className="w-7 h-7 text-blue-600" />
                 </div>
@@ -149,17 +125,17 @@ const Components: React.FC = () => {
                 </div>
                 <p className="text-neutral-600 mb-4">{feature.description}</p>
                 <div className="text-3xl font-bold text-blue-600">{feature.stats}</div>
-              </Card>
+              </div>
             ))}
-          </Grid>
-        </Container>
-      </Section>
+          </div>
+        </div>
+      </section>
 
-      <Section background="transparent" padding="lg">
-        <Container>
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Form Components</h2>
           <div className="max-w-2xl mx-auto">
-            <Card padding="lg" className="bg-white">
+            <div className="border border-blue-200 rounded-xl p-8 bg-white">
               {formState === 'idle' && (
                 <form onSubmit={handleFormSubmit} className="space-y-6">
                   <HoneypotField />
@@ -210,10 +186,10 @@ const Components: React.FC = () => {
               )}
 
               {formState === 'loading' && <FormLoading message="Processing your request..." />}
-            </Card>
+            </div>
           </div>
-        </Container>
-      </Section>
+        </div>
+      </section>
 
       {formState === 'success' && (
         <FormResult
@@ -224,8 +200,8 @@ const Components: React.FC = () => {
         />
       )}
 
-      <Section background="transparent" padding="lg">
-        <Container>
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Before & After Comparison</h2>
           <div className="max-w-4xl mx-auto">
             <BeforeAfterSlider
@@ -235,43 +211,43 @@ const Components: React.FC = () => {
               afterLabel="After"
             />
           </div>
-        </Container>
-      </Section>
+        </div>
+      </section>
 
-      <Section background="transparent" padding="lg">
-        <Container>
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Pricing & Features</h2>
           <PricingCards />
-        </Container>
-      </Section>
+        </div>
+      </section>
 
-      <Section background="transparent" padding="lg">
-        <Container>
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Tabs & Accordions</h2>
           <div className="space-y-12">
             <TabSection />
             <AccordionSection />
           </div>
-        </Container>
-      </Section>
+        </div>
+      </section>
 
       <StandortSection />
 
-      <Section background="transparent" padding="lg">
-        <Container>
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
           <h2 className="text-3xl font-bold text-neutral-900 mb-4 text-center">Image Gallery</h2>
           <p className="text-neutral-600 text-center mb-8">Click any image to open the lightbox viewer</p>
           <ImageGallery images={galleryImages} />
-        </Container>
-      </Section>
+        </div>
+      </section>
 
 
-      <Section background="transparent" padding="lg">
-        <Container>
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Testimonials</h2>
-          <Grid cols={3} gap="lg">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} hover padding="lg">
+              <div key={index} className="border border-blue-200 rounded-xl p-8 hover:shadow-lg hover:border-blue-300 transition-all duration-300">
                 <div className="flex items-center mb-4">
                   <img
                     src={testimonial.avatar}
@@ -294,97 +270,105 @@ const Components: React.FC = () => {
                   ))}
                 </div>
                 <p className="text-neutral-600">{testimonial.text}</p>
-              </Card>
+              </div>
             ))}
-          </Grid>
-        </Container>
-      </Section>
+          </div>
+        </div>
+      </section>
 
-      <Section background="transparent" padding="lg">
-        <Container>
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Data Display Components</h2>
           <div className="space-y-12">
             <ItemList />
             <SortableTable />
           </div>
-        </Container>
-      </Section>
+        </div>
+      </section>
 
 
-      <Section background="transparent" padding="lg">
-        <Container>
-          <CTABlock
-            title="Ready to get started?"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-            primaryAction={{
-              label: 'Start Free Trial',
-              onClick: () => console.log('Primary action'),
-            }}
-            secondaryAction={{
-              label: 'Learn More',
-              onClick: () => console.log('Secondary action'),
-            }}
-          />
-        </Container>
-      </Section>
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
+          <div className="bg-white rounded-2xl p-8 md:p-12 text-slate-900">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to get started?</h2>
+              <p className="text-lg text-slate-600 mb-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button
+                  onClick={() => console.log('Primary action')}
+                  className="px-8 py-4 bg-white text-black rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+                >
+                  Start Free Trial
+                </button>
+                <button
+                  onClick={() => console.log('Secondary action')}
+                  className="px-8 py-4 bg-transparent border-2 border-slate-900 text-slate-900 rounded-lg font-semibold hover:bg-slate-900/10 transition-colors duration-200"
+                >
+                  Learn More
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <Section background="transparent" padding="lg">
-        <Container>
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Analytics & Data</h2>
           <div className="space-y-12">
             <KPISection />
             <KeyValueSection />
           </div>
-        </Container>
-      </Section>
+        </div>
+      </section>
 
 
-      <Section background="transparent" padding="lg">
-        <Container>
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Text Animations</h2>
           <TextAnimations />
-        </Container>
-      </Section>
+        </div>
+      </section>
 
-      <Section background="transparent" padding="lg">
-        <Container>
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Animated Text</h2>
           <div className="text-center">
             <AnimatedTextDemo />
           </div>
-        </Container>
-      </Section>
+        </div>
+      </section>
 
-      <Section background="transparent" padding="md">
-        <Container>
+      <section className="py-8">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <h3 className="font-bold text-neutral-900 mb-4">Product</h3>
-              <Stack spacing="sm">
+              <div className="flex flex-col space-y-2 items-start">
                 <a href="#" className="text-neutral-600 hover:text-blue-600 transition-colors text-sm">Features</a>
                 <a href="#" className="text-neutral-600 hover:text-blue-600 transition-colors text-sm">Pricing</a>
                 <a href="#" className="text-neutral-600 hover:text-blue-600 transition-colors text-sm">Documentation</a>
-              </Stack>
+              </div>
             </div>
             <div>
               <h3 className="font-bold text-neutral-900 mb-4">Company</h3>
-              <Stack spacing="sm">
+              <div className="flex flex-col space-y-2 items-start">
                 <a href="#" className="text-neutral-600 hover:text-blue-600 transition-colors text-sm">About</a>
                 <a href="#" className="text-neutral-600 hover:text-blue-600 transition-colors text-sm">Blog</a>
                 <a href="#" className="text-neutral-600 hover:text-blue-600 transition-colors text-sm">Careers</a>
-              </Stack>
+              </div>
             </div>
             <div>
               <h3 className="font-bold text-neutral-900 mb-4">Support</h3>
-              <Stack spacing="sm">
+              <div className="flex flex-col space-y-2 items-start">
                 <a href="#" className="text-neutral-600 hover:text-blue-600 transition-colors text-sm">Help Center</a>
                 <a href="#" className="text-neutral-600 hover:text-blue-600 transition-colors text-sm">Contact</a>
                 <a href="#" className="text-neutral-600 hover:text-blue-600 transition-colors text-sm">Status</a>
-              </Stack>
+              </div>
             </div>
             <div>
               <h3 className="font-bold text-neutral-900 mb-4">Contact</h3>
-              <Stack spacing="sm">
+              <div className="flex flex-col space-y-2 items-start">
                 <div className="flex items-center text-sm text-neutral-600">
                   <Mail className="w-4 h-4 mr-2" />
                   hello@example.com
@@ -397,14 +381,14 @@ const Components: React.FC = () => {
                   <MapPin className="w-4 h-4 mr-2" />
                   Berlin, Germany
                 </div>
-              </Stack>
+              </div>
             </div>
           </div>
           <div className="border-t border-neutral-300 mt-8 pt-8 text-center text-sm text-neutral-600">
             © 2025 Component Showcase. All rights reserved.
           </div>
-        </Container>
-      </Section>
+        </div>
+      </section>
 
       <Modal
         isOpen={isModalOpen}
