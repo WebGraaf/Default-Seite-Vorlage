@@ -19,7 +19,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <p>&copy; 2025 Führerschein Website</p>
             <div className="space-x-4">
               <Link to="/impressum" className="hover:text-blue-400">Impressum</Link>
-              <Link to="/datenschutz" className="hover:text-blue-400">Datenschutz</Link>
             </div>
           </div>
         </Container>
