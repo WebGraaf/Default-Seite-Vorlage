@@ -1,0 +1,26 @@
+import React from 'react';
+
+const BannerAnmelden: React.FC = () => {
+  return (
+    <section className="py-16">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
+        <div className="bg-card-bg rounded-2xl p-8 md:p-12 text-card-fg">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Bereit für deinen Führerschein?</h2>
+            <p className="text-lg text-text-body mb-8">Starte jetzt deine Fahrschulausbildung bei uns. Professionelle Ausbildung, flexible Termine und erfahrene Fahrlehrer. Wir warten auf dich!</p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <button
+                onClick={() => console.log('Primary action')}
+                className="px-8 py-4 bg-btn-solid-bg text-btn-solid-fg rounded-lg font-semibold hover:bg-btn-solid-hover transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+              >
+                Jetzt Anmelden
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default BannerAnmelden;

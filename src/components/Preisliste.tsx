@@ -8,7 +8,7 @@ interface DataRow {
   sonderfahrt: number;
 }
 
-export function SortableTable() {
+export function Preisliste() {
   const [sortKey, setSortKey] = useState<keyof DataRow>('name');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [currentPage, setCurrentPage] = useState(1);

@@ -7,6 +7,10 @@ import VorherNacherBildVergleich from '../components/VorherNacherBildVergleich';
 import { FAQ } from '../components/FAQ';
 import { StandorteUebersicht, Location } from '../components/StandorteUebersicht';
 import { BilderGallerie } from '../components/BilderGallerie';
+import Bewertungen from '../components/Bewertungen';
+import BannerAnmelden from '../components/BannerAnmelden';
+import { Kontaktinformationen } from '../components/Kontaktinformationen';
+import { Preisliste } from '../components/Preisliste';
 
 const ComponentsTest: React.FC = () => {
   return (
@@ -153,6 +157,11 @@ const ComponentsTest: React.FC = () => {
           <BilderGallerie />
         </div>
       </section>
+
+      <Bewertungen />
+      <BannerAnmelden />
+      <Kontaktinformationen />
+      <Preisliste />
     </div>
   );
 };

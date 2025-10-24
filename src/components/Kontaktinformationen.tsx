@@ -1,6 +1,6 @@
 import { Phone, Clock, MapPin } from 'lucide-react';
 
-export function KPISection() {
+export function Kontaktinformationen() {
   const contactItems = [
     {
       icon: Phone,
