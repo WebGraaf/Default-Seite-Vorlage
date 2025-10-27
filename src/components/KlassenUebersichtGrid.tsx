@@ -61,7 +61,7 @@ export const KlassenUebersichtGrid: React.FC<KlassenUebersichtGridProps> = ({
   return (
     <section
       ref={elementRef as React.RefObject<HTMLElement>}
-      className="py-16"
+      className="py-12"
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateY(0)' : 'translateY(30px)',

@@ -33,7 +33,7 @@ export const OverlayMediaText: React.FC<OverlayMediaTextProps> = ({
   return (
     <div
       ref={elementRef as React.RefObject<HTMLDivElement>}
-      className={`relative rounded-xl overflow-hidden min-h-[400px] ${className}`}
+      className={`relative rounded-xl overflow-hidden min-h-[400px] py-12 px-4 ${className}`}
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'scale(1)' : 'scale(0.95)',
@@ -49,7 +49,7 @@ export const OverlayMediaText: React.FC<OverlayMediaTextProps> = ({
         loading="lazy"
       />
       <div
-        className="absolute inset-0 bg-neutral-900"
+        className="absolute inset-0 bg-black"
         style={{ opacity: overlayOpacity }}
       />
       <div className={`relative z-10 h-full flex flex-col ${positionClasses[textPosition]} text-center px-8`}>

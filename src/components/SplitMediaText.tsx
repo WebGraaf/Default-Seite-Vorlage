@@ -23,15 +23,15 @@ export const SplitMediaText: React.FC<SplitMediaTextProps> = ({
   const { elementRef, isVisible } = useScrollReveal();
 
   const variantClasses = {
-    default: 'bg-white border border-blue-200',
-    muted: 'bg-blue-50 border border-blue-100',
-    outline: 'bg-transparent border-2 border-blue-300',
+    default: 'bg-card-bg border border-card-border',
+    muted: 'bg-card-tint border border-card-border',
+    outline: 'bg-transparent border-2 border-primary-500',
   };
 
   return (
     <div
       ref={elementRef as React.RefObject<HTMLDivElement>}
-      className={`rounded-xl overflow-hidden ${variantClasses[variant]} ${className}`}
+      className={`rounded-xl overflow-hidden py-0 px-0 ${variantClasses[variant]} ${className}`}
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateY(0)' : 'translateY(30px)',

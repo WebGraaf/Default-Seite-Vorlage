@@ -119,7 +119,7 @@ const VorherNacherBildVergleich: React.FC<VorherNacherBildVergleichProps> = ({
   return (
     <section
       ref={elementRef as React.RefObject<HTMLElement>}
-      className={`py-16 ${className}`}
+      className={`py-12 ${className}`}
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateY(0)' : 'translateY(30px)',

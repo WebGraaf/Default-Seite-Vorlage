@@ -115,6 +115,7 @@ export const BilderGallerie: React.FC<BilderGallerieProps> = ({
   return (
     <div
       ref={elementRef as React.RefObject<HTMLDivElement>}
+      className="py-12 px-4"
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateY(0)' : 'translateY(30px)',

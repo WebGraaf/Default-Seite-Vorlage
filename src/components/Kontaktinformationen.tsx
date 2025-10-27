@@ -28,14 +28,14 @@ export function Kontaktinformationen() {
   return (
     <section
       ref={elementRef as React.RefObject<HTMLElement>}
-      className="py-8 px-1.5"
+      className="py-12"
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
         transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
       }}
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {contactItems.map((item, index) => {
             const Icon = item.icon;

@@ -39,14 +39,14 @@ export function KlassenUebersicht({
   return (
     <section
       ref={elementRef as React.RefObject<HTMLElement>}
-      className="py-24 px-6"
+      className="py-12"
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
         transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
       }}
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-text-heading mb-4">
             {title}
@@ -77,7 +77,7 @@ export function KlassenUebersicht({
           })}
         </div>
 
-        <div className="bg-card-bg rounded-2xl p-12 min-h-[300px] shadow-lg">
+        <div className="bg-card-bg rounded-2xl p-4 md:p-12 min-h-[300px] shadow-lg">
           <h3 className="text-3xl font-bold text-text-heading mb-4">
             {tabs[activeTab].title}
           </h3>

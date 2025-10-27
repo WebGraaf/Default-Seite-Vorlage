@@ -133,7 +133,7 @@ export const HeroStartseite: React.FC<HeroStartseiteProps> = ({
   className = '',
 }) => {
   return (
-    <Section background={background} padding={padding} className={className}>
+    <Section background={background} padding={padding} className={`py-12 ${className}`}>
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-7 gap-8 items-center">
           <div className="col-span-1 md:col-span-5 text-left order-2 md:order-1">

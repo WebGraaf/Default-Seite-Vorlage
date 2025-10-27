@@ -20,14 +20,14 @@ export function FAQ({ title = "Häufig gestellte Fragen", faqs, defaultOpenIndex
   return (
     <section
       ref={elementRef as React.RefObject<HTMLElement>}
-      className="py-24 px-6"
+      className="py-12"
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
         transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
       }}
     >
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-heading mb-4">
             {title}
