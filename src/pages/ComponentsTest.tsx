@@ -12,6 +12,8 @@ import BannerAnmelden from '../components/BannerAnmelden';
 import { Kontaktinformationen } from '../components/Kontaktinformationen';
 import { Preisliste } from '../components/Preisliste';
 import { DemoTextAnimationHero } from '../components/TextAnimationHero';
+import { OverlayMediaText } from '../components/OverlayMediaText';
+import { SplitMediaText } from '../components/SplitMediaText';
 
 const ComponentsTest: React.FC = () => {
   return (
@@ -164,6 +166,35 @@ const ComponentsTest: React.FC = () => {
       <Kontaktinformationen />
       <Preisliste />
       <DemoTextAnimationHero />
+
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
+          <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Overlay Media Text</h2>
+          <OverlayMediaText
+            imageSrc="https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            imageAlt="Sample Image"
+            title="Overlay Media Text Component"
+            description="This component displays text overlaid on an image with customizable opacity and positioning."
+            overlayOpacity={0.5}
+            textPosition="center"
+            variant="default"
+          />
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
+          <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Split Media Text</h2>
+          <SplitMediaText
+            imageSrc="https://images.pexels.com/photos/1719648/pexels-photo-1719648.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            imageAlt="Sample Image"
+            title="Split Media Text Component"
+            description="This component displays an image alongside text in a split layout, with options for image position and styling variants."
+            imagePosition="left"
+            variant="default"
+          />
+        </div>
+      </section>
     </div>
   );
 };

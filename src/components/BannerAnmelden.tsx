@@ -1,8 +1,19 @@
 import React from 'react';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 const BannerAnmelden: React.FC = () => {
+  const { elementRef, isVisible } = useScrollReveal();
+
   return (
-    <section className="py-16">
+    <section
+      ref={elementRef as React.RefObject<HTMLElement>}
+      className="py-16"
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+      }}
+    >
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
         <div className="bg-card-bg rounded-2xl p-8 md:p-12 text-card-fg">
           <div className="max-w-3xl mx-auto text-center">

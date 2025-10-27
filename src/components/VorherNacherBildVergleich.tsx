@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 interface VorherNacherBildVergleichProps {
   title?: string;
@@ -113,8 +114,18 @@ const VorherNacherBildVergleich: React.FC<VorherNacherBildVergleichProps> = ({
   afterLabel = "Nachher",
   className = "",
 }) => {
+  const { elementRef, isVisible } = useScrollReveal();
+
   return (
-    <section className={`py-16 ${className}`}>
+    <section
+      ref={elementRef as React.RefObject<HTMLElement>}
+      className={`py-16 ${className}`}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+      }}
+    >
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
         <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">{title}</h2>
         <div className="max-w-4xl mx-auto">

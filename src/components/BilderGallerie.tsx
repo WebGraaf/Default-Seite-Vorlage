@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { X, ZoomIn, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 interface LightboxProps {
   images: string[];
@@ -96,6 +97,7 @@ export const BilderGallerie: React.FC<BilderGallerieProps> = ({
 }) => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { elementRef, isVisible } = useScrollReveal();
 
   const openLightbox = (index: number) => {
     setCurrentIndex(index);
@@ -111,7 +113,14 @@ export const BilderGallerie: React.FC<BilderGallerieProps> = ({
   };
 
   return (
-    <>
+    <div
+      ref={elementRef as React.RefObject<HTMLDivElement>}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+      }}
+    >
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {images.map((image, index) => (
           <button
@@ -137,6 +146,6 @@ export const BilderGallerie: React.FC<BilderGallerieProps> = ({
         onNext={handleNext}
         onPrev={handlePrev}
       />
-    </>
+    </div>
   );
 };

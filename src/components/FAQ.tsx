@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 interface FAQItem {
   question: string;
@@ -14,9 +15,18 @@ interface FAQProps {
 
 export function FAQ({ title = "Häufig gestellte Fragen", faqs, defaultOpenIndex = null }: FAQProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(defaultOpenIndex);
+  const { elementRef, isVisible } = useScrollReveal();
 
   return (
-    <section className="py-24 px-6">
+    <section
+      ref={elementRef as React.RefObject<HTMLElement>}
+      className="py-24 px-6"
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+      }}
+    >
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-heading mb-4">

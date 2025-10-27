@@ -1,6 +1,9 @@
 import { Phone, Clock, MapPin } from 'lucide-react';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export function Kontaktinformationen() {
+  const { elementRef, isVisible } = useScrollReveal();
+
   const contactItems = [
     {
       icon: Phone,
@@ -23,7 +26,15 @@ export function Kontaktinformationen() {
   ];
 
   return (
-    <section className="py-8 px-1.5">
+    <section
+      ref={elementRef as React.RefObject<HTMLElement>}
+      className="py-8 px-1.5"
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+      }}
+    >
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {contactItems.map((item, index) => {

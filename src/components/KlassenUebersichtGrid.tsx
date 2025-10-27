@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Bike, Car, Truck, Bus, Tractor } from 'lucide-react';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 interface Feature {
   icon: React.ComponentType<{ className?: string }>;
@@ -55,8 +56,18 @@ export const KlassenUebersichtGrid: React.FC<KlassenUebersichtGridProps> = ({
     },
   ],
 }) => {
+  const { elementRef, isVisible } = useScrollReveal();
+
   return (
-    <section className="py-16">
+    <section
+      ref={elementRef as React.RefObject<HTMLElement>}
+      className="py-16"
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+      }}
+    >
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
         <h2 className="text-3xl font-bold text-heading mb-8 text-center">{title}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronDown, Calendar, Check, AlertCircle, Loader2 } from 'lucide-react';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 interface SelectProps {
   label: string;
   options: { value: string; label: string }[];
@@ -350,6 +351,7 @@ const FormLoading: React.FC<FormLoadingProps> = ({ message = 'Submitting...' }) 
 
 export const AnmeldeFormular: React.FC = () => {
   const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const { elementRef, isVisible } = useScrollReveal();
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -360,7 +362,15 @@ export const AnmeldeFormular: React.FC = () => {
   };
 
   return (
-    <section className="py-16">
+    <section
+      ref={elementRef as React.RefObject<HTMLElement>}
+      className="py-16"
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+      }}
+    >
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
         <h2 className="text-3xl font-bold text-heading mb-8 text-center">Jetzt Anmelden</h2>
         <div className="max-w-2xl mx-auto">

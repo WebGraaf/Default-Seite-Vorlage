@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { MapPin, Phone, Clock } from 'lucide-react';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export interface Location {
   label: string;
@@ -20,9 +21,18 @@ export function StandorteUebersicht({
   locations
 }: StandorteUebersichtProps) {
   const [activeTab, setActiveTab] = useState(0);
+  const { elementRef, isVisible } = useScrollReveal();
 
   return (
-    <section className="py-24 px-6">
+    <section
+      ref={elementRef as React.RefObject<HTMLElement>}
+      className="py-24 px-6"
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+      }}
+    >
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-text-heading mb-4">
