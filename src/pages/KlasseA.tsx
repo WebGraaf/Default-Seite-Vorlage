@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container, Section } from '../components/LayoutComponents';
-import { SplitMediaText } from '../components/SplitMediaText';
-import { SplitMediaTextInvert } from '../components/SplitMediaTextInvert';
+import { KlassenDetailCard } from '../components/KlassenDetailCard';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { Bike, Gauge, Calendar, Users } from 'lucide-react';
 import KlasseAMImage from '../default_images/Klasse_AM_Default.png';
@@ -39,11 +38,18 @@ const KlasseA: React.FC = () => {
 
       <Section background="page-bg" padding="lg">
         <Container>
-          <SplitMediaText
+          <KlassenDetailCard
             imageSrc={KlasseAMImage}
             imageAlt="Klasse AM - Kleinkrafträder und Roller"
             title="Klasse AM"
             description="Der Einstieg in die Welt der Zweiräder! Mit der Klasse AM darfst du Kleinkrafträder und Roller bis 50 ccm und 45 km/h fahren. Perfekt für junge Fahrer ab 15 Jahren, die erste Erfahrungen sammeln möchten."
+            restrictions={[
+              'Mindestalter: 15 Jahre',
+              'Maximale Geschwindigkeit: 45 km/h',
+              'Hubraum: bis 50 ccm',
+              'Fahrzeugtypen: Kleinkrafträder, Roller, Mopeds',
+              'Keine Probezeit erforderlich'
+            ]}
             imagePosition="left"
             variant="default"
           />
@@ -81,11 +87,18 @@ const KlasseA: React.FC = () => {
 
       <Section background="page-bg" padding="lg">
         <Container>
-          <SplitMediaTextInvert
+          <KlassenDetailCard
             imageSrc={KlasseA1Image}
             imageAlt="Klasse A1 - Leichtkrafträder"
             title="Klasse A1"
             description="Mehr Leistung, mehr Möglichkeiten! Die Klasse A1 berechtigt zum Fahren von Leichtkrafträdern bis 125 ccm und 15 PS. Ab 16 Jahren kannst du mit dieser Klasse bereits richtige Motorräder erleben."
+            restrictions={[
+              'Mindestalter: 16 Jahre',
+              'Maximale Leistung: 15 PS (11 kW)',
+              'Hubraum: bis 125 ccm',
+              'Leistungsgewicht: max. 0,1 kW/kg',
+              'Fahrzeugtypen: Leichtkrafträder'
+            ]}
             imagePosition="right"
             variant="muted"
           />
@@ -123,11 +136,18 @@ const KlasseA: React.FC = () => {
 
       <Section background="page-bg" padding="lg">
         <Container>
-          <SplitMediaText
+          <KlassenDetailCard
             imageSrc={KlasseA2Image}
             imageAlt="Klasse A2 - Mittelklasse Motorräder"
             title="Klasse A2"
             description="Der perfekte Mittelweg! Mit der Klasse A2 steuerst du Motorräder bis 48 PS. Diese Klasse bietet dir echtes Motorradfeeling und ist der ideale Schritt auf dem Weg zur vollen Motorradlizenz. Ab 18 Jahren möglich."
+            restrictions={[
+              'Mindestalter: 18 Jahre',
+              'Maximale Leistung: 48 PS (35 kW)',
+              'Leistungsgewicht: max. 0,2 kW/kg',
+              'Hubraum: unbegrenzt',
+              'Fahrzeugtypen: Mittelklasse-Motorräder'
+            ]}
             imagePosition="left"
             variant="default"
           />
@@ -165,11 +185,18 @@ const KlasseA: React.FC = () => {
 
       <Section background="page-bg" padding="lg">
         <Container>
-          <SplitMediaTextInvert
+          <KlassenDetailCard
             imageSrc={KlasseAImage}
             imageAlt="Klasse A - Unbegrenzte Motorräder"
             title="Klasse A"
             description="Die Königsklasse! Mit der Klasse A darfst du alle Motorräder ohne Leistungsbeschränkung fahren. Volle Freiheit, maximale Power – für echte Motorradfans ab 24 Jahren oder nach 2 Jahren Vorbesitz der Klasse A2."
+            restrictions={[
+              'Mindestalter: 24 Jahre (Direkteinstieg) oder 20 Jahre (mit A2)',
+              'Leistung: unbegrenzt',
+              'Hubraum: unbegrenzt',
+              'Fahrzeugtypen: Alle Motorräder',
+              'Inkludiert: Klassen AM, A1 und A2'
+            ]}
             imagePosition="right"
             variant="outline"
           />
