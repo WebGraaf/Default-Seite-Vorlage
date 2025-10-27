@@ -1,7 +1,7 @@
 import React from 'react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
-interface SplitMediaTextProps {
+interface SplitMediaText1zu1invertProps {
   imageSrc: string;
   imageAlt?: string;
   title: string;
@@ -11,12 +11,12 @@ interface SplitMediaTextProps {
   className?: string;
 }
 
-export const SplitMediaText: React.FC<SplitMediaTextProps> = ({
+export const SplitMediaText1zu1invert: React.FC<SplitMediaText1zu1invertProps> = ({
   imageSrc,
   imageAlt = '',
   title,
   description,
-  imagePosition = 'left',
+  imagePosition = 'right',
   variant = 'default',
   className = '',
 }) => {
@@ -43,7 +43,7 @@ export const SplitMediaText: React.FC<SplitMediaTextProps> = ({
           imagePosition === 'right' ? 'md:flex-row-reverse' : ''
         }`}
       >
-        <div className="md:w-1/2">
+        <div className="md:w-1/2 aspect-square">
           <img
             src={imageSrc}
             alt={imageAlt}

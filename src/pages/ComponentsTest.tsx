@@ -14,11 +14,13 @@ import { Preisliste } from '../components/Preisliste';
 import { DemoTextAnimationHero } from '../components/TextAnimationHero';
 import { OverlayMediaText } from '../components/OverlayMediaText';
 import { SplitMediaText } from '../components/SplitMediaText';
+import { SplitMediaTextInvert } from '../components/SplitMediaTextInvert';
+import { SplitMediaText1zu1 } from '../components/SplitMediaText1zu1';
+import { SplitMediaText1zu1invert } from '../components/SplitMediaText1zu1invert';
 
 const ComponentsTest: React.FC = () => {
   return (
     <div>
-      <h1>Components Test</h1>
       <HeroStartseite
         title="Wir machen dich mobil!"
         subtitle="Deine Fahrschule"
@@ -191,6 +193,45 @@ const ComponentsTest: React.FC = () => {
             title="Split Media Text Component"
             description="This component displays an image alongside text in a split layout, with options for image position and styling variants."
             imagePosition="left"
+            variant="default"
+          />
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
+          <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Split Media Text Invert</h2>
+          <SplitMediaTextInvert
+            imageSrc="https://images.pexels.com/photos/1719648/pexels-photo-1719648.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            imageAlt="Sample Image"
+            title="Split Media Text Invert Component"
+            description="This component displays an image on the right alongside text on the left in a split layout."
+            variant="default"
+          />
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
+          <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Split Media Text 1zu1</h2>
+          <SplitMediaText1zu1
+            imageSrc="https://images.pexels.com/photos/1719648/pexels-photo-1719648.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            imageAlt="Sample Image"
+            title="Split Media Text 1zu1 Component"
+            description="This component displays an image and text in a 50/50 split layout."
+            variant="default"
+          />
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
+          <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Split Media Text 1zu1 Invert</h2>
+          <SplitMediaText1zu1invert
+            imageSrc="https://images.pexels.com/photos/1719648/pexels-photo-1719648.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            imageAlt="Sample Image"
+            title="Split Media Text 1zu1 Invert Component"
+            description="This component displays an image on the right and text on the left in a 50/50 split layout."
             variant="default"
           />
         </div>

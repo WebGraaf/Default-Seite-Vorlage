@@ -66,7 +66,7 @@ export function Preisliste() {
   };
 
   const SortIcon = ({ column }: { column: keyof DataRow }) => {
-    if (sortKey !== column) return <ChevronsUpDown className="w-4 h-4 text-secondary-400" />;
+    if (sortKey !== column) return <ChevronsUpDown className="w-4 h-4 text-primary-400" />;
     return sortOrder === 'asc' ?
       <ChevronUp className="w-4 h-4 text-primary-600" /> :
       <ChevronDown className="w-4 h-4 text-primary-600" />;
@@ -105,7 +105,7 @@ export function Preisliste() {
                   </th>
                   <th
                     onClick={() => handleSort('fahrstunde')}
-                    className="px-6 py-4 text-right font-semibold text-secondary-700 cursor-pointer hover:bg-table-row-hover transition-colors"
+                    className="px-6 py-4 text-right font-semibold text-primary-700 cursor-pointer hover:bg-table-row-hover transition-colors"
                   >
                     <div className="flex items-center justify-end gap-2">
                       Fahrstunde (€)
@@ -114,7 +114,7 @@ export function Preisliste() {
                   </th>
                   <th
                     onClick={() => handleSort('grundgebuehr')}
-                    className="px-6 py-4 text-right font-semibold text-secondary-700 cursor-pointer hover:bg-table-row-hover transition-colors"
+                    className="px-6 py-4 text-right font-semibold text-primary-700 cursor-pointer hover:bg-table-row-hover transition-colors"
                   >
                     <div className="flex items-center justify-end gap-2">
                       Grundgebühr (€)
@@ -123,7 +123,7 @@ export function Preisliste() {
                   </th>
                   <th
                     onClick={() => handleSort('sonderfahrt')}
-                    className="px-6 py-4 text-right font-semibold text-secondary-700 cursor-pointer hover:bg-table-row-hover transition-colors"
+                    className="px-6 py-4 text-right font-semibold text-primary-700 cursor-pointer hover:bg-table-row-hover transition-colors"
                   >
                     <div className="flex items-center justify-end gap-2">
                       Sonderfahrt (€)
@@ -146,14 +146,14 @@ export function Preisliste() {
           </div>
 
           <div className="bg-table-bg px-6 py-4 border-t border-table-border flex items-center justify-between">
-            <div className="text-sm text-secondary-600">
+            <div className="text-sm text-primary-600">
               Zeige {(currentPage - 1) * itemsPerPage + 1} bis {Math.min(currentPage * itemsPerPage, sortedData.length)} von {sortedData.length} Einträgen
             </div>
             <div className="flex gap-2">
               <button
                 onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
                 disabled={currentPage === 1}
-                className="px-4 py-2 border border-primary-300 rounded-lg text-primary-900 hover:bg-secondary-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="px-4 py-2 border border-primary-300 rounded-lg text-primary-900 hover:bg-primary-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 Vorherige
               </button>
@@ -164,7 +164,7 @@ export function Preisliste() {
                   className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                     currentPage === page
                       ? 'bg-primary-50 text-primary-900'
-                       : 'border border-primary-300 text-primary-900 hover:bg-secondary-100'
+                       : 'border border-primary-300 text-primary-900 hover:bg-primary-100'
                   }`}
                 >
                   {page}
@@ -173,7 +173,7 @@ export function Preisliste() {
               <button
                 onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
                 disabled={currentPage === totalPages}
-                className="px-4 py-2 border border-secondary-300 rounded-lg text-secondary-700 hover:bg-secondary-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="px-4 py-2 border border-primary-300 rounded-lg text-primary-700 hover:bg-primary-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 Nächste
               </button>

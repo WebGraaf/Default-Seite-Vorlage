@@ -13,6 +13,7 @@ interface AnimatedTextProps {
   threshold?: number;
   rootMargin?: string;
   textAlign?: 'left' | 'right' | 'center' | 'justify';
+  tag?: keyof JSX.IntrinsicElements;
 }
 
 const AnimatedText: React.FC<AnimatedTextProps> = ({
@@ -25,6 +26,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
   threshold = 0.1,
   rootMargin = '-100px',
   textAlign = 'center',
+  tag: Tag = 'p',
 }) => {
   const words = text.split(' ').map(word => word.split(''));
   const letters = words.flat();
@@ -73,37 +75,35 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
     lineHeight: '1.2',
   };
 
-  return (
-    <p
-      ref={ref}
-      className={`split-parent inline ${className}`}
-      style={textStyle}
-    >
-      {words.map((word, wordIndex) => (
-        <span key={wordIndex} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
-          {word.map((letter, letterIndex) => {
-            const index = words
-              .slice(0, wordIndex)
-              .reduce((acc, w) => acc + w.length, 0) + letterIndex;
+  const Component = Tag as React.ElementType;
 
-            return letter === '\n' ? (
-              <br key={index} />
-            ) : (
-              <animated.span
-                key={index}
-                style={trail[index]}
-                className="inline-block transform transition-opacity will-change-transform"
-              >
-                {letter}
-              </animated.span>
-            );
-          })}
-          {wordIndex < words.length - 1 && (
-            <span style={{ display: 'inline-block', width: '0.3em' }}> </span>
-          )}
-        </span>
-      ))}
-    </p>
+  return React.createElement(
+    Tag,
+    {
+      ref,
+      className: `split-parent inline ${className}`,
+      style: textStyle,
+    },
+    words.map((word, wordIndex) => (
+      React.createElement('span', { key: wordIndex, style: { display: 'inline-block', whiteSpace: 'nowrap' } },
+        word.map((letter, letterIndex) => {
+          const index = words
+            .slice(0, wordIndex)
+            .reduce((acc, w) => acc + w.length, 0) + letterIndex;
+
+          return letter === '\n' ? (
+            React.createElement('br', { key: index })
+          ) : (
+            React.createElement(animated.span, {
+              key: index,
+              style: trail[index],
+              className: "inline-block transform transition-opacity will-change-transform"
+            }, letter)
+          );
+        }),
+        wordIndex < words.length - 1 && React.createElement('span', { style: { display: 'inline-block', width: '0.3em' } }, ' ')
+      )
+    ))
   );
 };
 
@@ -148,6 +148,7 @@ export const HeroStartseite: React.FC<HeroStartseiteProps> = ({
                 easing="easeOutCubic"
                 threshold={0.3}
                 rootMargin="-100px"
+                tag="h1"
               />
               {subtitle && (
                 <AnimatedText

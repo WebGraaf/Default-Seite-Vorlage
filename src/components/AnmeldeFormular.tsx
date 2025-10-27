@@ -378,31 +378,42 @@ export const AnmeldeFormular: React.FC = () => {
             {formState === 'idle' && (
               <form onSubmit={handleFormSubmit} className="space-y-6">
                 <HoneypotField />
-                <Input label="Vorname" placeholder="Max" required error="Vorname ist erforderlich" />
-                <Input label="Nachname" placeholder="Mustermann" required error="Nachname ist erforderlich" />
-                <Input label="E-Mail-Adresse" type="email" placeholder="max@example.com" required />
-                <Input label="Telefonnummer" type="tel" placeholder="+49 123 456789" required />
-                <DatePicker label="Geburtsdatum" />
-                <Select
-                  label="Gewünschte Klasse"
-                  options={[
-                    { value: 'a', label: 'Klasse A' },
-                    { value: 'b', label: 'Klasse B' },
-                    { value: 'c', label: 'Klasse C' },
-                    { value: 'd', label: 'Klasse D' },
-                    { value: 'l', label: 'Klasse L' },
-                    { value: 't', label: 'Klasse T' },
-                  ]}
-                />
-                <DatePicker label="Gewünschter Starttermin" />
-                <div>
-                  <label className="block text-sm font-medium text-text-body mb-2">Zusätzliche Nachricht</label>
-                  <textarea
-                    className="w-full px-3 py-2 border border-field-border rounded-lg focus:ring-2 focus:ring-field-focus-ring focus:border-transparent bg-field-bg text-field-fg placeholder-field-placeholder"
-                    rows={4}
-                    placeholder="Ihre Nachricht..."
+                <fieldset className="space-y-4">
+                  <legend className="text-lg font-semibold text-heading mb-4">Persönliche Informationen</legend>
+                  <Input label="Vorname" placeholder="Max" required error="Vorname ist erforderlich" />
+                  <Input label="Nachname" placeholder="Mustermann" required error="Nachname ist erforderlich" />
+                  <Input label="E-Mail-Adresse" type="email" placeholder="max@example.com" required />
+                  <Input label="Telefonnummer" type="tel" placeholder="+49 123 456789" required />
+                  <DatePicker label="Geburtsdatum" />
+                </fieldset>
+
+                <fieldset className="space-y-4">
+                  <legend className="text-lg font-semibold text-heading mb-4">Kursdetails</legend>
+                  <Select
+                    label="Gewünschte Klasse"
+                    options={[
+                      { value: 'a', label: 'Klasse A' },
+                      { value: 'b', label: 'Klasse B' },
+                      { value: 'c', label: 'Klasse C' },
+                      { value: 'd', label: 'Klasse D' },
+                      { value: 'l', label: 'Klasse L' },
+                      { value: 't', label: 'Klasse T' },
+                    ]}
                   />
-                </div>
+                  <DatePicker label="Gewünschter Starttermin" />
+                </fieldset>
+
+                <fieldset className="space-y-4">
+                  <legend className="text-lg font-semibold text-heading mb-4">Zusätzliche Informationen</legend>
+                  <div>
+                    <label className="block text-sm font-medium text-text-body mb-2">Zusätzliche Nachricht</label>
+                    <textarea
+                      className="w-full px-3 py-2 border border-field-border rounded-lg focus:ring-2 focus:ring-field-focus-ring focus:border-transparent bg-field-bg text-field-fg placeholder-field-placeholder"
+                      rows={4}
+                      placeholder="Ihre Nachricht..."
+                    />
+                  </div>
+                </fieldset>
 
                 <button
                   type="submit"
