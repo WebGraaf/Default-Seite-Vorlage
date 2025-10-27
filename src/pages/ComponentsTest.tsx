@@ -5,7 +5,7 @@ import { KlassenUebersicht } from '../components/KlassenUebersicht';
 import { AnmeldeFormular } from '../components/AnmeldeFormular';
 import VorherNacherBildVergleich from '../components/VorherNacherBildVergleich';
 import { FAQ } from '../components/FAQ';
-import { StandorteUebersicht, Location } from '../components/StandorteUebersicht';
+import { StandorteUebersicht } from '../components/StandorteUebersicht';
 import { BilderGallerie } from '../components/BilderGallerie';
 import Bewertungen from '../components/Bewertungen';
 import BannerAnmelden from '../components/BannerAnmelden';
