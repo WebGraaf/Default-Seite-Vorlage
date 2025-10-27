@@ -45,13 +45,13 @@ export const KlassenUebersichtGrid: React.FC<KlassenUebersichtGridProps> = ({
     {
       icon: Tractor,
       title: 'Klasse L',
-      description: 'Führerschein für land- und forstwirtschaftliche Zugmaschinen.',
+      description: 'Führerschein für land- und forstwirtschaftliche Zugmaschinen und Arbeitsmaschinen.',
       link: '/fuehrerscheine/klasse-l',
     },
     {
       icon: Tractor,
       title: 'Klasse T',
-      description: 'Führerschein für Anhänger hinter Klasse B. Für Wohnwagen und Anhänger.',
+      description: 'Führerschein für Zugmaschinen und Arbeitsmaschinen für land- und forstwirtschaftliche Zwecke.',
       link: '/fuehrerscheine/klasse-t',
     },
   ],

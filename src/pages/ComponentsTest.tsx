@@ -17,6 +17,7 @@ import { SplitMediaText } from '../components/SplitMediaText';
 import { SplitMediaTextInvert } from '../components/SplitMediaTextInvert';
 import { SplitMediaText1zu1 } from '../components/SplitMediaText1zu1';
 import { SplitMediaText1zu1invert } from '../components/SplitMediaText1zu1invert';
+import { TeamBilder } from '../components/TeamBilder';
 
 const ComponentsTest: React.FC = () => {
   return (
@@ -91,19 +92,19 @@ const ComponentsTest: React.FC = () => {
           {
             label: 'Klasse L',
             title: 'Führerschein Klasse L',
-            content: 'Die Klasse L berechtigt zum Führen von land- und forstwirtschaftlichen Zugmaschinen. Dazu gehören Traktoren und andere landwirtschaftliche Fahrzeuge.',
+            content: 'Die Klasse L berechtigt zum Führen von land- und forstwirtschaftlichen Zugmaschinen bis 40 km/h und bestimmten Arbeitsmaschinen bis 25 km/h, nur zu LoF-Zwecken.',
             link: '/fuehrerscheine/klasse-l',
             subclasses: [
-              { code: 'L', description: 'Traktoren bis 40 km/h / Arbeitsmaschinen bis 25 km/h' }
+              { code: 'L', description: 'Zugmaschinen bis 40 km/h bbH (mit Anhänger max. 25 km/h)' }
             ]
           },
           {
             label: 'Klasse T',
             title: 'Führerschein Klasse T',
-            content: 'Die Klasse T berechtigt zum Führen von Anhängern hinter Klasse B. Dazu gehören Wohnwagen, Anhänger und andere Gespanne.',
+            content: 'Die Klasse T berechtigt zum Führen von Zugmaschinen bis 60 km/h und selbstfahrenden Arbeitsmaschinen bis 40 km/h, nur für land- und forstwirtschaftliche Zwecke.',
             link: '/fuehrerscheine/klasse-t',
             subclasses: [
-              { code: 'T', description: 'Traktoren bis 60 km/h (für Land-/Forstwirtschaft)' }
+              { code: 'T', description: 'Zugmaschinen bis 60 km/h bbH (nur für land- und forstwirtschaftliche Zwecke)' }
             ]
           }
         ]}
@@ -232,6 +233,29 @@ const ComponentsTest: React.FC = () => {
             imageAlt="Sample Image"
             title="Split Media Text 1zu1 Invert Component"
             description="This component displays an image on the right and text on the left in a 50/50 split layout."
+            variant="default"
+          />
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
+          <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Team Bilder</h2>
+          <TeamBilder
+            teams={[
+              {
+                imageSrc: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                imageAlt: "Team Member 1",
+                title: "Max Mustermann",
+                description: "Max ist ein erfahrener Fahrlehrer mit über 15 Jahren Erfahrung in der Fahrausbildung. Er hat tausende von Schülern sicher durch ihre Führerscheinprüfung gebracht und legt besonderen Wert auf eine individuelle Betreuung. Seine Leidenschaft für das Fahren und seine pädagogischen Fähigkeiten machen ihn zu einem unverzichtbaren Teil unseres Teams."
+              },
+              {
+                imageSrc: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                imageAlt: "Team Member 2",
+                title: "Anna Schmidt",
+                description: "Anna ist unsere Expertin für Theorieunterricht und Prüfungsvorbereitung. Mit ihrem fundierten Wissen in Verkehrsrecht und Fahrsicherheit hilft sie Schülern, die theoretischen Grundlagen zu meistern. Sie verwendet moderne Lehrmethoden und interaktive Materialien, um den Lernprozess effektiv und unterhaltsam zu gestalten."
+              }
+            ]}
             variant="default"
           />
         </div>

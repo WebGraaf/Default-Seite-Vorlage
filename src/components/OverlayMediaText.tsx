@@ -52,9 +52,9 @@ export const OverlayMediaText: React.FC<OverlayMediaTextProps> = ({
         className="absolute inset-0 bg-black"
         style={{ opacity: overlayOpacity }}
       />
-      <div className={`relative z-10 h-full flex flex-col ${positionClasses[textPosition]} text-center px-8`}>
-        <h3 className="text-4xl font-bold text-white mb-4">{title}</h3>
-        <p className="text-white/90 text-lg max-w-2xl leading-relaxed">{description}</p>
+      <div className={`relative z-10 h-full flex flex-col ${positionClasses[textPosition]} px-8`}>
+        <h3 className="text-4xl font-bold text-white mb-4 max-w-2xl mx-auto text-center">{title}</h3>
+        <p className="text-white/90 text-lg max-w-2xl mx-auto text-center leading-relaxed">{description}</p>
       </div>
     </div>
   );
