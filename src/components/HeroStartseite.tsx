@@ -1,6 +1,111 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Section } from './LayoutComponents';
+import { useTrail, animated } from '@react-spring/web';
+
+interface AnimatedTextProps {
+  text?: string;
+  className?: string;
+  delay?: number;
+  animationFrom?: object;
+  animationTo?: object;
+  easing?: string;
+  threshold?: number;
+  rootMargin?: string;
+  textAlign?: 'left' | 'right' | 'center' | 'justify';
+}
+
+const AnimatedText: React.FC<AnimatedTextProps> = ({
+  text = '',
+  className = '',
+  delay = 20,
+  animationFrom = { opacity: 0, transform: 'translate3d(0,40px,0)' },
+  animationTo = { opacity: 1, transform: 'translate3d(0,0,0)' },
+  easing = 'easeOutCubic',
+  threshold = 0.1,
+  rootMargin = '-100px',
+  textAlign = 'center',
+}) => {
+  const words = text.split(' ').map(word => word.split(''));
+  const letters = words.flat();
+  const [inView, setInView] = useState(false);
+  const ref = useRef<HTMLParagraphElement>(null);
+  const animatedCount = useRef(0);
+
+  useEffect(() => {
+    const currentRef = ref.current;
+    if (!currentRef) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.unobserve(currentRef);
+        }
+      },
+      { threshold, rootMargin }
+    );
+
+    observer.observe(currentRef);
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+      observer.disconnect();
+    };
+  }, [threshold, rootMargin]);
+
+  const trail = useTrail(letters.length, {
+    from: animationFrom,
+    to: inView ? animationTo : animationFrom,
+    delay: (i: number) => i * delay,
+    config: { duration: 40 },
+    onRest: () => {
+      animatedCount.current += 1;
+    }
+  });
+
+  const textStyle: React.CSSProperties = {
+    textAlign,
+    whiteSpace: 'pre-line',
+    wordWrap: 'break-word',
+    lineHeight: '1.2',
+  };
+
+  return (
+    <p
+      ref={ref}
+      className={`split-parent inline ${className}`}
+      style={textStyle}
+    >
+      {words.map((word, wordIndex) => (
+        <span key={wordIndex} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+          {word.map((letter, letterIndex) => {
+            const index = words
+              .slice(0, wordIndex)
+              .reduce((acc, w) => acc + w.length, 0) + letterIndex;
+
+            return letter === '\n' ? (
+              <br key={index} />
+            ) : (
+              <animated.span
+                key={index}
+                style={trail[index]}
+                className="inline-block transform transition-opacity will-change-transform"
+              >
+                {letter}
+              </animated.span>
+            );
+          })}
+          {wordIndex < words.length - 1 && (
+            <span style={{ display: 'inline-block', width: '0.3em' }}> </span>
+          )}
+        </span>
+      ))}
+    </p>
+  );
+};
 
 interface HeroStartseiteProps {
   title: string;
@@ -32,12 +137,32 @@ export const HeroStartseite: React.FC<HeroStartseiteProps> = ({
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-7 gap-8 items-center">
           <div className="col-span-1 md:col-span-5 text-left order-2 md:order-1">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-heading mb-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
-              {title}
+            <div className="flex flex-col justify-start items-start">
+              <AnimatedText
+                text={title}
+                className="text-3xl md:text-4xl lg:text-5xl font-bold text-left max-w-2xl text-heading"
+                textAlign="left"
+                delay={30}
+                animationFrom={{ opacity: 0, transform: 'translate3d(0,30px,0)' }}
+                animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
+                easing="easeOutCubic"
+                threshold={0.3}
+                rootMargin="-100px"
+              />
               {subtitle && (
-                <span className="block text-primary-600 mt-4">{subtitle}</span>
+                <AnimatedText
+                  text={subtitle}
+                  className="text-3xl md:text-4xl lg:text-5xl font-bold text-left max-w-2xl text-primary"
+                  textAlign="left"
+                  delay={30}
+                  animationFrom={{ opacity: 0, transform: 'translate3d(0,30px,0)' }}
+                  animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
+                  easing="easeOutCubic"
+                  threshold={0.3}
+                  rootMargin="-100px"
+                />
               )}
-            </h1>
+            </div>
             <p className="text-lg md:text-xl text-body mb-8 animate-in fade-in slide-in-from-bottom-6 duration-900">
               {description}
             </p>

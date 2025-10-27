@@ -11,14 +11,15 @@ import Bewertungen from '../components/Bewertungen';
 import BannerAnmelden from '../components/BannerAnmelden';
 import { Kontaktinformationen } from '../components/Kontaktinformationen';
 import { Preisliste } from '../components/Preisliste';
+import { DemoTextAnimationHero } from '../components/TextAnimationHero';
 
 const ComponentsTest: React.FC = () => {
   return (
     <div>
       <h1>Components Test</h1>
       <HeroStartseite
-        title="Willkommen bei unserer Fahrschule"
-        subtitle="Ihr Weg zum Führerschein"
+        title="Wir machen dich mobil!"
+        subtitle="Deine Fahrschule"
         description="Erfahren Sie mehr über unsere Kurse und starten Sie Ihre Fahrausbildung mit uns."
         buttonText="Jetzt anmelden"
         buttonLink="/anmelden"
@@ -162,6 +163,7 @@ const ComponentsTest: React.FC = () => {
       <BannerAnmelden />
       <Kontaktinformationen />
       <Preisliste />
+      <DemoTextAnimationHero />
     </div>
   );
 };
