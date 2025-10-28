@@ -3,10 +3,10 @@ import { Container, Section } from '../components/LayoutComponents';
 import { KlassenDetailCard } from '../components/KlassenDetailCard';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { Bike, Gauge, Calendar, Users } from 'lucide-react';
-import KlasseAMImage from '../default_images/Klasse_AM_Default.png';
-import KlasseA1Image from '../default_images/Klasse_A1_Default.png';
-import KlasseA2Image from '../default_images/Klasse_A2_Default.png';
-import KlasseAImage from '../default_images/Klasse_A_Default.png';
+import KlasseAMImage from '../default_images/Klasse_AM_Default.webp';
+import KlasseA1Image from '../default_images/Klasse_A1_Default.webp';
+import KlasseA2Image from '../default_images/Klasse_A2_Default.webp';
+import KlasseAImage from '../default_images/Klasse_A_Default.webp';
 
 const KlasseA: React.FC = () => {
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollReveal();
@@ -205,7 +205,7 @@ const KlasseA: React.FC = () => {
 
       <Section background="page-bg" padding="sm">
         <Container>
-          <div className="bg-gradient-to-br from-primary-50 to-card-tint rounded-xl p-8 border-2 border-primary-500">
+          <div className="bg-card-bg rounded-xl p-8 border-2 border-primary-500">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <InfoCard
                 icon={<Calendar className="w-8 h-8 text-primary-600" />}
