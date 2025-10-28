@@ -1,12 +1,40 @@
 import React from 'react';
 import { Container, Section } from '../components/LayoutComponents';
+import { AnmeldeFormular } from '../components/AnmeldeFormular';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 const Anmelden: React.FC = () => {
+  const { elementRef: headerRef, isVisible: headerVisible } = useScrollReveal();
+
   return (
-    <div>
-      <Section background="transparent" padding="xl">
+    <div className="bg-page-bg">
+      <Section background="card-bg" padding="xl">
         <Container>
-          <h1 className="text-4xl font-bold text-center">Anmelden</h1>
+          <div
+            ref={headerRef as React.RefObject<HTMLDivElement>}
+            className="text-center max-w-3xl mx-auto"
+            style={{
+              opacity: headerVisible ? 1 : 0,
+              transform: headerVisible ? 'translateY(0)' : 'translateY(30px)',
+              transition: 'opacity 0.8s ease-out, transform 0.8s ease-out',
+            }}
+          >
+            <h1 className="text-4xl md:text-5xl font-bold text-text-heading mb-6">
+              Deine Anmeldung
+            </h1>
+            <p className="text-lg text-text-body leading-relaxed mb-4">
+              Herzlich willkommen! Wir freuen uns, dass du dich für eine Ausbildung bei uns entschieden hast.
+            </p>
+            <p className="text-lg text-text-body leading-relaxed">
+              Fülle einfach das folgende Formular aus und wir melden uns zeitnah bei dir, um alles Weitere zu besprechen. Dein Weg zum Führerschein beginnt hier!
+            </p>
+          </div>
+        </Container>
+      </Section>
+
+      <Section background="page-bg" padding="lg">
+        <Container>
+          <AnmeldeFormular />
         </Container>
       </Section>
     </div>
