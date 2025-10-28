@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronDown, Calendar, Check, AlertCircle, Loader2 } from 'lucide-react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import logo from '../default_images/logo_default.webp';
 interface SelectProps {
   label: string;
   options: { value: string; label: string }[];
@@ -379,7 +380,10 @@ export const AnmeldeFormular: React.FC = () => {
               <form onSubmit={handleFormSubmit} className="space-y-6">
                 <HoneypotField />
                 <fieldset className="space-y-4">
-                  <legend className="text-lg font-semibold text-heading mb-4">Persönliche Informationen</legend>
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-semibold text-heading">Persönliche Informationen</h3>
+                    <img src={logo} alt="Logo" className="h-16 w-auto" />
+                  </div>
                   <Input label="Vorname" placeholder="Max" required error="Vorname ist erforderlich" />
                   <Input label="Nachname" placeholder="Mustermann" required error="Nachname ist erforderlich" />
                   <Input label="E-Mail-Adresse" type="email" placeholder="max@example.com" required />
