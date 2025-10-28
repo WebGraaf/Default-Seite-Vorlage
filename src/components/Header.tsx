@@ -25,6 +25,7 @@ const Header: React.FC = () => {
     { name: 'Klasse B', path: '/fuehrerscheine/klasse-b' },
     { name: 'Klasse C', path: '/fuehrerscheine/klasse-c' },
     { name: 'Klasse D', path: '/fuehrerscheine/klasse-d' },
+    { name: 'Klasse L', path: '/fuehrerscheine/klasse-l' },
     { name: 'Klasse T', path: '/fuehrerscheine/klasse-t' },
   ];
 

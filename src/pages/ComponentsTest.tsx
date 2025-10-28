@@ -18,6 +18,8 @@ import { SplitMediaTextInvert } from '../components/SplitMediaTextInvert';
 import { SplitMediaText1zu1 } from '../components/SplitMediaText1zu1';
 import { SplitMediaText1zu1invert } from '../components/SplitMediaText1zu1invert';
 import { TeamBilder } from '../components/TeamBilder';
+import BannerMitIcons from '../components/BannerMitIcons';
+import { Car, Shield, Users, Award, Clock, CheckCircle } from 'lucide-react';
 
 const ComponentsTest: React.FC = () => {
   return (
@@ -257,6 +259,46 @@ const ComponentsTest: React.FC = () => {
               }
             ]}
             variant="default"
+          />
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
+          <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Banner Mit Icons</h2>
+          <BannerMitIcons
+            items={[
+              {
+                icon: <Car className="w-12 h-12 text-blue-600" />,
+                title: "Moderne Fahrzeuge",
+                description: "Unsere Fahrzeugflotte besteht aus modernen, sicheren Autos für Ihre Ausbildung."
+              },
+              {
+                icon: <Shield className="w-12 h-12 text-green-600" />,
+                title: "Sicherheit zuerst",
+                description: "Wir legen größten Wert auf Ihre Sicherheit und die Ihrer Mitfahrer."
+              },
+              {
+                icon: <Users className="w-12 h-12 text-purple-600" />,
+                title: "Erfahrene Fahrlehrer",
+                description: "Unser Team besteht aus qualifizierten und erfahrenen Fahrlehrern."
+              },
+              {
+                icon: <Award className="w-12 h-12 text-yellow-600" />,
+                title: "Hohe Erfolgsquote",
+                description: "Über 95% unserer Schüler bestehen die Prüfung beim ersten Versuch."
+              },
+              {
+                icon: <Clock className="w-12 h-12 text-red-600" />,
+                title: "Flexible Termine",
+                description: "Wir bieten flexible Unterrichtszeiten, auch abends und am Wochenende."
+              },
+              {
+                icon: <CheckCircle className="w-12 h-12 text-teal-600" />,
+                title: "Individuelle Betreuung",
+                description: "Jeder Schüler erhält eine persönliche Betreuung nach seinen Bedürfnissen."
+              }
+            ]}
           />
         </div>
       </section>
