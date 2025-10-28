@@ -59,7 +59,7 @@ const KlasseA: React.FC = () => {
       <Section background="page-bg" padding="sm">
         <Container>
           <div className="bg-card-bg rounded-xl p-8 border border-card-border">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <InfoCard
                 icon={<Calendar className="w-8 h-8 text-primary-500" />}
                 title="Mindestalter"
@@ -108,7 +108,7 @@ const KlasseA: React.FC = () => {
       <Section background="page-bg" padding="sm">
         <Container>
           <div className="bg-card-tint rounded-xl p-8 border border-card-border">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <InfoCard
                 icon={<Calendar className="w-8 h-8 text-primary-600" />}
                 title="Mindestalter"
@@ -157,7 +157,7 @@ const KlasseA: React.FC = () => {
       <Section background="page-bg" padding="sm">
         <Container>
           <div className="bg-card-bg rounded-xl p-8 border border-card-border">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <InfoCard
                 icon={<Calendar className="w-8 h-8 text-primary-500" />}
                 title="Mindestalter"
@@ -206,7 +206,7 @@ const KlasseA: React.FC = () => {
       <Section background="page-bg" padding="sm">
         <Container>
           <div className="bg-card-bg rounded-xl p-8 border-2 border-primary-500">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <InfoCard
                 icon={<Calendar className="w-8 h-8 text-primary-600" />}
                 title="Mindestalter"
