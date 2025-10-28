@@ -29,7 +29,7 @@ const Header: React.FC = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 pt-0 pb-12">
+    <header className="sticky top-0 z-50 pt-0 pb-0">
       {/* Top Bar - Contact Information */}
       <div className="bg-secondary-800 py-1 md:py-2">
         <Container>
