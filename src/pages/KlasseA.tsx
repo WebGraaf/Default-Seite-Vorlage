@@ -13,7 +13,7 @@ const KlasseA: React.FC = () => {
 
   return (
     <div className="bg-page-bg">
-      <Section background="card-bg" padding="xl">
+      <Section background="card-bg" padding="xl" className="pb-0">
         <Container>
           <div
             ref={headerRef as React.RefObject<HTMLDivElement>}
