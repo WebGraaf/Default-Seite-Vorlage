@@ -27,7 +27,7 @@ export default {
         'text-link-hover':'#E66900',
 
         // ===== Surfaces =====
-        'page-bg':'#F4F4F5',
+        'page-bg':'#F0F8FF',
         'card-bg':'#FFFFFF',
         'card-fg':'#111827',
         'card-border':'#E5E7EB',

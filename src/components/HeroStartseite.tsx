@@ -115,7 +115,7 @@ interface HeroStartseiteProps {
   buttonLink: string;
   logoSrc: string;
   logoAlt: string;
-  background?: 'transparent' | 'white' | 'neutral' | 'gradient';
+  background?: 'transparent' | 'white' | 'neutral' | 'gradient' | 'blue' | 'page-bg';
   padding?: 'sm' | 'md' | 'lg' | 'xl';
   className?: string;
 }

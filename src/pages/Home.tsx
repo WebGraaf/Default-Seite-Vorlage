@@ -4,6 +4,7 @@ import { HeroStartseite } from '../components/HeroStartseite';
 import { KlassenDetailCard } from '../components/KlassenDetailCard';
 import { StandorteUebersicht } from '../components/StandorteUebersicht';
 import { FAQ } from '../components/FAQ';
+import { KlassenUebersichtGrid } from '../components/KlassenUebersichtGrid';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { Clock } from 'lucide-react';
 import LogoDefault from '../default_images/logo_default.webp';
@@ -13,6 +14,8 @@ import KlasseA2Image from '../default_images/Klasse_A2_Default.webp';
 import KlasseAImage from '../default_images/Klasse_A_Default.webp';
 import KlasseBImage from '../default_images/Klasse_B_Default.webp';
 import KlasseCImage from '../default_images/Klasse_C_Default.webp';
+import PlatzhalterFurhpark from '../default_images/Platzhalter_Furhpark.webp';
+import PlatzhalterGruppenbildTeam from '../default_images/Platzhalter_Gruppenbild_Team.webp';
 
 const SplitMediaTextCopy: React.FC<{
   imageSrc: string;
@@ -221,83 +224,25 @@ const Home: React.FC = () => {
         buttonLink="/anmelden"
         logoSrc={LogoDefault}
         logoAlt="Fahrschule Logo"
-        background="white"
+        background="page-bg"
         padding="xl"
       />
 
       <Section background="page-bg" padding="lg">
         <Container>
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-text-heading mb-4">
-              Unsere Führerscheinklassen
-            </h2>
-            <p className="text-lg text-text-body max-w-3xl mx-auto">
-              Von Roller bis LKW - wir bilden dich in allen wichtigen Führerscheinklassen aus. Finde die passende Klasse für dich!
-            </p>
-          </div>
-        </Container>
-      </Section>
-
-      <Section background="page-bg" padding="md">
-        <Container>
-          <div className="space-y-8">
-            <KlassenDetailCard
-              imageSrc={KlasseBImage}
-              imageAlt="Klasse B - PKW"
-              title="Klasse B"
-              description="Der klassische PKW-Führerschein. Mit der Klasse B darfst du PKW bis 3,5 Tonnen fahren und bist mobil für Beruf und Freizeit. Die beliebteste Führerscheinklasse für junge Erwachsene!"
-              restrictions={[
-                'Mindestalter: 18 Jahre (17 mit BF17)',
-                'Zulässige Gesamtmasse: bis 3,5 Tonnen',
-                'Personenbeförderung: bis 8 Personen (außer Fahrer)',
-                'Anhänger: bis 750 kg oder mehr bei max. 3,5t Gesamtgewicht',
-              ]}
-              imagePosition="left"
-              variant="default"
-            />
-
-            <KlassenDetailCard
-              imageSrc={KlasseAImage}
-              imageAlt="Klasse A - Motorräder"
-              title="Klasse A"
-              description="Die Königsklasse für Motorrad-Fans! Fahre alle Motorräder ohne Einschränkung und erlebe die volle Freiheit auf zwei Rädern. Für alle, die das besondere Fahrgefühl lieben."
-              restrictions={[
-                'Mindestalter: 24 Jahre (Direkteinstieg) oder 20 Jahre (mit A2)',
-                'Leistung: unbegrenzt',
-                'Hubraum: unbegrenzt',
-                'Inkludiert: Klassen AM, A1 und A2',
-              ]}
-              imagePosition="right"
-              variant="muted"
-            />
-
-            <KlassenDetailCard
-              imageSrc={KlasseCImage}
-              imageAlt="Klasse C - LKW"
-              title="Klasse C"
-              description="Der LKW-Führerschein für berufliche Perspektiven. Mit der Klasse C steuerst du LKW über 3,5 Tonnen und eröffnest dir neue Karrieremöglichkeiten im Transportgewerbe."
-              restrictions={[
-                'Mindestalter: 21 Jahre (18 mit Berufskraftfahrer-Ausbildung)',
-                'Zulässige Gesamtmasse: über 3,5 Tonnen',
-                'Vorbesitz: Klasse B erforderlich',
-                'Befristung: Gültigkeit auf 5 Jahre begrenzt',
-              ]}
-              imagePosition="left"
-              variant="default"
-            />
-          </div>
+          <KlassenUebersichtGrid />
         </Container>
       </Section>
 
       <Section background="page-bg" padding="lg">
         <Container>
           <SplitMediaTextCopy
-            imageSrc="https://via.placeholder.com/600x400/FF7A00/FFFFFF?text=Moderne+Fahrzeuge"
+            imageSrc={PlatzhalterFurhpark}
             imageAlt="Moderne Fahrschulfahrzeuge"
             title="Moderne Fahrzeugflotte"
             description="Lerne in neuesten Fahrzeugen mit modernster Sicherheitsausstattung. Unsere Flotte wird regelmäßig erneuert und gewartet, damit du unter optimalen Bedingungen fahren lernst. Komfort und Sicherheit stehen bei uns an erster Stelle."
             imagePosition="left"
-            variant="muted"
+            variant="default"
           />
         </Container>
       </Section>
@@ -305,9 +250,9 @@ const Home: React.FC = () => {
       <Section background="page-bg" padding="lg">
         <Container>
           <SplitMediaTextCopy
-            imageSrc="https://via.placeholder.com/600x400/334155/FFFFFF?text=Erfahrene+Fahrlehrer"
-            imageAlt="Erfahrene Fahrlehrer"
-            title="Erfahrene und geduldige Fahrlehrer"
+            imageSrc={LogoDefault}
+            imageAlt="Unser Team"
+            title="Unser erfahrenes Team"
             description="Unser Team besteht aus hochqualifizierten Fahrlehrern mit jahrelanger Erfahrung. Wir nehmen uns Zeit für dich, gehen auf deine individuellen Bedürfnisse ein und begleiten dich geduldig auf deinem Weg zum Führerschein. Bei uns fühlst du dich sicher und wohl."
             imagePosition="right"
             variant="default"

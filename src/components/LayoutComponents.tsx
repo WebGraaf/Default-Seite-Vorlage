@@ -37,7 +37,8 @@ export const Section: React.FC<SectionProps> = ({
     transparent: '',
     white: 'bg-white',
     gray: 'bg-gray-50',
-    blue: 'bg-blue-50'
+    blue: 'bg-blue-50',
+    'page-bg': 'bg-page-bg'
   };
 
   return (
