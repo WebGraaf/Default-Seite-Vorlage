@@ -24,8 +24,8 @@ const SplitMediaTextCopy: React.FC<{
 
   const variantClasses = {
     default: 'bg-card-bg border border-card-border',
-    muted: 'bg-card-tint border border-card-border',
-    outline: 'bg-transparent border-2 border-primary-500',
+    muted: 'bg-card-bg border border-card-border',
+    outline: 'bg-card-bg border border-card-border',
   };
 
   return (
@@ -66,13 +66,13 @@ const UeberUns: React.FC = () => {
 
   const teamMembers1 = [
     {
-      imageSrc: 'https://via.placeholder.com/400x600/FF7A00/FFFFFF?text=Michael+Schmidt',
+      imageSrc: 'src/default_images/Platzhalter_Teammitglied.webp',
       imageAlt: 'Michael Schmidt - Geschäftsführer',
       title: 'Michael Schmidt',
       description: 'Geschäftsführer und Fahrlehrer seit 20 Jahren. Mit Leidenschaft und Geduld bringt er jedem das sichere Fahren bei.',
     },
     {
-      imageSrc: 'https://via.placeholder.com/400x600/334155/FFFFFF?text=Sarah+Mueller',
+      imageSrc: 'src/default_images/Platzhalter_Teammitglied.webp',
       imageAlt: 'Sarah Müller - Fahrlehrerin',
       title: 'Sarah Müller',
       description: 'Fahrlehrerin für Klasse B und A. Bekannt für ihre ruhige Art und ihre verständlichen Erklärungen.',
@@ -81,13 +81,13 @@ const UeberUns: React.FC = () => {
 
   const teamMembers2 = [
     {
-      imageSrc: 'https://via.placeholder.com/400x600/64748b/FFFFFF?text=Thomas+Weber',
+      imageSrc: 'src/default_images/Platzhalter_Teammitglied.webp',
       imageAlt: 'Thomas Weber - Fahrlehrer',
       title: 'Thomas Weber',
       description: 'Spezialist für LKW-Führerscheine. Mit über 15 Jahren Erfahrung im Bereich Berufskraftfahrer-Ausbildung.',
     },
     {
-      imageSrc: 'https://via.placeholder.com/400x600/FF9E4F/FFFFFF?text=Lisa+Hoffmann',
+      imageSrc: 'src/default_images/Platzhalter_Teammitglied.webp',
       imageAlt: 'Lisa Hoffmann - Büroleiterin',
       title: 'Lisa Hoffmann',
       description: 'Unsere freundliche Büroleiterin. Sie kümmert sich um alle organisatorischen Fragen und Anmeldungen.',
@@ -123,7 +123,7 @@ const UeberUns: React.FC = () => {
       <Section background="page-bg" padding="lg">
         <Container>
           <SplitMediaTextCopy
-            imageSrc="https://via.placeholder.com/600x400/FF7A00/FFFFFF?text=Unsere+Mission"
+            imageSrc="src/default_images/logo_default.webp"
             imageAlt="Unsere Mission"
             title="Unsere Mission"
             description="Wir glauben daran, dass jeder das Recht hat, mobil und unabhängig zu sein. Deshalb setzen wir auf eine individuelle, geduldige und moderne Ausbildung. Egal ob jung oder alt, Anfänger oder Umsteiger - bei uns bist du in guten Händen. Deine Sicherheit und dein Erfolg stehen für uns an erster Stelle."
@@ -136,7 +136,7 @@ const UeberUns: React.FC = () => {
       <Section background="page-bg" padding="lg">
         <Container>
           <SplitMediaTextCopy
-            imageSrc="https://via.placeholder.com/600x400/334155/FFFFFF?text=Unsere+Werte"
+            imageSrc="src/default_images/Platzhalter_Gruppenbild_Team.webp"
             imageAlt="Unsere Werte"
             title="Unsere Werte"
             description="Vertrauen, Qualität und Menschlichkeit - das sind die Grundpfeiler unserer Fahrschule. Wir legen Wert auf eine freundliche Atmosphäre, in der du dich wohlfühlst und ohne Druck lernen kannst. Jeder Fahrschüler ist bei uns einzigartig und wird individuell gefördert."
@@ -149,7 +149,7 @@ const UeberUns: React.FC = () => {
       <Section background="page-bg" padding="lg">
         <Container>
           <SplitMediaTextCopy
-            imageSrc="https://via.placeholder.com/600x400/64748b/FFFFFF?text=Unsere+Philosophie"
+            imageSrc="src/default_images/Platzhalter_Fahrschule.webp"
             imageAlt="Unsere Philosophie"
             title="Unsere Philosophie"
             description="Lernen soll Spaß machen! Deshalb gestalten wir unseren Unterricht abwechslungsreich, praxisnah und auf Augenhöhe. Wir nehmen uns Zeit für deine Fragen und gehen auf deine individuellen Bedürfnisse ein. Dein Erfolg ist unser Antrieb - gemeinsam erreichen wir dein Ziel!"
