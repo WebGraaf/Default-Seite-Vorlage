@@ -21,6 +21,11 @@ import { TeamBilder } from '../components/TeamBilder';
 import BannerMitIcons from '../components/BannerMitIcons';
 import BilderGallerieStapel from '../components/BilderGallerieStapel';
 import { Car, Shield, Users, Award, Clock, CheckCircle } from 'lucide-react';
+import Platzhalter_Fahrschule from '../default_images/Platzhalter_Fahrschule.webp';
+import Platzhalter_Furhpark from '../default_images/Platzhalter_Furhpark.webp';
+import Platzhalter_Gruppenbild_Team from '../default_images/Platzhalter_Gruppenbild_Team.webp';
+import Platzhalter_Teammitglied from '../default_images/Platzhalter_Teammitglied.webp';
+import Klasse_B_Default from '../default_images/Klasse_B_Default.webp';
 
 const ComponentsTest: React.FC = () => {
   return (
@@ -310,23 +315,23 @@ const ComponentsTest: React.FC = () => {
           <BilderGallerieStapel
             images={[
               {
-                src: "/src/default_images/Platzhalter_Fahrschule.webp",
+                src: Platzhalter_Fahrschule,
                 alt: "Fahrschule Platzhalter",
               },
               {
-                src: "/src/default_images/Platzhalter_Furhpark.webp",
+                src: Platzhalter_Furhpark,
                 alt: "Fuhrpark Platzhalter",
               },
               {
-                src: "/src/default_images/Platzhalter_Gruppenbild_Team.webp",
+                src: Platzhalter_Gruppenbild_Team,
                 alt: "Team Gruppenbild",
               },
               {
-                src: "/src/default_images/Platzhalter_Teammitglied.webp",
+                src: Platzhalter_Teammitglied,
                 alt: "Teammitglied Platzhalter",
               },
               {
-                src: "/src/default_images/Klasse_B_Default.webp",
+                src: Klasse_B_Default,
                 alt: "Klasse B Fahrzeug",
               },
             ]}
