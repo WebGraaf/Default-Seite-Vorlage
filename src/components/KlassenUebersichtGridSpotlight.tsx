@@ -51,14 +51,14 @@ export const KlassenUebersichtGridSpotlight: React.FC<KlassenUebersichtGridSpotl
     {
       icon: Tractor,
       title: 'Klasse L',
-      description: 'Führerschein für land- und forstwirtschaftliche Zugmaschinen und Arbeitsmaschinen.',
+      description: 'Führerschein für land- und forstwirtschaftliche Maschinen.',
       link: '/fuehrerscheine/klasse-l',
       spotlightColor: 'primary',
     },
     {
       icon: Tractor,
       title: 'Klasse T',
-      description: 'Führerschein für Zugmaschinen und Arbeitsmaschinen für land- und forstwirtschaftliche Zwecke.',
+      description: 'Führerschein für land- und forstwirtschaftliche Zugmaschinen.',
       link: '/fuehrerscheine/klasse-t',
       spotlightColor: 'primary',
     },
@@ -82,7 +82,7 @@ export const KlassenUebersichtGridSpotlight: React.FC<KlassenUebersichtGridSpotl
           {features.map((feature, index) => (
             <KartenSpotlight
               key={index}
-              className="hover:shadow-lg transition-all duration-300 group flex flex-col h-full"
+              className="hover:shadow-lg hover:border-primary-500 transition-all duration-300 group flex flex-col h-full p-6"
               spotlightColor={feature.spotlightColor || 'primary'}
             >
               <div className="flex-grow">
@@ -96,7 +96,7 @@ export const KlassenUebersichtGridSpotlight: React.FC<KlassenUebersichtGridSpotl
               </div>
               <Link
                 to={feature.link}
-                className="inline-block w-1/2 px-4 py-2 bg-card text-primary-600 rounded-lg hover:bg-primary-500 hover:text-white hover:border-transparent border border-primary-500 transition-colors font-semibold mt-auto text-left"
+                className="inline-block w-full px-4 py-2 bg-card text-primary-600 rounded-lg hover:bg-primary-500 hover:text-white hover:border-transparent border border-primary-500 transition-colors font-semibold mt-auto text-center"
               >
                 Mehr erfahren
               </Link>
