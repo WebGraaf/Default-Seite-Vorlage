@@ -2,6 +2,10 @@ import React, { useEffect } from 'react';
 import { Container, Section } from '../components/LayoutComponents';
 import { TeamBilder } from '../components/TeamBilder';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import LogoDefault from '../default_images/logo_default.webp';
+import PlatzhalterGruppenbildTeam from '../default_images/Platzhalter_Gruppenbild_Team.webp';
+import PlatzhalterFahrschule from '../default_images/Platzhalter_Fahrschule.webp';
+import PlatzhalterTeammitglied from '../default_images/Platzhalter_Teammitglied.webp';
 
 const SplitMediaTextCopy: React.FC<{
   imageSrc: string;
@@ -79,13 +83,13 @@ const UeberUns: React.FC = () => {
 
   const teamMembers1 = [
     {
-      imageSrc: 'src/default_images/Platzhalter_Teammitglied.webp',
+      imageSrc: PlatzhalterTeammitglied,
       imageAlt: 'Michael Schmidt - Geschäftsführer',
       title: 'Michael Schmidt',
       description: 'Geschäftsführer und Fahrlehrer seit 20 Jahren. Mit Leidenschaft und Geduld bringt er jedem das sichere Fahren bei.',
     },
     {
-      imageSrc: 'src/default_images/Platzhalter_Teammitglied.webp',
+      imageSrc: PlatzhalterTeammitglied,
       imageAlt: 'Sarah Müller - Fahrlehrerin',
       title: 'Sarah Müller',
       description: 'Fahrlehrerin für Klasse B und A. Bekannt für ihre ruhige Art und ihre verständlichen Erklärungen.',
@@ -94,13 +98,13 @@ const UeberUns: React.FC = () => {
 
   const teamMembers2 = [
     {
-      imageSrc: 'src/default_images/Platzhalter_Teammitglied.webp',
+      imageSrc: PlatzhalterTeammitglied,
       imageAlt: 'Thomas Weber - Fahrlehrer',
       title: 'Thomas Weber',
       description: 'Spezialist für LKW-Führerscheine. Mit über 15 Jahren Erfahrung im Bereich Berufskraftfahrer-Ausbildung.',
     },
     {
-      imageSrc: 'src/default_images/Platzhalter_Teammitglied.webp',
+      imageSrc: PlatzhalterTeammitglied,
       imageAlt: 'Lisa Hoffmann - Büroleiterin',
       title: 'Lisa Hoffmann',
       description: 'Unsere freundliche Büroleiterin. Sie kümmert sich um alle organisatorischen Fragen und Anmeldungen.',
@@ -136,7 +140,7 @@ const UeberUns: React.FC = () => {
       <Section background="page-bg" padding="lg">
         <Container>
           <SplitMediaTextCopy
-            imageSrc="src/default_images/logo_default.webp"
+            imageSrc={LogoDefault}
             imageAlt="Unsere Mission"
             title="Unsere Mission"
             description="Wir glauben daran, dass jeder das Recht hat, mobil und unabhängig zu sein. Deshalb setzen wir auf eine individuelle, geduldige und moderne Ausbildung. Egal ob jung oder alt, Anfänger oder Umsteiger - bei uns bist du in guten Händen. Deine Sicherheit und dein Erfolg stehen für uns an erster Stelle."
@@ -149,7 +153,7 @@ const UeberUns: React.FC = () => {
       <Section background="page-bg" padding="lg">
         <Container>
           <SplitMediaTextCopy
-            imageSrc="src/default_images/Platzhalter_Gruppenbild_Team.webp"
+            imageSrc={PlatzhalterGruppenbildTeam}
             imageAlt="Unsere Werte"
             title="Unsere Werte"
             description="Vertrauen, Qualität und Menschlichkeit - das sind die Grundpfeiler unserer Fahrschule. Wir legen Wert auf eine freundliche Atmosphäre, in der du dich wohlfühlst und ohne Druck lernen kannst. Jeder Fahrschüler ist bei uns einzigartig und wird individuell gefördert."
@@ -162,7 +166,7 @@ const UeberUns: React.FC = () => {
       <Section background="page-bg" padding="lg">
         <Container>
           <SplitMediaTextCopy
-            imageSrc="src/default_images/Platzhalter_Fahrschule.webp"
+            imageSrc={PlatzhalterFahrschule}
             imageAlt="Unsere Philosophie"
             title="Unsere Philosophie"
             description="Lernen soll Spaß machen! Deshalb gestalten wir unseren Unterricht abwechslungsreich, praxisnah und auf Augenhöhe. Wir nehmen uns Zeit für deine Fragen und gehen auf deine individuellen Bedürfnisse ein. Dein Erfolg ist unser Antrieb - gemeinsam erreichen wir dein Ziel!"
