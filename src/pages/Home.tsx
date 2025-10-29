@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Section } from '../components/LayoutComponents';
 import { HeroStartseite } from '../components/HeroStartseite';
 import { KlassenDetailCard } from '../components/KlassenDetailCard';
@@ -213,6 +213,19 @@ const Home: React.FC = () => {
       answer: 'Ja, wir bilden sowohl auf Schaltgetriebe als auch auf Automatikgetriebe aus. Bei der Automatik-Ausbildung ist der Führerschein jedoch auf Automatikfahrzeuge beschränkt.',
     },
   ];
+
+  useEffect(() => {
+    document.title = 'Fahrschule - Deine Fahrschule für sicheres Fahren';
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Professionelle Fahrschulausbildung in Berlin. Moderne Fahrzeuge, erfahrene Fahrlehrer, flexible Termine. Jetzt anmelden für deinen Führerschein!');
+    } else {
+      const meta = document.createElement('meta');
+      meta.name = 'description';
+      meta.content = 'Professionelle Fahrschulausbildung in Berlin. Moderne Fahrzeuge, erfahrene Fahrlehrer, flexible Termine. Jetzt anmelden für deinen Führerschein!';
+      document.head.appendChild(meta);
+    }
+  }, []);
 
   return (
     <div className="bg-page-bg">

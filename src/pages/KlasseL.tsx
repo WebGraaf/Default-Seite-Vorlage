@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Section } from '../components/LayoutComponents';
 import { KlassenDetailCard } from '../components/KlassenDetailCard';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -6,6 +6,19 @@ import { Truck, Cog, Leaf } from 'lucide-react';
 import KlasseLImage from '../default_images/Klasse_L_Default.webp';
 
 const KlasseL: React.FC = () => {
+  useEffect(() => {
+    document.title = 'Land- und Forstwirtschaftliche Führerscheine - Klasse L';
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Professionelle Ausbildung für land- und forstwirtschaftliche Fahrzeuge. Traktoren und Arbeitsmaschinen - spezialisiert auf landwirtschaftliche Anforderungen.');
+    } else {
+      const meta = document.createElement('meta');
+      meta.name = 'description';
+      meta.content = 'Professionelle Ausbildung für land- und forstwirtschaftliche Fahrzeuge. Traktoren und Arbeitsmaschinen - spezialisiert auf landwirtschaftliche Anforderungen.';
+      document.head.appendChild(meta);
+    }
+  }, []);
+
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollReveal();
 
   return (

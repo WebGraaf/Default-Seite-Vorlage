@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Section } from '../components/LayoutComponents';
 import { KlassenDetailCard } from '../components/KlassenDetailCard';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -10,6 +10,19 @@ import KlasseB96Image from '../default_images/Klasse_B96_Default.webp';
 import KlasseB197Image from '../default_images/Klasse_B197_Default.webp';
 
 const KlasseB: React.FC = () => {
+  useEffect(() => {
+    document.title = 'Pkw-Führerscheine - Klasse B und Varianten';
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Professionelle Pkw-Ausbildung für alle B-Klassen. Von Standard-Führerschein bis zu speziellen Varianten wie BF17 oder B96 - starte deine Fahrausbildung bei uns.');
+    } else {
+      const meta = document.createElement('meta');
+      meta.name = 'description';
+      meta.content = 'Professionelle Pkw-Ausbildung für alle B-Klassen. Von Standard-Führerschein bis zu speziellen Varianten wie BF17 oder B96 - starte deine Fahrausbildung bei uns.';
+      document.head.appendChild(meta);
+    }
+  }, []);
+
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollReveal();
 
   return (

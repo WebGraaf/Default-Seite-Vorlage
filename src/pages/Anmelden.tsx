@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Section } from '../components/LayoutComponents';
 import { AnmeldeFormular } from '../components/AnmeldeFormular';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
 const Anmelden: React.FC = () => {
+  useEffect(() => {
+    document.title = 'Anmeldung - Fahrschule DriveAcademy';
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Melde dich jetzt für deine Fahrschulausbildung an. Fülle das Formular aus und wir kontaktieren dich zeitnah. Flexible Termine und professionelle Ausbildung warten auf dich.');
+    } else {
+      const meta = document.createElement('meta');
+      meta.name = 'description';
+      meta.content = 'Melde dich jetzt für deine Fahrschulausbildung an. Fülle das Formular aus und wir kontaktieren dich zeitnah. Flexible Termine und professionelle Ausbildung warten auf dich.';
+      document.head.appendChild(meta);
+    }
+  }, []);
+
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollReveal();
 
   return (

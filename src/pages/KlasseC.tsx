@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Section } from '../components/LayoutComponents';
 import { KlassenDetailCard } from '../components/KlassenDetailCard';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -9,6 +9,19 @@ import KlasseC1EImage from '../default_images/Klasse_C1E_Default.webp';
 import KlasseCEImage from '../default_images/Klasse_CE_Default.webp';
 
 const KlasseC: React.FC = () => {
+  useEffect(() => {
+    document.title = 'Lkw-Führerscheine - Klasse C und Varianten';
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Professionelle Lkw-Ausbildung für alle C-Klassen. Von leichten Transportern bis zu schweren Lastzügen - finde die passende Führerscheinklasse für deinen Beruf.');
+    } else {
+      const meta = document.createElement('meta');
+      meta.name = 'description';
+      meta.content = 'Professionelle Lkw-Ausbildung für alle C-Klassen. Von leichten Transportern bis zu schweren Lastzügen - finde die passende Führerscheinklasse für deinen Beruf.';
+      document.head.appendChild(meta);
+    }
+  }, []);
+
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollReveal();
 
   return (

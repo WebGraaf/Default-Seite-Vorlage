@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Section } from '../components/LayoutComponents';
 import { KlassenDetailCard } from '../components/KlassenDetailCard';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -6,6 +6,19 @@ import { Truck, Gauge, Leaf } from 'lucide-react';
 import KlasseTImage from '../default_images/Klasse_T_Default.webp';
 
 const KlasseT: React.FC = () => {
+  useEffect(() => {
+    document.title = 'Land- und Forstwirtschaftliche Führerscheine - Klasse T';
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Professionelle Ausbildung für schnelle land- und forstwirtschaftliche Fahrzeuge. Traktoren bis 60 km/h und Erntemaschinen - für moderne Landwirtschaft.');
+    } else {
+      const meta = document.createElement('meta');
+      meta.name = 'description';
+      meta.content = 'Professionelle Ausbildung für schnelle land- und forstwirtschaftliche Fahrzeuge. Traktoren bis 60 km/h und Erntemaschinen - für moderne Landwirtschaft.';
+      document.head.appendChild(meta);
+    }
+  }, []);
+
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollReveal();
 
   return (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Section } from '../components/LayoutComponents';
 import { KlassenDetailCard } from '../components/KlassenDetailCard';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -9,6 +9,19 @@ import KlasseD1EImage from '../default_images/Klasse_D1E_Default.webp';
 import KlasseDEImage from '../default_images/Klasse_DE_Default.webp';
 
 const KlasseD: React.FC = () => {
+  useEffect(() => {
+    document.title = 'Bus-Führerscheine - Klasse D und Varianten';
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Professionelle Bus-Ausbildung für alle D-Klassen. Von Minibussen bis zu Reisebussen - starte deine Ausbildung für Personenbeförderung bei uns.');
+    } else {
+      const meta = document.createElement('meta');
+      meta.name = 'description';
+      meta.content = 'Professionelle Bus-Ausbildung für alle D-Klassen. Von Minibussen bis zu Reisebussen - starte deine Ausbildung für Personenbeförderung bei uns.';
+      document.head.appendChild(meta);
+    }
+  }, []);
+
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollReveal();
 
   return (

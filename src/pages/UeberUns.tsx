@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Section } from '../components/LayoutComponents';
 import { TeamBilder } from '../components/TeamBilder';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -61,6 +61,19 @@ const SplitMediaTextCopy: React.FC<{
 };
 
 const UeberUns: React.FC = () => {
+  useEffect(() => {
+    document.title = 'Über uns - Fahrschule DriveAcademy';
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Erfahre mehr über unsere Fahrschule. Seit über 20 Jahren bilden wir Fahrschüler aus. Lerne unser Team kennen und unsere Philosophie.');
+    } else {
+      const meta = document.createElement('meta');
+      meta.name = 'description';
+      meta.content = 'Erfahre mehr über unsere Fahrschule. Seit über 20 Jahren bilden wir Fahrschüler aus. Lerne unser Team kennen und unsere Philosophie.';
+      document.head.appendChild(meta);
+    }
+  }, []);
+
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollReveal();
   const { elementRef: teamHeaderRef, isVisible: teamHeaderVisible } = useScrollReveal();
 

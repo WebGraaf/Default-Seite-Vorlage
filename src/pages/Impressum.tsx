@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Section } from '../components/LayoutComponents';
 
 const Impressum: React.FC = () => {
+  useEffect(() => {
+    document.title = 'Impressum - Fahrschule DriveAcademy';
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Rechtliche Informationen und Impressum der Fahrschule DriveAcademy GmbH. Kontaktdaten, Registereintrag und Haftungsausschluss.');
+    } else {
+      const meta = document.createElement('meta');
+      meta.name = 'description';
+      meta.content = 'Rechtliche Informationen und Impressum der Fahrschule DriveAcademy GmbH. Kontaktdaten, Registereintrag und Haftungsausschluss.';
+      document.head.appendChild(meta);
+    }
+  }, []);
+
   return (
     <div className="bg-page-bg">
       <Section background="card-bg" padding="xl">

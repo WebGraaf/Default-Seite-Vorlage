@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Section } from '../components/LayoutComponents';
 import { KlassenDetailCard } from '../components/KlassenDetailCard';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -9,6 +9,19 @@ import KlasseA2Image from '../default_images/Klasse_A2_Default.webp';
 import KlasseAImage from '../default_images/Klasse_A_Default.webp';
 
 const KlasseA: React.FC = () => {
+  useEffect(() => {
+    document.title = 'Motorrad-Führerscheine - Klasse A, A1, A2, AM';
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Professionelle Motorradausbildung für alle Klassen. Von Roller bis zum schweren Motorrad - finde die passende Führerscheinklasse für dich.');
+    } else {
+      const meta = document.createElement('meta');
+      meta.name = 'description';
+      meta.content = 'Professionelle Motorradausbildung für alle Klassen. Von Roller bis zum schweren Motorrad - finde die passende Führerscheinklasse für dich.';
+      document.head.appendChild(meta);
+    }
+  }, []);
+
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollReveal();
 
   return (

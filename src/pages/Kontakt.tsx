@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Section } from '../components/LayoutComponents';
 import { Kontaktinformationen } from '../components/Kontaktinformationen';
 import { StandorteUebersicht } from '../components/StandorteUebersicht';
@@ -52,6 +52,19 @@ const BannerAnmeldenCopy: React.FC = () => {
 };
 
 const Kontakt: React.FC = () => {
+  useEffect(() => {
+    document.title = 'Kontakt - Fahrschule DriveAcademy';
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Kontaktiere uns! Finde unsere Standorte, Telefonnummern und Öffnungszeiten. Wir helfen dir gerne bei Fragen zu deiner Fahrschulausbildung.');
+    } else {
+      const meta = document.createElement('meta');
+      meta.name = 'description';
+      meta.content = 'Kontaktiere uns! Finde unsere Standorte, Telefonnummern und Öffnungszeiten. Wir helfen dir gerne bei Fragen zu deiner Fahrschulausbildung.';
+      document.head.appendChild(meta);
+    }
+  }, []);
+
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollReveal();
 
   return (
