@@ -359,7 +359,7 @@ const ComponentsTest: React.FC = () => {
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Lottie Animation</h2>
           <div className="flex justify-center overflow-hidden">
-            <div className="relative" style={{ maskImage: 'linear-gradient(to right, transparent, white 20%, white 80%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, white 20%, white 80%, transparent)' }}>
+            <div className="relative" style={{ maskImage: 'radial-gradient(ellipse 70% 50% at 50% 50%, white 50%, transparent 100%)', WebkitMaskImage: 'radial-gradient(ellipse 70% 50% at 50% 50%, white 50%, transparent 100%)' }}>
               <Lottie animationData={sceneData} loop={true} style={{ width: '800px', height: '600px' }} />
             </div>
           </div>
