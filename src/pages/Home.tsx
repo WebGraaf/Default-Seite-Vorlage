@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Container, Section } from '../components/LayoutComponents';
 import { HeroStartseite } from '../components/HeroStartseite';
-import { KlassenDetailCard } from '../components/KlassenDetailCard';
 import { StandorteUebersicht } from '../components/StandorteUebersicht';
 import { FAQ } from '../components/FAQ';
 import KartenSpotlight from '../components/KartenSpotlight';
@@ -9,14 +8,9 @@ import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { Clock, Bike, Car, Truck, Bus, Tractor } from 'lucide-react';
 import LogoDefault from '../default_images/logo_default.webp';
-import KlasseAMImage from '../default_images/Klasse_AM_Default.webp';
-import KlasseA1Image from '../default_images/Klasse_A1_Default.webp';
-import KlasseA2Image from '../default_images/Klasse_A2_Default.webp';
-import KlasseAImage from '../default_images/Klasse_A_Default.webp';
-import KlasseBImage from '../default_images/Klasse_B_Default.webp';
-import KlasseCImage from '../default_images/Klasse_C_Default.webp';
 import PlatzhalterFurhpark from '../default_images/Platzhalter_Furhpark.webp';
-import PlatzhalterGruppenbildTeam from '../default_images/Platzhalter_Gruppenbild_Team.webp';
+import Lottie from 'lottie-react';
+import searchAnimation from '../lottie/Search.json';
 
 const SplitMediaTextCopy: React.FC<{
   imageSrc: string;
@@ -286,6 +280,16 @@ const Home: React.FC = () => {
         background="page-bg"
         padding="xl"
       />
+
+      <Section background="page-bg" padding="">
+        <Container>
+          <section className="py-0">
+            <div className="flex justify-center">
+              <Lottie animationData={searchAnimation} loop={true} style={{ width: '600px', height: '100px' }} />
+            </div>
+          </section>
+        </Container>
+      </Section>
 
       <Section background="page-bg" padding="lg">
         <Container>

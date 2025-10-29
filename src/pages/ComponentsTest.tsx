@@ -28,6 +28,9 @@ import Platzhalter_Furhpark from '../default_images/Platzhalter_Furhpark.webp';
 import Platzhalter_Gruppenbild_Team from '../default_images/Platzhalter_Gruppenbild_Team.webp';
 import Platzhalter_Teammitglied from '../default_images/Platzhalter_Teammitglied.webp';
 import Klasse_B_Default from '../default_images/Klasse_B_Default.webp';
+import Lottie from 'lottie-react';
+import searchAnimation from '../lottie/Search.json';
+import notificationAnimation from '../lottie/Notification.json';
 
 const ComponentsTest: React.FC = () => {
   return (
@@ -356,6 +359,24 @@ const ComponentsTest: React.FC = () => {
 
 
       <KlassenUebersichtGridSpotlight />
+
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
+          <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Lottie Search Animation</h2>
+          <div className="flex justify-center">
+            <Lottie animationData={searchAnimation} loop={true} style={{ width: '600px', height: '100px' }} />
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
+          <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Lottie Notification Animation</h2>
+          <div className="flex justify-center">
+            <Lottie animationData={notificationAnimation} loop={true} style={{ width: '600px', height: '100px' }} />
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
