@@ -20,7 +20,10 @@ import { SplitMediaText1zu1invert } from '../components/SplitMediaText1zu1invert
 import { TeamBilder } from '../components/TeamBilder';
 import BannerMitIcons from '../components/BannerMitIcons';
 import BilderGallerieStapel from '../components/BilderGallerieStapel';
+import KartenSpotlight from '../components/KartenSpotlight';
 import { Car, Shield, Users, Award, Clock, CheckCircle } from 'lucide-react';
+import Lottie from 'lottie-react';
+import sceneData from '../lottie/Scene.json';
 import Platzhalter_Fahrschule from '../default_images/Platzhalter_Fahrschule.webp';
 import Platzhalter_Furhpark from '../default_images/Platzhalter_Furhpark.webp';
 import Platzhalter_Gruppenbild_Team from '../default_images/Platzhalter_Gruppenbild_Team.webp';
@@ -336,6 +339,30 @@ const ComponentsTest: React.FC = () => {
               },
             ]}
           />
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
+          <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Karten Spotlight</h2>
+          <KartenSpotlight className="custom-spotlight-card" spotlightColor="primary">
+            <h3 className="text-2xl font-bold text-card-foreground mb-4">Spotlight Card Demo</h3>
+            <p className="text-muted-foreground">
+              This is a demo of the KartenSpotlight component. Hover over the card to see the spotlight effect.
+              The spotlight follows your mouse movement and creates an interactive lighting effect.
+            </p>
+          </KartenSpotlight>
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
+          <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Lottie Animation</h2>
+          <div className="flex justify-center overflow-hidden">
+            <div className="relative" style={{ maskImage: 'linear-gradient(to right, transparent, white 20%, white 80%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, white 20%, white 80%, transparent)' }}>
+              <Lottie animationData={sceneData} loop={true} style={{ width: '800px', height: '600px' }} />
+            </div>
+          </div>
         </div>
       </section>
     </div>

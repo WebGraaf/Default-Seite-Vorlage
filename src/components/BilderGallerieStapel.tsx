@@ -94,7 +94,7 @@ export default function BilderGallerieStapel({
                     scale: isActive ? 1 : 0.97,
                     z: isActive ? 0 : -100,
                     rotate: isActive ? 0 : randRot(),
-                    zIndex: isActive ? 50 : images.length + 2 - idx,
+                    zIndex: isActive ? 40 : images.length + 2 - idx,
                     y: isActive ? [0, -60, 0] : 0,
                   }}
                   exit={{
