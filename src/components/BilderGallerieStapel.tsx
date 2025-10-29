@@ -59,7 +59,7 @@ export default function BilderGallerieStapel({
         )}
         {...rest}
       >
-        <div className="border border-dashed rounded-xl p-6 text-center text-muted-foreground">
+        <div className="border border-dashed rounded-xl p-6 text-center text-text-muted">
           Keine Bilder übergeben. Bitte prop <code>images</code> füllen.
         </div>
       </div>
@@ -74,73 +74,74 @@ export default function BilderGallerieStapel({
       )}
       {...rest}
     >
-      <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14">
+      <div className="flex flex-col items-center">
         {/* Bild-Stapel / Bühne */}
-        <div>
-          <div className="relative h-80 w-full md:h-[28rem]">
-            <AnimatePresence>
-              {images.map((img, idx) => {
-                const isActive = idx === active;
-                return (
-                  <motion.div
-                    key={img.src}
-                    initial={{
-                      opacity: 0,
-                      scale: 0.95,
-                      z: -100,
-                      rotate: randRot(),
-                    }}
-                    animate={{
-                      opacity: isActive ? 1 : 0.75,
-                      scale: isActive ? 1 : 0.97,
-                      z: isActive ? 0 : -100,
-                      rotate: isActive ? 0 : randRot(),
-                      zIndex: isActive ? 50 : images.length + 2 - idx,
-                      y: isActive ? [0, -60, 0] : 0,
-                    }}
-                    exit={{
-                      opacity: 0,
-                      scale: 0.95,
-                      z: 120,
-                      rotate: randRot(),
-                    }}
-                    transition={{ duration: 0.45, ease: "easeInOut" }}
-                    className="absolute inset-0 origin-bottom"
-                  >
-                    <img
-                      src={img.src}
-                      alt={img.alt}
-                      className={cn("w-full h-full object-cover object-center", radiusClassName)}
-                      draggable={false}
-                    />
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
-          </div>
+        <div className="relative w-80 h-80">
+          <AnimatePresence>
+            {images.map((img, idx) => {
+              const isActive = idx === active;
+              return (
+                <motion.div
+                  key={img.src}
+                  initial={{
+                    opacity: 0,
+                    scale: 0.95,
+                    z: -100,
+                    rotate: randRot(),
+                  }}
+                  animate={{
+                    opacity: isActive ? 1 : 0.75,
+                    scale: isActive ? 1 : 0.97,
+                    z: isActive ? 0 : -100,
+                    rotate: isActive ? 0 : randRot(),
+                    zIndex: isActive ? 50 : images.length + 2 - idx,
+                    y: isActive ? [0, -60, 0] : 0,
+                  }}
+                  exit={{
+                    opacity: 0,
+                    scale: 0.95,
+                    z: 120,
+                    rotate: randRot(),
+                  }}
+                  transition={{ duration: 0.45, ease: "easeInOut" }}
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  onDragEnd={(event, info) => {
+                    const swipeThreshold = 50;
+                    if (info.offset.x > swipeThreshold) {
+                      handlePrev();
+                    } else if (info.offset.x < -swipeThreshold) {
+                      handleNext();
+                    }
+                  }}
+                  className="absolute inset-0 origin-bottom md:pointer-events-none"
+                >
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    className={cn("w-full h-full object-cover object-center", radiusClassName)}
+                    draggable={false}
+                  />
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
         </div>
 
         {/* Steuerung & kleine Vorschau/Infos */}
-        <div className="flex flex-col justify-between py-2">
-          <div>
-            <div className="text-sm text-muted-foreground mb-2">Bild {active + 1} / {images.length}</div>
-            <h3 className="text-xl md:text-2xl font-semibold text-foreground">
-              BilderGallerieStapel
-            </h3>
-            <p className="text-sm md:text-base text-muted-foreground mt-3">
-              Ein stapelndes Galerie-Carousel mit leichter 3D-Bewegung. Übergib einfach ein Array von
-              <code className="px-1">{"{ src, alt }"}</code>.
-            </p>
+        <div className="flex flex-col items-center py-4">
+          <div className="text-center">
+            <div className="text-sm text-text-muted mb-2">Bild {active + 1} / {images.length}</div>
           </div>
 
-          <div className="flex items-center gap-4 pt-8">
+          <div className="flex items-center gap-4 pt-4">
             <button
               type="button"
               aria-label="Vorheriges Bild"
               onClick={handlePrev}
               className="h-9 w-9 rounded-full bg-secondary flex items-center justify-center group"
             >
-              <ChevronLeft className="h-5 w-5 text-foreground transition-transform duration-300 group-hover:-rotate-12" />
+              <ChevronLeft className="h-5 w-5 text-white transition-transform duration-300 group-hover:-rotate-12" />
             </button>
             <button
               type="button"
@@ -148,7 +149,7 @@ export default function BilderGallerieStapel({
               onClick={handleNext}
               className="h-9 w-9 rounded-full bg-secondary flex items-center justify-center group"
             >
-              <ChevronRight className="h-5 w-5 text-foreground transition-transform duration-300 group-hover:rotate-12" />
+              <ChevronRight className="h-5 w-5 text-white transition-transform duration-300 group-hover:rotate-12" />
             </button>
           </div>
         </div>
