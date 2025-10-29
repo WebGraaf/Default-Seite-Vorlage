@@ -335,8 +335,6 @@ const ComponentsTest: React.FC = () => {
                 alt: "Klasse B Fahrzeug",
               },
             ]}
-            autoplay
-            intervalMs={5000}
           />
         </div>
       </section>
