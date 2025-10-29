@@ -139,7 +139,7 @@ const Header: React.FC = () => {
               className="hidden md:block bg-secondary-800 text-header-text px-4 py-2 rounded-md hover:bg-secondary-700 transition-colors ml-auto font-bold"
               onClick={closeMenus}
             >
-              Jetzt Preis anfragen
+              anmelden
             </Link>
 
             {/* Mobile Menu Button */}
@@ -205,7 +205,7 @@ const Header: React.FC = () => {
                   Components Test
                 </Link>
                 <Link to="/anmelden" className="bg-secondary-800 text-header-text px-4 py-2 rounded-md hover:bg-secondary-700 transition-colors inline-block font-bold" onClick={closeMenus}>
-                  Jetzt Preis anfragen
+                  anmelden
                 </Link>
               </nav>
             </div>
