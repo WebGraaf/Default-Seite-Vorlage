@@ -19,6 +19,7 @@ import { SplitMediaText1zu1 } from '../components/SplitMediaText1zu1';
 import { SplitMediaText1zu1invert } from '../components/SplitMediaText1zu1invert';
 import { TeamBilder } from '../components/TeamBilder';
 import BannerMitIcons from '../components/BannerMitIcons';
+import BilderGallerieStapel from '../components/BilderGallerieStapel';
 import { Car, Shield, Users, Award, Clock, CheckCircle } from 'lucide-react';
 
 const ComponentsTest: React.FC = () => {
@@ -299,6 +300,38 @@ const ComponentsTest: React.FC = () => {
                 description: "Jeder Schüler erhält eine persönliche Betreuung nach seinen Bedürfnissen."
               }
             ]}
+          />
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
+          <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">BilderGallerieStapel (Demo)</h2>
+          <BilderGallerieStapel
+            images={[
+              {
+                src: "/src/default_images/Platzhalter_Fahrschule.webp",
+                alt: "Fahrschule Platzhalter",
+              },
+              {
+                src: "/src/default_images/Platzhalter_Furhpark.webp",
+                alt: "Fuhrpark Platzhalter",
+              },
+              {
+                src: "/src/default_images/Platzhalter_Gruppenbild_Team.webp",
+                alt: "Team Gruppenbild",
+              },
+              {
+                src: "/src/default_images/Platzhalter_Teammitglied.webp",
+                alt: "Teammitglied Platzhalter",
+              },
+              {
+                src: "/src/default_images/Klasse_B_Default.webp",
+                alt: "Klasse B Fahrzeug",
+              },
+            ]}
+            autoplay
+            intervalMs={5000}
           />
         </div>
       </section>
