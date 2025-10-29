@@ -1,6 +1,7 @@
 import React from 'react';
 import { HeroStartseite } from '../components/HeroStartseite';
 import { KlassenUebersichtGrid } from '../components/KlassenUebersichtGrid';
+import { KlassenUebersichtGridSpotlight } from '../components/KlassenUebersichtGridSpotlight';
 import { KlassenUebersicht } from '../components/KlassenUebersicht';
 import { AnmeldeFormular } from '../components/AnmeldeFormular';
 import VorherNacherBildVergleich from '../components/VorherNacherBildVergleich';
@@ -22,8 +23,6 @@ import BannerMitIcons from '../components/BannerMitIcons';
 import BilderGallerieStapel from '../components/BilderGallerieStapel';
 import KartenSpotlight from '../components/KartenSpotlight';
 import { Car, Shield, Users, Award, Clock, CheckCircle } from 'lucide-react';
-import Lottie from 'lottie-react';
-import sceneData from '../lottie/Scene.json';
 import Platzhalter_Fahrschule from '../default_images/Platzhalter_Fahrschule.webp';
 import Platzhalter_Furhpark from '../default_images/Platzhalter_Furhpark.webp';
 import Platzhalter_Gruppenbild_Team from '../default_images/Platzhalter_Gruppenbild_Team.webp';
@@ -355,16 +354,8 @@ const ComponentsTest: React.FC = () => {
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
-          <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Lottie Animation</h2>
-          <div className="flex justify-center overflow-hidden">
-            <div className="relative" style={{ maskImage: 'linear-gradient(to right, transparent, white 20%, white 80%, transparent), linear-gradient(to bottom, transparent, white 20%, white 80%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, white 20%, white 80%, transparent), linear-gradient(to bottom, transparent, white 20%, white 80%, transparent)' }}>
-              <Lottie animationData={sceneData} loop={true} style={{ width: '800px', height: '600px' }} />
-            </div>
-          </div>
-        </div>
-      </section>
+
+      <KlassenUebersichtGridSpotlight />
     </div>
   );
 };
