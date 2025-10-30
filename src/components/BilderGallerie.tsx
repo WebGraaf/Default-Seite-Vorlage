@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { X, ZoomIn, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface LightboxProps {
   images: string[];
@@ -97,7 +100,58 @@ export const BilderGallerie: React.FC<BilderGallerieProps> = ({
 }) => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const { elementRef, isVisible } = useScrollReveal();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const galleryItemsRef = useRef<HTMLButtonElement[]>([]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate gallery items with stagger
+      gsap.fromTo(galleryItemsRef.current.filter(Boolean),
+        { opacity: 0, scale: 0.8, y: 40, rotationY: -15 },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          rotationY: 0,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 75%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Add hover effects for gallery items
+      galleryItemsRef.current.filter(Boolean).forEach((item) => {
+        const hoverTl = gsap.timeline({ paused: true });
+
+        hoverTl.to(item, {
+          scale: 1.05,
+          y: -5,
+          duration: 0.3,
+          ease: "power2.out"
+        })
+        .to(item.querySelector('.gallery-overlay'), {
+          opacity: 1,
+          duration: 0.3
+        }, 0)
+        .to(item.querySelector('.zoom-icon'), {
+          scale: 1.2,
+          rotation: 10,
+          duration: 0.3,
+          ease: "back.out(2)"
+        }, 0);
+
+        item.addEventListener('mouseenter', () => hoverTl.play());
+        item.addEventListener('mouseleave', () => hoverTl.reverse());
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const openLightbox = (index: number) => {
     setCurrentIndex(index);
@@ -113,27 +167,20 @@ export const BilderGallerie: React.FC<BilderGallerieProps> = ({
   };
 
   return (
-    <div
-      ref={elementRef as React.RefObject<HTMLDivElement>}
-      className="py-12 px-4"
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
-      }}
-    >
+    <div ref={containerRef} className="py-12 px-4">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {images.map((image, index) => (
           <button
             key={index}
+            ref={(el) => (galleryItemsRef.current[index] = el!)}
             onClick={() => openLightbox(index)}
-            className="relative aspect-square overflow-hidden rounded-lg group cursor-pointer bg-gray-200 hover:bg-gray-300 transition-colors"
+            className="gallery-item relative aspect-square overflow-hidden rounded-lg group cursor-pointer bg-gray-200 hover:bg-gray-300 transition-colors"
           >
             <div className="w-full h-full flex items-center justify-center text-gray-600 text-sm font-semibold">
               {image}
             </div>
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
-              <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="gallery-overlay absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+              <ZoomIn className="zoom-icon w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
           </button>
         ))}

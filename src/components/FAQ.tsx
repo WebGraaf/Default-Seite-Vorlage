@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface FAQItem {
   question: string;
@@ -15,21 +18,91 @@ interface FAQProps {
 
 export function FAQ({ title = "Häufig gestellte Fragen", faqs, defaultOpenIndex = null }: FAQProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(defaultOpenIndex);
-  const { elementRef, isVisible } = useScrollReveal();
+  const sectionRef = useRef<HTMLElement>(null);
+  const faqRefs = useRef<HTMLDivElement[]>([]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate title
+      gsap.fromTo(".faq-title",
+        { opacity: 0, y: -30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Animate FAQ items with stagger
+      gsap.fromTo(faqRefs.current.filter(Boolean),
+        { opacity: 0, y: 40, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const handleToggle = (index: number) => {
+    const newOpenIndex = openIndex === index ? null : index;
+    setOpenIndex(newOpenIndex);
+
+    // Animate accordion
+    const content = faqRefs.current[index]?.querySelector('.faq-content') as HTMLElement;
+    const chevron = faqRefs.current[index]?.querySelector('.faq-chevron') as HTMLElement;
+
+    if (content && chevron) {
+      if (newOpenIndex === index) {
+        // Opening animation
+        gsap.to(content, {
+          height: 'auto',
+          duration: 0.4,
+          ease: "power2.out"
+        });
+        gsap.to(chevron, {
+          rotation: 180,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      } else {
+        // Closing animation
+        gsap.to(content, {
+          height: 0,
+          duration: 0.3,
+          ease: "power2.in"
+        });
+        gsap.to(chevron, {
+          rotation: 0,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      }
+    }
+  };
 
   return (
-    <section
-      ref={elementRef as React.RefObject<HTMLElement>}
-      className="py-12"
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
-      }}
-    >
+    <section ref={sectionRef} className="py-12">
       <div className="max-w-4xl mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-heading mb-4">
+          <h2 className="faq-title text-4xl font-bold text-heading mb-4">
             {title}
           </h2>
         </div>
@@ -38,26 +111,21 @@ export function FAQ({ title = "Häufig gestellte Fragen", faqs, defaultOpenIndex
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="bg-card-bg rounded-xl shadow-md border border-default overflow-hidden"
+              ref={(el) => (faqRefs.current[index] = el!)}
+              className="faq-item bg-card-bg rounded-xl shadow-md border border-default overflow-hidden"
             >
               <button
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                onClick={() => handleToggle(index)}
                 className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-hover transition-colors"
               >
                 <span className="font-semibold text-heading text-lg">
                   {faq.question}
                 </span>
                 <ChevronDown
-                  className={`w-5 h-5 text-muted transition-transform ${
-                    openIndex === index ? 'rotate-180' : ''
-                  }`}
+                  className="faq-chevron w-5 h-5 text-muted transition-transform"
                 />
               </button>
-              <div
-                className={`overflow-hidden transition-all duration-300 ${
-                  openIndex === index ? 'max-h-96' : 'max-h-0'
-                }`}
-              >
+              <div className="faq-content overflow-hidden">
                 <div className="px-6 pb-5 text-body leading-relaxed">
                   {faq.answer}
                 </div>

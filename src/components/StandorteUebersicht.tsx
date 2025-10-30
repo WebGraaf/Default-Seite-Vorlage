@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { MapPin, Phone, Clock } from 'lucide-react';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export interface Location {
   label: string;
@@ -21,24 +24,155 @@ export function StandorteUebersicht({
   locations
 }: StandorteUebersichtProps) {
   const [activeTab, setActiveTab] = useState(0);
-  const { elementRef, isVisible } = useScrollReveal();
+  const sectionRef = useRef<HTMLElement>(null);
+  const tabsRef = useRef<HTMLButtonElement[]>([]);
+  const infoCardsRef = useRef<HTMLDivElement[]>([]);
+  const mapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate title and subtitle
+      gsap.fromTo(".locations-title",
+        { opacity: 0, y: -30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      gsap.fromTo(".locations-subtitle",
+        { opacity: 0, y: -20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: 0.2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Animate tabs
+      gsap.fromTo(tabsRef.current.filter(Boolean),
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Animate info cards
+      gsap.fromTo(infoCardsRef.current.filter(Boolean),
+        { opacity: 0, y: 40, scale: 0.9 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 65%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Animate map container
+      gsap.fromTo(mapRef.current,
+        { opacity: 0, scale: 0.95, y: 30 },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 1,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 60%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const handleTabChange = (index: number) => {
+    // Animate info cards transition
+    if (infoCardsRef.current.length > 0) {
+      gsap.to(infoCardsRef.current, {
+        opacity: 0,
+        scale: 0.95,
+        y: 20,
+        duration: 0.2,
+        ease: "power2.in",
+        onComplete: () => {
+          setActiveTab(index);
+          gsap.to(infoCardsRef.current, {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: 0.4,
+            ease: "back.out(1.7)"
+          });
+        }
+      });
+    } else {
+      setActiveTab(index);
+    }
+
+    // Animate map transition
+    if (mapRef.current) {
+      gsap.to(mapRef.current, {
+        opacity: 0,
+        scale: 0.98,
+        duration: 0.2,
+        ease: "power2.in",
+        onComplete: () => {
+          // Update map src after a brief delay
+          setTimeout(() => {
+            gsap.to(mapRef.current, {
+              opacity: 1,
+              scale: 1,
+              duration: 0.4,
+              ease: "back.out(1.7)"
+            });
+          }, 100);
+        }
+      });
+    }
+  };
 
   return (
-    <section
-      ref={elementRef as React.RefObject<HTMLElement>}
-      className="py-12"
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
-      }}
-    >
+    <section ref={sectionRef} className="py-12">
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-text-heading mb-4">
+          <h2 className="locations-title text-4xl font-bold text-text-heading mb-4">
             {title}
           </h2>
-          <p className="text-lg text-text-body">
+          <p className="locations-subtitle text-lg text-text-body">
             {subtitle}
           </p>
         </div>
@@ -48,8 +182,9 @@ export function StandorteUebersicht({
             return (
               <button
                 key={index}
-                onClick={() => setActiveTab(index)}
-                className={`flex items-center gap-2 px-6 py-3 font-semibold transition-all relative ${
+                ref={(el) => (tabsRef.current[index] = el!)}
+                onClick={() => handleTabChange(index)}
+                className={`location-tab flex items-center gap-2 px-6 py-3 font-semibold transition-all relative ${
                   activeTab === index
                     ? 'text-primary-600'
                     : 'text-text-body hover:text-text-heading'
@@ -57,7 +192,7 @@ export function StandorteUebersicht({
               >
                 {location.label}
                 {activeTab === index && (
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary-600"></div>
+                  <div className="tab-indicator absolute bottom-0 left-0 right-0 h-0.5 bg-primary-600"></div>
                 )}
               </button>
             );
@@ -65,7 +200,7 @@ export function StandorteUebersicht({
         </div>
 
         <div className="grid md:grid-cols-3 gap-4 mb-8">
-          <div className="bg-card-bg backdrop-blur-sm rounded-lg p-4 border border-card-border">
+          <div ref={(el) => el && (infoCardsRef.current[0] = el)} className="info-card bg-card-bg backdrop-blur-sm rounded-lg p-4 border border-card-border">
             <h4 className="font-semibold text-text-heading mb-2 text-lg flex items-center gap-2">
               <MapPin className="w-5 h-5 text-primary-600" />
               Adresse
@@ -74,14 +209,14 @@ export function StandorteUebersicht({
               {locations[activeTab].address}
             </a>
           </div>
-          <div className="bg-card-bg backdrop-blur-sm rounded-lg p-4 border border-card-border">
+          <div ref={(el) => el && (infoCardsRef.current[1] = el)} className="info-card bg-card-bg backdrop-blur-sm rounded-lg p-4 border border-card-border">
             <h4 className="font-semibold text-text-heading mb-2 text-lg flex items-center gap-2">
               <Phone className="w-5 h-5 text-primary-600" />
               Telefon
             </h4>
             <p className="text-text-body text-lg font-medium">{locations[activeTab].phone}</p>
           </div>
-          <div className="bg-card-bg backdrop-blur-sm rounded-lg p-4 border border-card-border">
+          <div ref={(el) => el && (infoCardsRef.current[2] = el)} className="info-card bg-card-bg backdrop-blur-sm rounded-lg p-4 border border-card-border">
             <h4 className="font-semibold text-text-heading mb-2 text-lg flex items-center gap-2">
               <Clock className="w-5 h-5 text-primary-600" />
               Öffnungszeiten
@@ -91,7 +226,7 @@ export function StandorteUebersicht({
         </div>
 
         {/* Google Maps Integration */}
-        <div className="bg-card-bg rounded-2xl shadow-xl overflow-hidden border border-card-border">
+        <div ref={mapRef} className="map-container bg-card-bg rounded-2xl shadow-xl overflow-hidden border border-card-border">
           <iframe
             src={`https://maps.google.com/maps?q=${encodeURIComponent(locations[activeTab].address)}&output=embed`}
             width="100%"
