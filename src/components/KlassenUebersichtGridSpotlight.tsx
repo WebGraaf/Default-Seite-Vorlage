@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Bike, Car, Truck, Bus, Tractor } from 'lucide-react';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import KartenSpotlight from './KartenSpotlight';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Feature {
   icon: React.ComponentType<{ className?: string }>;
@@ -64,43 +67,121 @@ export const KlassenUebersichtGridSpotlight: React.FC<KlassenUebersichtGridSpotl
     },
   ],
 }) => {
-  const { elementRef, isVisible } = useScrollReveal();
+  const sectionRef = useRef<HTMLElement>(null);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate title words with stagger
+      gsap.fromTo(".title-word-spotlight",
+        { opacity: 0, y: -20, rotationX: -90 },
+        {
+          opacity: 1,
+          y: 0,
+          rotationX: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Animate cards with stagger
+      gsap.fromTo(cardsRef.current.filter(Boolean),
+        {
+          opacity: 0,
+          y: 60,
+          scale: 0.8,
+          rotationY: -15
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          rotationY: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Add hover animations for cards
+      cardsRef.current.filter(Boolean).forEach((card) => {
+        if (!card) return;
+
+        const hoverTl = gsap.timeline({ paused: true });
+
+        hoverTl.to(card, {
+          y: -10,
+          scale: 1.05,
+          duration: 0.3,
+          ease: "power2.out"
+        })
+        .to(card.querySelector('.card-icon'), {
+          scale: 1.2,
+          rotation: 5,
+          duration: 0.3,
+          ease: "back.out(2)"
+        }, 0)
+        .to(card.querySelector('.card-title'), {
+          color: '#2563eb',
+          duration: 0.3
+        }, 0);
+
+        card.addEventListener('mouseenter', () => hoverTl.play());
+        card.addEventListener('mouseleave', () => hoverTl.reverse());
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section
-      ref={elementRef as React.RefObject<HTMLElement>}
-      className="py-12"
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
-      }}
-    >
+    <section ref={sectionRef} className="py-12">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
-        <h2 className="text-3xl font-bold text-heading mb-8 text-center">{title}</h2>
+        <h2 className="text-3xl font-bold text-heading mb-8 text-center">
+          {title.split(' ').map((word, index) => (
+            <span key={index} className="title-word-spotlight inline-block mr-2">
+              {word}
+            </span>
+          ))}
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <KartenSpotlight
+            <div
               key={index}
-              className="hover:shadow-lg hover:border-primary-500 transition-all duration-300 group flex flex-col h-full p-6"
-              spotlightColor={feature.spotlightColor || 'primary'}
+              ref={(el) => (cardsRef.current[index] = el)}
             >
-              <div className="flex-grow">
-                <div className="bg-primary-50 w-14 h-14 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-primary-200">
-                  <feature.icon className="w-7 h-7 text-primary-600" />
-                </div>
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-xl font-bold text-heading group-hover:text-primary-600 transition-colors">{feature.title}</h3>
-                </div>
-                <p className="text-text-body mb-4">{feature.description}</p>
-              </div>
-              <Link
-                to={feature.link}
-                className="inline-block w-full px-4 py-2 bg-card text-primary-600 rounded-lg hover:bg-primary-500 hover:text-white hover:border-transparent border border-primary-500 transition-colors font-semibold mt-auto text-center"
+              <KartenSpotlight
+                className="hover:shadow-lg hover:border-primary-500 transition-all duration-300 group flex flex-col h-full p-6"
+                spotlightColor={feature.spotlightColor || 'primary'}
               >
-                Mehr erfahren
-              </Link>
-            </KartenSpotlight>
+                <div className="flex-grow">
+                  <div className="card-icon bg-primary-50 w-14 h-14 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-primary-200">
+                    <feature.icon className="w-7 h-7 text-primary-600" />
+                  </div>
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="card-title text-xl font-bold text-heading group-hover:text-primary-600 transition-colors">{feature.title}</h3>
+                  </div>
+                  <p className="text-text-body mb-4">{feature.description}</p>
+                </div>
+                <Link
+                  to={feature.link}
+                  className="inline-block w-full px-4 py-2 bg-card text-primary-600 rounded-lg hover:bg-primary-500 hover:text-white hover:border-transparent border border-primary-500 transition-colors font-semibold mt-auto text-center"
+                >
+                  Mehr erfahren
+                </Link>
+              </KartenSpotlight>
+            </div>
           ))}
         </div>
       </div>
