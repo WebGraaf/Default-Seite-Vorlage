@@ -98,27 +98,6 @@ const BannerAnmelden: React.FC = () => {
           }
         }
       );
-
-      // Add hover effects for CTA button
-      const button = document.querySelector('.banner-button') as HTMLButtonElement;
-      if (button) {
-        const hoverTl = gsap.timeline({ paused: true });
-
-        hoverTl.to(button, {
-          scale: 1.05,
-          y: -2,
-          duration: 0.3,
-          ease: "power2.out"
-        })
-        .to(button, {
-          boxShadow: "0 20px 40px rgba(255, 122, 0, 0.3)",
-          duration: 0.3,
-          ease: "power2.out"
-        }, 0);
-
-        button.addEventListener('mouseenter', () => hoverTl.play());
-        button.addEventListener('mouseleave', () => hoverTl.reverse());
-      }
     }, sectionRef);
 
     return () => ctx.revert();
