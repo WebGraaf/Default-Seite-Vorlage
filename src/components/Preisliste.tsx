@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { ChevronUp, ChevronDown, ChevronsUpDown } from 'lucide-react';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface DataRow {
   name: string;
@@ -14,7 +17,9 @@ export function Preisliste() {
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
-  const { elementRef, isVisible } = useScrollReveal();
+  const sectionRef = useRef<HTMLElement>(null);
+  const tableRef = useRef<HTMLDivElement>(null);
+  const paginationRef = useRef<HTMLDivElement>(null);
 
   const data: DataRow[] = [
     { name: 'AM', fahrstunde: 45, grundgebuehr: 150, sonderfahrt: 60 },
@@ -56,6 +61,62 @@ export function Preisliste() {
     currentPage * itemsPerPage
   );
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate title
+      gsap.fromTo(".price-title",
+        { opacity: 0, y: -30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Animate table container
+      gsap.fromTo(tableRef.current,
+        { opacity: 0, y: 40, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Animate pagination
+      gsap.fromTo(paginationRef.current,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: 0.3,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   const handleSort = (key: keyof DataRow) => {
     if (sortKey === key) {
       setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
@@ -73,23 +134,15 @@ export function Preisliste() {
   };
 
   return (
-    <section
-      ref={elementRef as React.RefObject<HTMLElement>}
-      className="py-12"
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
-      }}
-    >
+    <section ref={sectionRef} className="py-12">
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-text-heading mb-4">
+          <h2 className="price-title text-4xl font-bold text-text-heading mb-4">
             Preisliste Fahrschulen
           </h2>
         </div>
 
-        <div className="bg-table-bg rounded-xl shadow-xl border border-table-border overflow-hidden">
+        <div ref={tableRef} className="price-table bg-table-bg rounded-xl shadow-xl border border-table-border overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead className="bg-table-header-bg border-b border-table-border">
@@ -145,7 +198,7 @@ export function Preisliste() {
             </table>
           </div>
 
-          <div className="bg-table-bg px-6 py-4 border-t border-table-border flex items-center justify-between">
+          <div ref={paginationRef} className="price-pagination bg-table-bg px-6 py-4 border-t border-table-border flex items-center justify-between">
             <div className="text-sm text-primary-600">
               Zeige {(currentPage - 1) * itemsPerPage + 1} bis {Math.min(currentPage * itemsPerPage, sortedData.length)} von {sortedData.length} Einträgen
             </div>

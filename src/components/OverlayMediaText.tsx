@@ -1,5 +1,8 @@
-import React from 'react';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import React, { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface OverlayMediaTextProps {
   imageSrc: string;
@@ -22,7 +25,65 @@ export const OverlayMediaText: React.FC<OverlayMediaTextProps> = ({
   variant = 'default',
   className = '',
 }) => {
-  const { elementRef, isVisible } = useScrollReveal();
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate container
+      gsap.fromTo(containerRef.current,
+        { opacity: 0, scale: 0.95, y: 50 },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 1,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Animate title
+      gsap.fromTo(".overlay-title",
+        { opacity: 0, x: -50, y: 20 },
+        {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 75%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Animate description
+      gsap.fromTo(".overlay-description",
+        { opacity: 0, x: -30, y: 15 },
+        {
+          opacity: 1,
+          x: 0,
+          y: 15,
+          duration: 0.8,
+          delay: 0.2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 75%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const positionClasses = {
     center: 'items-center justify-center',
@@ -32,13 +93,8 @@ export const OverlayMediaText: React.FC<OverlayMediaTextProps> = ({
 
   return (
     <div
-      ref={elementRef as React.RefObject<HTMLDivElement>}
+      ref={containerRef}
       className={`relative rounded-xl overflow-hidden min-h-[400px] py-12 px-4 ${className}`}
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'scale(1)' : 'scale(0.95)',
-        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
-      }}
     >
       <img
         src={imageSrc}
@@ -53,8 +109,8 @@ export const OverlayMediaText: React.FC<OverlayMediaTextProps> = ({
         style={{ opacity: overlayOpacity }}
       />
       <div className={`relative z-10 h-full flex flex-col ${positionClasses[textPosition]} px-8`}>
-        <h3 className="text-4xl font-bold text-white mb-4 max-w-2xl mx-auto text-center">{title}</h3>
-        <p className="text-white/90 text-lg max-w-2xl mx-auto text-center leading-relaxed">{description}</p>
+        <h3 className="overlay-title text-4xl font-bold text-white mb-4 max-w-2xl mx-auto text-center">{title}</h3>
+        <p className="overlay-description text-white/90 text-lg max-w-2xl mx-auto text-center leading-relaxed">{description}</p>
       </div>
     </div>
   );
