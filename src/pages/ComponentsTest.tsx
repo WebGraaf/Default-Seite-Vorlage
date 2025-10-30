@@ -27,6 +27,7 @@ import Platzhalter_Furhpark from '../default_images/Platzhalter_Furhpark.webp';
 import Platzhalter_Gruppenbild_Team from '../default_images/Platzhalter_Gruppenbild_Team.webp';
 import Platzhalter_Teammitglied from '../default_images/Platzhalter_Teammitglied.webp';
 import Klasse_B_Default from '../default_images/Klasse_B_Default.webp';
+import LogoDefault from '../default_images/logo_default.webp';
 import Lottie from 'lottie-react';
 import searchAnimation from '../lottie/Search.json';
 import notificationAnimation from '../lottie/Notification.json';
@@ -40,7 +41,7 @@ const ComponentsTest: React.FC = () => {
         description="Erfahren Sie mehr über unsere Kurse und starten Sie Ihre Fahrausbildung mit uns."
         buttonText="Jetzt anmelden"
         buttonLink="/anmelden"
-        logoSrc="/src/default_images/logo_default.webp"
+        logoSrc={LogoDefault}
         logoAlt="Fahrschule Logo"
       />
       <KlassenUebersichtGridSpotlight />
