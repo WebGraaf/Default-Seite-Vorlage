@@ -65,7 +65,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
   const trail = useTrail(letters.length, {
     from: animationFrom,
     to: inView ? animationTo : animationFrom,
-    delay: (i: number) => i * delay,
+    delay: (i: number) => 1000 + i * delay,
     config: { duration: 40 },
     onRest: () => {
       animatedCount.current += 1;
@@ -155,6 +155,7 @@ export const HeroStartseite: React.FC<HeroStartseiteProps> = ({
           y: 0,
           filter: "blur(0px)",
           duration: 1.5,
+          delay: 0.5,
           ease: "elastic.out(1, 0.5)",
           scrollTrigger: {
             trigger: imageRef.current,
@@ -218,6 +219,11 @@ export const HeroStartseite: React.FC<HeroStartseiteProps> = ({
               src={logoSrc}
               alt={logoAlt}
               className="w-full h-auto max-w-xs md:max-w-sm"
+              style={{
+                opacity: 0,
+                transform: 'scale(0.3) rotate(-45deg) translateY(80px)',
+                filter: 'blur(10px)'
+              }}
             />
           </div>
         </div>

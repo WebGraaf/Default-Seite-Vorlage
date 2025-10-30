@@ -102,13 +102,13 @@ const BeforeAfterSlider = React.forwardRef<HTMLDivElement, BeforeAfterSliderProp
       </div>
 
       <div
-        className="slider-handle absolute top-0 bottom-0 w-1 bg-white shadow-lg"
+        className="slider-handle absolute top-0 bottom-0 w-1 bg-primary shadow-lg"
         style={{ left: `${sliderPosition}%` }}
       >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-primary rounded-full shadow-xl flex items-center justify-center">
           <div className="flex items-center space-x-1">
-            <ChevronLeft className="w-5 h-5 text-neutral-700" />
-            <ChevronRight className="w-5 h-5 text-neutral-700" />
+            <ChevronLeft className="w-5 h-5 text-white" />
+            <ChevronRight className="w-5 h-5 text-white" />
           </div>
         </div>
       </div>

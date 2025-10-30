@@ -68,9 +68,11 @@ export const Lightbox: React.FC<LightboxProps> = ({
       )}
 
       <div className={`relative max-w-7xl max-h-[90vh] transition-transform duration-300 ${isZoomed ? 'scale-150' : 'scale-100'}`}>
-        <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-600 text-lg font-semibold">
-          Platzhalter für {images[currentIndex]}
-        </div>
+        <img
+          src={images[currentIndex]}
+          alt={`Gallery image ${currentIndex + 1}`}
+          className="w-full h-full object-contain"
+        />
       </div>
 
       {onNext && images.length > 1 && (
@@ -176,9 +178,12 @@ export const BilderGallerie: React.FC<BilderGallerieProps> = ({
             onClick={() => openLightbox(index)}
             className="gallery-item relative aspect-square overflow-hidden rounded-lg group cursor-pointer bg-gray-200 hover:bg-gray-300 transition-colors"
           >
-            <div className="w-full h-full flex items-center justify-center text-gray-600 text-sm font-semibold">
-              {image}
-            </div>
+            <img
+              src={image}
+              alt={`Gallery image ${index + 1}`}
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
             <div className="gallery-overlay absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
               <ZoomIn className="zoom-icon w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>

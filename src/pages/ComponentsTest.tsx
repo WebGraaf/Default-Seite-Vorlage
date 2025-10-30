@@ -20,13 +20,19 @@ import { SplitMediaText1zu1invert } from '../components/SplitMediaText1zu1invert
 import { TeamBilder } from '../components/TeamBilder';
 import BannerMitIcons from '../components/BannerMitIcons';
 import BilderGallerieStapel from '../components/BilderGallerieStapel';
+import { TextGalerieStapel } from '../components/TextGalerieStapel';
 import KartenSpotlight from '../components/KartenSpotlight';
 import { Car, Shield, Users, Award, Clock, CheckCircle } from 'lucide-react';
-import Platzhalter_Fahrschule from '../default_images/Platzhalter_Fahrschule.webp';
-import Platzhalter_Furhpark from '../default_images/Platzhalter_Furhpark.webp';
-import Platzhalter_Gruppenbild_Team from '../default_images/Platzhalter_Gruppenbild_Team.webp';
 import Platzhalter_Teammitglied from '../default_images/Platzhalter_Teammitglied.webp';
 import Klasse_B_Default from '../default_images/Klasse_B_Default.webp';
+import Klasse_A_Default from '../default_images/Klasse_A_Default.webp';
+import Klasse_A1_Default from '../default_images/Klasse_A1_Default.webp';
+import Klasse_A2_Default from '../default_images/Klasse_A2_Default.webp';
+import Klasse_AM_Default from '../default_images/Klasse_AM_Default.webp';
+import Klasse_C_Default from '../default_images/Klasse_C_Default.webp';
+import Klasse_D_Default from '../default_images/Klasse_D_Default.webp';
+import Klasse_L_Default from '../default_images/Klasse_L_Default.webp';
+import Klasse_T_Default from '../default_images/Klasse_T_Default.webp';
 import LogoDefault from '../default_images/logo_default.webp';
 import Lottie from 'lottie-react';
 import searchAnimation from '../lottie/Search.json';
@@ -47,8 +53,10 @@ const ComponentsTest: React.FC = () => {
       <KlassenUebersichtGridSpotlight />
       <AnmeldeFormular />
       <VorherNacherBildVergleich
-        beforeImage="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=1200"
-        afterImage="https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=1200"
+        beforeImage={Klasse_A_Default}
+        afterImage={Klasse_B_Default}
+        beforeLabel=""
+        afterLabel=""
       />
       <KlassenUebersicht
         tabs={[
@@ -173,7 +181,18 @@ const ComponentsTest: React.FC = () => {
       <section className="py-16">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Bilder Gallerie</h2>
-          <BilderGallerie />
+          <BilderGallerie
+            images={[
+              Klasse_A_Default,
+              Klasse_A1_Default,
+              Klasse_A2_Default,
+              Klasse_B_Default,
+              Klasse_C_Default,
+              Klasse_D_Default,
+              Klasse_L_Default,
+              Klasse_T_Default,
+            ]}
+          />
         </div>
       </section>
 
@@ -187,7 +206,7 @@ const ComponentsTest: React.FC = () => {
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Overlay Media Text</h2>
           <OverlayMediaText
-            imageSrc="https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            imageSrc={Klasse_L_Default}
             imageAlt="Sample Image"
             title="Overlay Media Text Component"
             description="This component displays text overlaid on an image with customizable opacity and positioning."
@@ -202,7 +221,7 @@ const ComponentsTest: React.FC = () => {
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Split Media Text</h2>
           <SplitMediaText
-            imageSrc="https://images.pexels.com/photos/1719648/pexels-photo-1719648.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            imageSrc={Klasse_A_Default}
             imageAlt="Sample Image"
             title="Split Media Text Component"
             description="This component displays an image alongside text in a split layout, with options for image position and styling variants."
@@ -216,7 +235,7 @@ const ComponentsTest: React.FC = () => {
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Split Media Text Invert</h2>
           <SplitMediaTextInvert
-            imageSrc="https://images.pexels.com/photos/1719648/pexels-photo-1719648.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            imageSrc={Klasse_B_Default}
             imageAlt="Sample Image"
             title="Split Media Text Invert Component"
             description="This component displays an image on the right alongside text on the left in a split layout."
@@ -229,7 +248,7 @@ const ComponentsTest: React.FC = () => {
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Split Media Text 1zu1</h2>
           <SplitMediaText1zu1
-            imageSrc="https://images.pexels.com/photos/1719648/pexels-photo-1719648.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            imageSrc={Klasse_C_Default}
             imageAlt="Sample Image"
             title="Split Media Text 1zu1 Component"
             description="This component displays an image and text in a 50/50 split layout."
@@ -242,7 +261,7 @@ const ComponentsTest: React.FC = () => {
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Split Media Text 1zu1 Invert</h2>
           <SplitMediaText1zu1invert
-            imageSrc="https://images.pexels.com/photos/1719648/pexels-photo-1719648.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            imageSrc={Klasse_D_Default}
             imageAlt="Sample Image"
             title="Split Media Text 1zu1 Invert Component"
             description="This component displays an image on the right and text on the left in a 50/50 split layout."
@@ -257,13 +276,13 @@ const ComponentsTest: React.FC = () => {
           <TeamBilder
             teams={[
               {
-                imageSrc: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                imageSrc: Platzhalter_Teammitglied,
                 imageAlt: "Team Member 1",
                 title: "Max Mustermann",
                 description: "Max ist ein erfahrener Fahrlehrer mit über 15 Jahren Erfahrung in der Fahrausbildung. Er hat tausende von Schülern sicher durch ihre Führerscheinprüfung gebracht und legt besonderen Wert auf eine individuelle Betreuung. Seine Leidenschaft für das Fahren und seine pädagogischen Fähigkeiten machen ihn zu einem unverzichtbaren Teil unseres Teams."
               },
               {
-                imageSrc: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                imageSrc: Platzhalter_Teammitglied,
                 imageAlt: "Team Member 2",
                 title: "Anna Schmidt",
                 description: "Anna ist unsere Expertin für Theorieunterricht und Prüfungsvorbereitung. Mit ihrem fundierten Wissen in Verkehrsrecht und Fahrsicherheit hilft sie Schülern, die theoretischen Grundlagen zu meistern. Sie verwendet moderne Lehrmethoden und interaktive Materialien, um den Lernprozess effektiv und unterhaltsam zu gestalten."
@@ -280,34 +299,24 @@ const ComponentsTest: React.FC = () => {
           <BannerMitIcons
             items={[
               {
-                icon: <Car className="w-12 h-12 text-blue-600" />,
+                icon: <Car className="w-12 h-12 text-primary-500" />,
                 title: "Moderne Fahrzeuge",
                 description: "Unsere Fahrzeugflotte besteht aus modernen, sicheren Autos für Ihre Ausbildung."
               },
               {
-                icon: <Shield className="w-12 h-12 text-green-600" />,
+                icon: <Shield className="w-12 h-12 text-primary-500" />,
                 title: "Sicherheit zuerst",
                 description: "Wir legen größten Wert auf Ihre Sicherheit und die Ihrer Mitfahrer."
               },
               {
-                icon: <Users className="w-12 h-12 text-purple-600" />,
+                icon: <Users className="w-12 h-12 text-primary-500" />,
                 title: "Erfahrene Fahrlehrer",
                 description: "Unser Team besteht aus qualifizierten und erfahrenen Fahrlehrern."
               },
               {
-                icon: <Award className="w-12 h-12 text-yellow-600" />,
+                icon: <Award className="w-12 h-12 text-primary-500" />,
                 title: "Hohe Erfolgsquote",
                 description: "Über 95% unserer Schüler bestehen die Prüfung beim ersten Versuch."
-              },
-              {
-                icon: <Clock className="w-12 h-12 text-red-600" />,
-                title: "Flexible Termine",
-                description: "Wir bieten flexible Unterrichtszeiten, auch abends und am Wochenende."
-              },
-              {
-                icon: <CheckCircle className="w-12 h-12 text-teal-600" />,
-                title: "Individuelle Betreuung",
-                description: "Jeder Schüler erhält eine persönliche Betreuung nach seinen Bedürfnissen."
               }
             ]}
           />
@@ -320,20 +329,20 @@ const ComponentsTest: React.FC = () => {
           <BilderGallerieStapel
             images={[
               {
-                src: Platzhalter_Fahrschule,
-                alt: "Fahrschule Platzhalter",
+                src: Klasse_A_Default,
+                alt: "Klasse A Fahrzeug",
               },
               {
-                src: Platzhalter_Furhpark,
-                alt: "Fuhrpark Platzhalter",
+                src: Klasse_A1_Default,
+                alt: "Klasse A1 Fahrzeug",
               },
               {
-                src: Platzhalter_Gruppenbild_Team,
-                alt: "Team Gruppenbild",
+                src: Klasse_A2_Default,
+                alt: "Klasse A2 Fahrzeug",
               },
               {
-                src: Platzhalter_Teammitglied,
-                alt: "Teammitglied Platzhalter",
+                src: Klasse_AM_Default,
+                alt: "Klasse AM Fahrzeug",
               },
               {
                 src: Klasse_B_Default,
@@ -375,6 +384,43 @@ const ComponentsTest: React.FC = () => {
           <div className="flex justify-center">
             <Lottie animationData={notificationAnimation} loop={true} style={{ width: '600px', height: '100px' }} />
           </div>
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
+          <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">Text Galerie Stapel</h2>
+          <TextGalerieStapel
+            title="Entdecken Sie unsere Fahrschule"
+            description="Erleben Sie unsere moderne Fahrschule mit erfahrenen Fahrlehrern und einer Vielzahl von Fahrzeugen. Wir bieten Ihnen eine umfassende Ausbildung für alle Führerscheinklassen."
+            images={[
+              {
+                src: Klasse_A_Default,
+                alt: "Klasse A Fahrzeug",
+              },
+              {
+                src: Klasse_B_Default,
+                alt: "Klasse B Fahrzeug",
+              },
+              {
+                src: Klasse_C_Default,
+                alt: "Klasse C Fahrzeug",
+              },
+              {
+                src: Klasse_D_Default,
+                alt: "Klasse D Fahrzeug",
+              },
+              {
+                src: Klasse_L_Default,
+                alt: "Klasse L Fahrzeug",
+              },
+              {
+                src: Klasse_T_Default,
+                alt: "Klasse T Fahrzeug",
+              },
+            ]}
+            imagePosition="right"
+          />
         </div>
       </section>
     </div>

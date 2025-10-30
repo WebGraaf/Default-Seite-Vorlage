@@ -201,7 +201,7 @@ export default function BilderGallerieStapel({
               type="button"
               aria-label="Vorheriges Bild"
               onClick={handlePrev}
-              className="h-9 w-9 rounded-full bg-secondary flex items-center justify-center group"
+              className="h-9 w-9 rounded-full bg-primary flex items-center justify-center group"
             >
               <ChevronLeft className="h-5 w-5 text-white transition-transform duration-300 group-hover:-rotate-12" />
             </button>
@@ -209,7 +209,7 @@ export default function BilderGallerieStapel({
               type="button"
               aria-label="Nächstes Bild"
               onClick={handleNext}
-              className="h-9 w-9 rounded-full bg-secondary flex items-center justify-center group"
+              className="h-9 w-9 rounded-full bg-primary flex items-center justify-center group"
             >
               <ChevronRight className="h-5 w-5 text-white transition-transform duration-300 group-hover:rotate-12" />
             </button>
