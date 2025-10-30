@@ -2,6 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Section } from './LayoutComponents';
 import { useTrail, animated } from '@react-spring/web';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface AnimatedTextProps {
   text?: string;
@@ -132,6 +136,38 @@ export const HeroStartseite: React.FC<HeroStartseiteProps> = ({
   padding = 'xl',
   className = '',
 }) => {
+  const imageRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(imageRef.current,
+        {
+          opacity: 0,
+          scale: 0.3,
+          rotation: -45,
+          y: 80,
+          filter: "blur(10px)"
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          rotation: 0,
+          y: 0,
+          filter: "blur(0px)",
+          duration: 1.5,
+          ease: "elastic.out(1, 0.5)",
+          scrollTrigger: {
+            trigger: imageRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <Section background={background} padding={padding} className={`py-12 ${className}`}>
       <Container>
@@ -178,9 +214,10 @@ export const HeroStartseite: React.FC<HeroStartseiteProps> = ({
           </div>
           <div className="col-span-1 md:col-span-2 flex items-center justify-center order-1 md:order-2">
             <img
+              ref={imageRef}
               src={logoSrc}
               alt={logoAlt}
-              className="w-full h-auto max-w-xs md:max-w-sm animate-in fade-in slide-in-from-right-4 duration-700"
+              className="w-full h-auto max-w-xs md:max-w-sm"
             />
           </div>
         </div>

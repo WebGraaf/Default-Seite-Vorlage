@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Bike, Car, Truck, Bus, Tractor } from 'lucide-react';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Feature {
   icon: React.ComponentType<{ className?: string }>;
@@ -56,23 +59,72 @@ export const KlassenUebersichtGrid: React.FC<KlassenUebersichtGridProps> = ({
     },
   ],
 }) => {
-  const { elementRef, isVisible } = useScrollReveal();
+  const sectionRef = useRef<HTMLElement>(null);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate title words with stagger
+      gsap.fromTo(".title-word",
+        { opacity: 0, y: -20, rotationX: -90 },
+        {
+          opacity: 1,
+          y: 0,
+          rotationX: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Animate cards with stagger
+      gsap.fromTo(cardsRef.current.filter(Boolean),
+        {
+          opacity: 0,
+          y: 50,
+          scale: 0.9
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section
-      ref={elementRef as React.RefObject<HTMLElement>}
-      className="py-12"
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
-      }}
-    >
+    <section ref={sectionRef} className="py-12">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
-        <h2 className="text-3xl font-bold text-heading mb-8 text-center">{title}</h2>
+        <h2 className="text-3xl font-bold text-heading mb-8 text-center">
+          {title.split(' ').map((word, index) => (
+            <span key={index} className="title-word inline-block mr-2">
+              {word}
+            </span>
+          ))}
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <div key={index} className="border border-primary-200 rounded-xl p-8 hover:shadow-lg hover:border-primary-500 transition-all duration-300 group bg-card-bg">
+            <div
+              key={index}
+              ref={(el) => (cardsRef.current[index] = el!)}
+              className="border border-primary-200 rounded-xl p-8 hover:shadow-lg hover:border-primary-500 transition-all duration-300 group bg-card-bg"
+            >
               <div className="bg-primary-100 w-14 h-14 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-primary-200">
                 <feature.icon className="w-7 h-7 text-primary-600" />
               </div>
