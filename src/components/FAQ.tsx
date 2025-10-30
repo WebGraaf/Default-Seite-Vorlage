@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, ChevronRight } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -23,6 +23,24 @@ export function FAQ({ title = "Häufig gestellte Fragen", faqs, defaultOpenIndex
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Ensure all FAQ items start collapsed
+      faqRefs.current.forEach((faqItem) => {
+        if (faqItem) {
+          const content = faqItem.querySelector('.faq-content') as HTMLElement;
+          if (content) {
+            gsap.set(content, { height: 0 });
+          }
+          const chevron = faqItem.querySelector('.faq-chevron') as HTMLElement;
+          if (chevron) {
+            gsap.set(chevron, { rotation: 0 });
+          }
+          const arrow = faqItem.querySelector('.faq-arrow') as HTMLElement;
+          if (arrow) {
+            gsap.set(arrow, { rotation: 0 });
+          }
+        }
+      });
+
       // Animate title
       gsap.fromTo(".faq-title",
         { opacity: 0, y: -30 },
@@ -68,8 +86,9 @@ export function FAQ({ title = "Häufig gestellte Fragen", faqs, defaultOpenIndex
     // Animate accordion
     const content = faqRefs.current[index]?.querySelector('.faq-content') as HTMLElement;
     const chevron = faqRefs.current[index]?.querySelector('.faq-chevron') as HTMLElement;
+    const arrow = faqRefs.current[index]?.querySelector('.faq-arrow') as HTMLElement;
 
-    if (content && chevron) {
+    if (content && chevron && arrow) {
       if (newOpenIndex === index) {
         // Opening animation
         gsap.to(content, {
@@ -82,6 +101,11 @@ export function FAQ({ title = "Häufig gestellte Fragen", faqs, defaultOpenIndex
           duration: 0.3,
           ease: "power2.out"
         });
+        gsap.to(arrow, {
+          rotation: 90,
+          duration: 0.3,
+          ease: "power2.out"
+        });
       } else {
         // Closing animation
         gsap.to(content, {
@@ -90,6 +114,11 @@ export function FAQ({ title = "Häufig gestellte Fragen", faqs, defaultOpenIndex
           ease: "power2.in"
         });
         gsap.to(chevron, {
+          rotation: 0,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+        gsap.to(arrow, {
           rotation: 0,
           duration: 0.3,
           ease: "power2.out"
@@ -121,9 +150,17 @@ export function FAQ({ title = "Häufig gestellte Fragen", faqs, defaultOpenIndex
                 <span className="font-semibold text-heading text-lg">
                   {faq.question}
                 </span>
-                <ChevronDown
-                  className="faq-chevron w-5 h-5 text-muted transition-transform"
-                />
+                <div className="flex items-center gap-2">
+                  <ChevronRight
+                    className="faq-arrow w-4 h-4 text-primary-600 transition-transform duration-300"
+                    style={{
+                      transform: openIndex === index ? 'rotate(90deg)' : 'rotate(0deg)'
+                    }}
+                  />
+                  <ChevronDown
+                    className="faq-chevron w-5 h-5 text-muted transition-transform"
+                  />
+                </div>
               </button>
               <div className="faq-content overflow-hidden">
                 <div className="px-6 pb-5 text-body leading-relaxed">
