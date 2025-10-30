@@ -1,6 +1,5 @@
 import React from 'react';
 import { HeroStartseite } from '../components/HeroStartseite';
-import { KlassenUebersichtGrid } from '../components/KlassenUebersichtGrid';
 import { KlassenUebersichtGridSpotlight } from '../components/KlassenUebersichtGridSpotlight';
 import { KlassenUebersicht } from '../components/KlassenUebersicht';
 import { AnmeldeFormular } from '../components/AnmeldeFormular';
@@ -44,7 +43,7 @@ const ComponentsTest: React.FC = () => {
         logoSrc="/src/default_images/logo_default.webp"
         logoAlt="Fahrschule Logo"
       />
-      <KlassenUebersichtGrid />
+      <KlassenUebersichtGridSpotlight />
       <AnmeldeFormular />
       <VorherNacherBildVergleich
         beforeImage="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=1200"
