@@ -1,5 +1,8 @@
-import React from 'react';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import React, { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface SplitMediaTextInvertProps {
   imageSrc: string;
@@ -20,7 +23,56 @@ export const SplitMediaTextInvert: React.FC<SplitMediaTextInvertProps> = ({
   variant = 'default',
   className = '',
 }) => {
-  const { elementRef, isVisible } = useScrollReveal();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top 80%',
+          end: 'bottom 20%',
+          toggleActions: 'play none none reverse',
+        },
+      });
+
+      // Container slide in from bottom with perspective
+      tl.fromTo(
+        containerRef.current,
+        { opacity: 0, y: 80, rotationY: 20 },
+        { opacity: 1, y: 0, rotationY: 0, duration: 0.8, ease: 'power2.out' }
+      );
+
+      // Image slide in from right or left with blur effect
+      const imageX = imagePosition === 'left' ? -150 : 150;
+      tl.fromTo(
+        imageRef.current,
+        { opacity: 0, x: imageX, filter: 'blur(10px)' },
+        { opacity: 1, x: 0, filter: 'blur(0px)', duration: 0.8, ease: 'power2.out' },
+        '-=0.6'
+      );
+
+      // Text content staggered reveal with typewriter effect
+      tl.fromTo(
+        textRef.current?.children || [],
+        { opacity: 0, x: 50, scaleX: 0 },
+        {
+          opacity: 1,
+          x: 0,
+          scaleX: 1,
+          duration: 0.6,
+          stagger: 0.25,
+          ease: 'power3.out',
+          transformOrigin: 'left center',
+        },
+        '-=0.6'
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, [imagePosition]);
 
   const variantClasses = {
     default: 'bg-card-bg border border-card-border',
@@ -30,20 +82,15 @@ export const SplitMediaTextInvert: React.FC<SplitMediaTextInvertProps> = ({
 
   return (
     <div
-      ref={elementRef as React.RefObject<HTMLDivElement>}
+      ref={containerRef}
       className={`rounded-xl overflow-hidden py-0 px-0 ${variantClasses[variant]} ${className}`}
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
-      }}
     >
       <div
         className={`flex flex-col md:flex-row gap-8 ${
           imagePosition === 'right' ? 'md:flex-row-reverse' : ''
         }`}
       >
-        <div className="md:w-1/2">
+        <div ref={imageRef} className="md:w-1/2">
           <img
             src={imageSrc}
             alt={imageAlt}
@@ -51,7 +98,7 @@ export const SplitMediaTextInvert: React.FC<SplitMediaTextInvertProps> = ({
             loading="lazy"
           />
         </div>
-        <div className="md:w-1/2 flex flex-col justify-center p-8 text-left">
+        <div ref={textRef} className="md:w-1/2 flex flex-col justify-center p-8 text-left">
           <h3 className="text-3xl font-bold text-neutral-900 mb-4">{title}</h3>
           <p className="text-neutral-600 leading-relaxed">{description}</p>
         </div>

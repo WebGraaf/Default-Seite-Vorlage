@@ -1,5 +1,8 @@
-import React from 'react';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import React, { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Team {
   imageSrc: string;
@@ -19,7 +22,81 @@ export const TeamBilder: React.FC<TeamBilderProps> = ({
   variant = 'default',
   className = '',
 }) => {
-  const { elementRef, isVisible } = useScrollReveal();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Container fade in
+      gsap.fromTo(
+        containerRef.current,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 80%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+
+      // Staggered card reveals
+      gsap.fromTo(
+        cardRefs.current.filter(Boolean),
+        { opacity: 0, y: 60, scale: 0.8, rotationY: 15 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          rotationY: 0,
+          duration: 0.8,
+          stagger: 0.3,
+          ease: 'back.out(1.7)',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 80%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+
+      // Add hover effects to cards
+      cardRefs.current.filter(Boolean).forEach((card) => {
+        if (card) {
+          const image = card.querySelector('img');
+          const text = card.querySelector('.p-4');
+
+          card.addEventListener('mouseenter', () => {
+            gsap.to(card, { y: -10, duration: 0.3, ease: 'power2.out' });
+            if (image) {
+              gsap.to(image, { scale: 1.05, duration: 0.3, ease: 'power2.out' });
+            }
+            if (text) {
+              gsap.to(text, { y: -5, duration: 0.3, ease: 'power2.out' });
+            }
+          });
+
+          card.addEventListener('mouseleave', () => {
+            gsap.to(card, { y: 0, duration: 0.3, ease: 'power2.out' });
+            if (image) {
+              gsap.to(image, { scale: 1, duration: 0.3, ease: 'power2.out' });
+            }
+            if (text) {
+              gsap.to(text, { y: 0, duration: 0.3, ease: 'power2.out' });
+            }
+          });
+        }
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, [teams]);
 
   const variantClasses = {
     default: 'bg-card-bg border border-card-border',
@@ -29,22 +106,21 @@ export const TeamBilder: React.FC<TeamBilderProps> = ({
 
   return (
     <div
-      ref={elementRef as React.RefObject<HTMLDivElement>}
+      ref={containerRef}
       className={`flex flex-col md:flex-row gap-8 justify-center ${className}`}
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
-      }}
     >
       {teams.slice(0, 2).map((team, index) => (
-        <div key={index} className={`md:w-1/2 rounded-xl overflow-hidden ${variantClasses[variant]} max-w-sm mx-auto md:mx-0`}>
+        <div
+          key={index}
+          ref={(el) => (cardRefs.current[index] = el)}
+          className={`md:w-1/2 rounded-xl overflow-hidden ${variantClasses[variant]} max-w-sm mx-auto md:mx-0 cursor-pointer`}
+        >
           <div className="grid grid-rows-[2fr 1fr] gap-0">
             <div className="h-full overflow-hidden">
               <img
                 src={team.imageSrc}
                 alt={team.imageAlt || ''}
-                className="w-full h-full object-cover aspect-[2/3]"
+                className="w-full h-full object-cover aspect-[2/3] transition-transform duration-300"
                 loading="lazy"
               />
             </div>
