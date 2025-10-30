@@ -133,7 +133,7 @@ export const KlassenUebersichtGridSpotlight: React.FC<KlassenUebersichtGridSpotl
           ease: "back.out(2)"
         }, 0)
         .to(card.querySelector('.card-title'), {
-          color: '#2563eb',
+          color: '#E66900',
           duration: 0.3
         }, 0);
 
