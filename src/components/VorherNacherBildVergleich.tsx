@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface VorherNacherBildVergleichProps {
   title?: string;
@@ -18,12 +21,12 @@ interface BeforeAfterSliderProps {
   afterLabel?: string;
 }
 
-const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
+const BeforeAfterSlider = React.forwardRef<HTMLDivElement, BeforeAfterSliderProps>(({
   beforeImage,
   afterImage,
   beforeLabel = 'Before',
   afterLabel = 'After',
-}) => {
+}, ref) => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -67,8 +70,15 @@ const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
 
   return (
     <div
-      ref={containerRef}
-      className="relative w-full aspect-video overflow-hidden rounded-xl cursor-ew-resize select-none"
+      ref={(el) => {
+        if (ref && typeof ref === 'function') {
+          ref(el);
+        } else if (ref) {
+          (ref as React.MutableRefObject<HTMLDivElement | null>).current = el;
+        }
+        (containerRef as React.MutableRefObject<HTMLDivElement | null>).current = el;
+      }}
+      className="relative w-full aspect-video overflow-hidden rounded-xl cursor-ew-resize select-none slider-container"
       onMouseMove={handleMouseMove}
       onTouchMove={handleTouchMove}
       onMouseDown={handleStart}
@@ -92,7 +102,7 @@ const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
       </div>
 
       <div
-        className="absolute top-0 bottom-0 w-1 bg-white shadow-lg"
+        className="slider-handle absolute top-0 bottom-0 w-1 bg-white shadow-lg"
         style={{ left: `${sliderPosition}%` }}
       >
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center">
@@ -104,7 +114,9 @@ const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
       </div>
     </div>
   );
-};
+});
+
+BeforeAfterSlider.displayName = 'BeforeAfterSlider';
 
 const VorherNacherBildVergleich: React.FC<VorherNacherBildVergleichProps> = ({
   title = "Vorher Nachher Vergleich",
@@ -114,22 +126,75 @@ const VorherNacherBildVergleich: React.FC<VorherNacherBildVergleichProps> = ({
   afterLabel = "Nachher",
   className = "",
 }) => {
-  const { elementRef, isVisible } = useScrollReveal();
+  const sectionRef = useRef<HTMLElement>(null);
+  const sliderRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate title
+      gsap.fromTo(".slider-title",
+        { opacity: 0, y: -30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Animate slider container
+      gsap.fromTo(sliderRef.current,
+        { opacity: 0, scale: 0.9, y: 40 },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 1,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Add hover effects for slider
+      const slider = sliderRef.current;
+      if (slider) {
+        const hoverTl = gsap.timeline({ paused: true });
+
+        hoverTl.to(slider, {
+          scale: 1.02,
+          duration: 0.3,
+          ease: "power2.out"
+        })
+        .to(slider.querySelector('.slider-handle'), {
+          scale: 1.1,
+          duration: 0.3,
+          ease: "back.out(2)"
+        }, 0);
+
+        slider.addEventListener('mouseenter', () => hoverTl.play());
+        slider.addEventListener('mouseleave', () => hoverTl.reverse());
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section
-      ref={elementRef as React.RefObject<HTMLElement>}
-      className={`py-12 ${className}`}
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
-      }}
-    >
+    <section ref={sectionRef} className={`py-12 ${className}`}>
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
-        <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">{title}</h2>
+        <h2 className="slider-title text-3xl font-bold text-neutral-900 mb-8 text-center">{title}</h2>
         <div className="max-w-4xl mx-auto">
           <BeforeAfterSlider
+            ref={sliderRef}
             beforeImage={beforeImage}
             afterImage={afterImage}
             beforeLabel={beforeLabel}

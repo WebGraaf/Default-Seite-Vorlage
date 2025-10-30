@@ -1,7 +1,10 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle } from 'lucide-react';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Subclass {
   code: string;
@@ -30,28 +33,119 @@ export function KlassenUebersicht({
   tabs = []
 }: KlassenUebersichtProps) {
   const [activeTab, setActiveTab] = useState(0);
-  const { elementRef, isVisible } = useScrollReveal();
+  const sectionRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const tabsRef = useRef<HTMLButtonElement[]>([]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate title and subtitle
+      gsap.fromTo(".overview-title",
+        { opacity: 0, y: -30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      gsap.fromTo(".overview-subtitle",
+        { opacity: 0, y: -20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: 0.2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Animate tabs
+      gsap.fromTo(tabsRef.current.filter(Boolean),
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Animate content container
+      gsap.fromTo(contentRef.current,
+        { opacity: 0, scale: 0.95, y: 30 },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 1,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 65%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const handleTabChange = (index: number) => {
+    // Animate content transition
+    if (contentRef.current) {
+      gsap.to(contentRef.current, {
+        opacity: 0,
+        scale: 0.98,
+        y: 10,
+        duration: 0.2,
+        ease: "power2.in",
+        onComplete: () => {
+          setActiveTab(index);
+          gsap.to(contentRef.current, {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: 0.4,
+            ease: "back.out(1.7)"
+          });
+        }
+      });
+    } else {
+      setActiveTab(index);
+    }
+  };
 
   if (tabs.length === 0) {
     return null;
   }
 
   return (
-    <section
-      ref={elementRef as React.RefObject<HTMLElement>}
-      className="py-12"
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
-      }}
-    >
+    <section ref={sectionRef} className="py-12">
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-text-heading mb-4">
+          <h2 className="overview-title text-4xl font-bold text-text-heading mb-4">
             {title}
           </h2>
-          <p className="text-lg text-text-body">
+          <p className="overview-subtitle text-lg text-text-body">
             {subtitle}
           </p>
         </div>
@@ -61,8 +155,9 @@ export function KlassenUebersicht({
             return (
               <button
                 key={index}
-                onClick={() => setActiveTab(index)}
-                className={`flex items-center gap-2 px-6 py-3 font-semibold transition-all relative ${
+                ref={(el) => (tabsRef.current[index] = el!)}
+                onClick={() => handleTabChange(index)}
+                className={`tab-button flex items-center gap-2 px-6 py-3 font-semibold transition-all relative ${
                   activeTab === index
                     ? 'text-primary-600'
                     : 'text-text-body hover:text-text-heading'
@@ -70,14 +165,14 @@ export function KlassenUebersicht({
               >
                 {tab.label}
                 {activeTab === index && (
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary-600"></div>
+                  <div className="tab-indicator absolute bottom-0 left-0 right-0 h-0.5 bg-primary-600"></div>
                 )}
               </button>
             );
           })}
         </div>
 
-        <div className="bg-card-bg rounded-2xl p-4 md:p-12 min-h-[300px] shadow-lg">
+        <div ref={contentRef} className="content-container bg-card-bg rounded-2xl p-4 md:p-12 min-h-[300px] shadow-lg">
           <h3 className="text-3xl font-bold text-text-heading mb-4">
             {tabs[activeTab].title}
           </h3>

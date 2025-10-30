@@ -1,7 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronDown, Calendar, Check, AlertCircle, Loader2 } from 'lucide-react';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import logo from '../default_images/logo_default.webp';
+
+gsap.registerPlugin(ScrollTrigger);
 interface SelectProps {
   label: string;
   options: { value: string; label: string }[];
@@ -352,7 +355,100 @@ const FormLoading: React.FC<FormLoadingProps> = ({ message = 'Submitting...' }) 
 
 export const AnmeldeFormular: React.FC = () => {
   const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const { elementRef, isVisible } = useScrollReveal();
+  const sectionRef = useRef<HTMLElement>(null);
+  const formRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<HTMLImageElement>(null);
+  const fieldsRef = useRef<HTMLDivElement[]>([]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate title
+      gsap.fromTo(".form-title",
+        { opacity: 0, y: -30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Animate form container
+      gsap.fromTo(formRef.current,
+        { opacity: 0, y: 50, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Animate logo
+      gsap.fromTo(logoRef.current,
+        { opacity: 0, scale: 0.5, rotation: -180 },
+        {
+          opacity: 1,
+          scale: 1,
+          rotation: 0,
+          duration: 1.2,
+          ease: "elastic.out(1, 0.5)",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Animate form fields with stagger
+      gsap.fromTo(fieldsRef.current.filter(Boolean),
+        { opacity: 0, x: -30 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 65%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Animate submit button
+      gsap.fromTo(".submit-btn",
+        { opacity: 0, scale: 0.8, y: 20 },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "back.out(2)",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 60%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -363,53 +459,59 @@ export const AnmeldeFormular: React.FC = () => {
   };
 
   return (
-    <section
-      ref={elementRef as React.RefObject<HTMLElement>}
-      className="py-12"
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
-      }}
-    >
+    <section ref={sectionRef} className="py-12">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
-        <h2 className="text-3xl font-bold text-heading mb-8 text-center">Jetzt Anmelden</h2>
+        <h2 className="form-title text-3xl font-bold text-heading mb-8 text-center">Jetzt Anmelden</h2>
         <div className="max-w-2xl mx-auto">
-          <div className="border border-primary-200 rounded-xl p-8 bg-card-bg">
+          <div ref={formRef} className="border border-primary-200 rounded-xl p-8 bg-card-bg">
             {formState === 'idle' && (
               <form onSubmit={handleFormSubmit} className="space-y-6">
                 <HoneypotField />
                 <fieldset className="space-y-4">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-lg font-semibold text-heading">Persönliche Informationen</h3>
-                    <img src={logo} alt="Logo" className="h-16 w-auto" />
+                    <img ref={logoRef} src={logo} alt="Logo" className="h-16 w-auto" />
                   </div>
-                  <Input label="Vorname" placeholder="Max" required error="Vorname ist erforderlich" />
-                  <Input label="Nachname" placeholder="Mustermann" required error="Nachname ist erforderlich" />
-                  <Input label="E-Mail-Adresse" type="email" placeholder="max@example.com" required />
-                  <Input label="Telefonnummer" type="tel" placeholder="+49 123 456789" required />
-                  <DatePicker label="Geburtsdatum" />
+                  <div ref={(el) => el && (fieldsRef.current[0] = el)}>
+                    <Input label="Vorname" placeholder="Max" required error="Vorname ist erforderlich" />
+                  </div>
+                  <div ref={(el) => el && (fieldsRef.current[1] = el)}>
+                    <Input label="Nachname" placeholder="Mustermann" required error="Nachname ist erforderlich" />
+                  </div>
+                  <div ref={(el) => el && (fieldsRef.current[2] = el)}>
+                    <Input label="E-Mail-Adresse" type="email" placeholder="max@example.com" required />
+                  </div>
+                  <div ref={(el) => el && (fieldsRef.current[3] = el)}>
+                    <Input label="Telefonnummer" type="tel" placeholder="+49 123 456789" required />
+                  </div>
+                  <div ref={(el) => el && (fieldsRef.current[4] = el)}>
+                    <DatePicker label="Geburtsdatum" />
+                  </div>
                 </fieldset>
 
                 <fieldset className="space-y-4">
                   <legend className="text-lg font-semibold text-heading mb-4">Kursdetails</legend>
-                  <Select
-                    label="Gewünschte Klasse"
-                    options={[
-                      { value: 'a', label: 'Klasse A' },
-                      { value: 'b', label: 'Klasse B' },
-                      { value: 'c', label: 'Klasse C' },
-                      { value: 'd', label: 'Klasse D' },
-                      { value: 'l', label: 'Klasse L' },
-                      { value: 't', label: 'Klasse T' },
-                    ]}
-                  />
-                  <DatePicker label="Gewünschter Starttermin" />
+                  <div ref={(el) => el && (fieldsRef.current[5] = el)}>
+                    <Select
+                      label="Gewünschte Klasse"
+                      options={[
+                        { value: 'a', label: 'Klasse A' },
+                        { value: 'b', label: 'Klasse B' },
+                        { value: 'c', label: 'Klasse C' },
+                        { value: 'd', label: 'Klasse D' },
+                        { value: 'l', label: 'Klasse L' },
+                        { value: 't', label: 'Klasse T' },
+                      ]}
+                    />
+                  </div>
+                  <div ref={(el) => el && (fieldsRef.current[6] = el)}>
+                    <DatePicker label="Gewünschter Starttermin" />
+                  </div>
                 </fieldset>
 
                 <fieldset className="space-y-4">
                   <legend className="text-lg font-semibold text-heading mb-4">Zusätzliche Informationen</legend>
-                  <div>
+                  <div ref={(el) => el && (fieldsRef.current[7] = el)}>
                     <label className="block text-sm font-medium text-text-body mb-2">Zusätzliche Nachricht</label>
                     <textarea
                       className="w-full px-3 py-2 border border-field-border rounded-lg focus:ring-2 focus:ring-field-focus-ring focus:border-transparent bg-field-bg text-field-fg placeholder-field-placeholder"
@@ -421,7 +523,7 @@ export const AnmeldeFormular: React.FC = () => {
 
                 <button
                   type="submit"
-                  className="w-full py-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors duration-200 font-semibold shadow-lg hover:shadow-xl"
+                  className="submit-btn w-full py-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors duration-200 font-semibold shadow-lg hover:shadow-xl"
                 >
                   Anmeldung abschicken
                 </button>
