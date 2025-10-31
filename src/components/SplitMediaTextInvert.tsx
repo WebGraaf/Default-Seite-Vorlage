@@ -81,28 +81,29 @@ export const SplitMediaTextInvert: React.FC<SplitMediaTextInvertProps> = ({
   };
 
   return (
-    <div
-      ref={containerRef}
-      className={`rounded-xl overflow-hidden py-0 px-0 ${variantClasses[variant]} ${className}`}
-    >
+    <section ref={containerRef} className="py-12">
       <div
-        className={`flex flex-col md:flex-row gap-8 ${
-          imagePosition === 'right' ? 'md:flex-row-reverse' : ''
-        }`}
+        className={`rounded-xl overflow-hidden ${variantClasses[variant]} ${className}`}
       >
-        <div ref={imageRef} className="md:w-1/2">
-          <img
-            src={imageSrc}
-            alt={imageAlt}
-            className="w-full h-full object-cover"
-            loading="lazy"
-          />
-        </div>
-        <div ref={textRef} className="md:w-1/2 flex flex-col justify-center p-8 text-left">
-          <h3 className="text-3xl font-bold text-neutral-900 mb-4">{title}</h3>
-          <p className="text-neutral-600 leading-relaxed">{description}</p>
+        <div
+          className={`flex flex-col md:flex-row gap-8 ${
+            imagePosition === 'right' ? 'md:flex-row-reverse' : ''
+          }`}
+        >
+          <div ref={imageRef} className="md:w-1/2">
+            <img
+              src={imageSrc}
+              alt={imageAlt}
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div ref={textRef} className="md:w-1/2 flex flex-col justify-center p-8 text-left">
+            <h3 className="text-3xl font-bold text-neutral-900 mb-4">{title}</h3>
+            <p className="text-neutral-600 leading-relaxed">{description}</p>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };

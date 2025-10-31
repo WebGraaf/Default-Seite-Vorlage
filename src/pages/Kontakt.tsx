@@ -69,7 +69,7 @@ const Kontakt: React.FC = () => {
 
   return (
     <div className="bg-page-bg">
-      <Section background="card-bg" padding="xl">
+      <Section background="card-bg" padding="sm">
         <Container>
           <div
             ref={headerRef as React.RefObject<HTMLDivElement>}
@@ -93,13 +93,13 @@ const Kontakt: React.FC = () => {
         </Container>
       </Section>
 
-      <Section background="page-bg" padding="lg">
+      <Section background="page-bg" padding="sm">
         <Container>
           <Kontaktinformationen />
         </Container>
       </Section>
 
-      <Section background="page-bg" padding="lg">
+      <Section background="page-bg" padding="sm">
         <Container>
           <StandorteUebersicht
             locations={[
@@ -120,7 +120,7 @@ const Kontakt: React.FC = () => {
         </Container>
       </Section>
 
-      <Section background="page-bg" padding="lg">
+      <Section background="page-bg" padding="sm">
         <Container>
           <BannerAnmeldenCopy />
         </Container>
