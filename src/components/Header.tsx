@@ -90,6 +90,10 @@ const Header: React.FC = () => {
                 Home
               </Link>
 
+              <Link to="/ueber-uns" className="hover:text-secondary-800 transition-colors font-bold" onClick={closeMenus}>
+                Über Uns
+              </Link>
+
               {/* Führerscheine Dropdown */}
               <div className="relative">
                 <button
@@ -122,9 +126,6 @@ const Header: React.FC = () => {
                 </div>
               </div>
 
-              <Link to="/ueber-uns" className="hover:text-secondary-800 transition-colors font-bold" onClick={closeMenus}>
-                Über Uns
-              </Link>
               <Link to="/kontakt" className="hover:text-secondary-800 transition-colors font-bold" onClick={closeMenus}>
                 Kontakt
               </Link>
@@ -156,6 +157,10 @@ const Header: React.FC = () => {
               <nav className="flex flex-col space-y-2 text-header-text">
                 <Link to="/" className="hover:text-secondary-800 py-2 font-bold" onClick={closeMenus}>
                   Home
+                </Link>
+
+                <Link to="/ueber-uns" className="hover:text-secondary-800 py-2 font-bold" onClick={closeMenus}>
+                  Über Uns
                 </Link>
 
                 {/* Mobile Führerscheine Section */}
@@ -192,9 +197,6 @@ const Header: React.FC = () => {
                   )}
                 </div>
 
-                <Link to="/ueber-uns" className="hover:text-secondary-800 py-2 font-bold" onClick={closeMenus}>
-                  Über Uns
-                </Link>
                 <Link to="/kontakt" className="hover:text-secondary-800 py-2 font-bold" onClick={closeMenus}>
                   Kontakt
                 </Link>
