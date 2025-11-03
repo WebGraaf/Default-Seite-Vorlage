@@ -128,9 +128,6 @@ const Header: React.FC = () => {
               <Link to="/kontakt" className="hover:text-secondary-800 transition-colors font-bold" onClick={closeMenus}>
                 Kontakt
               </Link>
-              <Link to="/components-test" className="hover:text-secondary-800 transition-colors font-bold" onClick={closeMenus}>
-                Components Test
-              </Link>
             </nav>
 
             {/* CTA Button */}
@@ -200,9 +197,6 @@ const Header: React.FC = () => {
                 </Link>
                 <Link to="/kontakt" className="hover:text-secondary-800 py-2 font-bold" onClick={closeMenus}>
                   Kontakt
-                </Link>
-                <Link to="/components-test" className="hover:text-secondary-800 py-2 font-bold" onClick={closeMenus}>
-                  Components Test
                 </Link>
                 <Link to="/anmelden" className="bg-secondary-800 text-header-text px-4 py-2 rounded-md hover:bg-secondary-700 transition-colors inline-block font-bold" onClick={closeMenus}>
                   anmelden

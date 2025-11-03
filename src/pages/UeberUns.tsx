@@ -153,22 +153,9 @@ const UeberUns: React.FC = () => {
       <Section background="page-bg" padding="lg">
         <Container>
           <SplitMediaTextCopy
-            imageSrc={PlatzhalterGruppenbildTeam}
+            imageSrc={PlatzhalterFahrschule}
             imageAlt="Unsere Werte"
             title="Unsere Werte"
-            description="Vertrauen, Qualität und Menschlichkeit - das sind die Grundpfeiler unserer Fahrschule. Wir legen Wert auf eine freundliche Atmosphäre, in der du dich wohlfühlst und ohne Druck lernen kannst. Jeder Fahrschüler ist bei uns einzigartig und wird individuell gefördert."
-            imagePosition="right"
-            variant="default"
-          />
-        </Container>
-      </Section>
-
-      <Section background="page-bg" padding="lg">
-        <Container>
-          <SplitMediaTextCopy
-            imageSrc={PlatzhalterFahrschule}
-            imageAlt="Unsere Philosophie"
-            title="Unsere Philosophie"
             description="Lernen soll Spaß machen! Deshalb gestalten wir unseren Unterricht abwechslungsreich, praxisnah und auf Augenhöhe. Wir nehmen uns Zeit für deine Fragen und gehen auf deine individuellen Bedürfnisse ein. Dein Erfolg ist unser Antrieb - gemeinsam erreichen wir dein Ziel!"
             imagePosition="left"
             variant="outline"

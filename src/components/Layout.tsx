@@ -21,9 +21,9 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
-    <div className="min-h-screen bg-blue-50">
+    <div className="flex flex-col min-h-screen bg-blue-50">
       <Header />
-      <main>{children}</main>
+      <main className="flex-grow">{children}</main>
       <footer className="bg-gray-800 text-white py-8">
         <Container>
           <div className="flex justify-between">
