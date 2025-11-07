@@ -3,7 +3,8 @@ import { Container, Section } from '../components/LayoutComponents';
 import { Kontaktinformationen } from '../components/Kontaktinformationen';
 import { StandorteUebersicht } from '../components/StandorteUebersicht';
 import { useScrollReveal } from '../hooks/useScrollReveal';
-import LogoDefault from '../default_images/logo_default.webp';
+
+const LogoDefault = '/default_images/logo_default.webp';
 
 const BannerAnmeldenCopy: React.FC = () => {
   const { elementRef, isVisible } = useScrollReveal();

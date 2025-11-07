@@ -3,11 +3,12 @@ import { Container, Section } from '../components/LayoutComponents';
 import { KlassenDetailCard } from '../components/KlassenDetailCard';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { Car, Scale, Users, Truck, Link, CheckCircle, User, FileText, Calendar, BookOpen, Key, Settings, Cog } from 'lucide-react';
-import KlasseBImage from '../default_images/Klasse_B_Default.webp';
-import KlasseBEImage from '../default_images/Klasse_BE_Default.webp';
-import KlasseBF17Image from '../default_images/Klasse_BF17_Default.webp';
-import KlasseB96Image from '../default_images/Klasse_B96_Default.webp';
-import KlasseB197Image from '../default_images/Klasse_B197_Default.webp';
+
+const KlasseBImage = '/default_images/Klasse_B_Default.webp';
+const KlasseBEImage = '/default_images/Klasse_BE_Default.webp';
+const KlasseBF17Image = '/default_images/Klasse_BF17_Default.webp';
+const KlasseB96Image = '/default_images/Klasse_B96_Default.webp';
+const KlasseB197Image = '/default_images/Klasse_B197_Default.webp';
 
 const KlasseB: React.FC = () => {
   useEffect(() => {

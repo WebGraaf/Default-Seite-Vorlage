@@ -13,15 +13,15 @@ const Home: React.FC = () => {
   // Daten für TextGalerieStapel
   const galleryImages = [
     {
-      src: '/src/default_images/Platzhalter_Fahrschule.webp',
+      src: '/default_images/Platzhalter_Fahrschule.webp',
       alt: 'Fahrschule Bild 1'
     },
     {
-      src: '/src/default_images/Platzhalter_Furhpark.webp',
+      src: '/default_images/Platzhalter_Furhpark.webp',
       alt: 'Fahrschule Bild 2'
     },
     {
-      src: '/src/default_images/Platzhalter_Gruppenbild_Team.webp',
+      src: '/default_images/Platzhalter_Gruppenbild_Team.webp',
       alt: 'Fahrschule Bild 3'
     }
   ];
@@ -70,7 +70,7 @@ const Home: React.FC = () => {
         description="Erfahren Sie mehr über unsere moderne Fahrschulausbildung und unsere erfahrenen Fahrlehrer."
         buttonText="Jetzt anmelden"
         buttonLink="/anmelden"
-        logoSrc="/src/default_images/logo_default.webp"
+        logoSrc="/default_images/logo_default.webp"
         logoAlt="Fahrschule Logo"
       />
 
@@ -89,8 +89,8 @@ const Home: React.FC = () => {
 
       <VorherNacherBildVergleich
         title="Vorher Nachher Vergleich"
-        beforeImage="/src/default_images/Platzhalter_Fahrschule.webp"
-        afterImage="/src/default_images/Platzhalter_Furhpark.webp"
+        beforeImage="/default_images/Platzhalter_Fahrschule.webp"
+        afterImage="/default_images/Platzhalter_Furhpark.webp"
         beforeLabel="Vorher"
         afterLabel="Nachher"
       />
@@ -105,7 +105,7 @@ const Home: React.FC = () => {
 
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <SplitMediaText
-          imageSrc="/src/default_images/Platzhalter_Fahrschule.webp"
+          imageSrc="/default_images/Platzhalter_Fahrschule.webp"
           imageAlt="Fahrschule Ausbildung"
           title="Professionelle Fahrausbildung"
           description="Bei uns erhalten Sie eine erstklassige Fahrausbildung von zertifizierten Fahrlehrern. Wir legen Wert auf individuelle Betreuung und moderne Lehrmethoden, um Sie sicher auf die Straße zu bringen."
@@ -115,7 +115,7 @@ const Home: React.FC = () => {
 
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <SplitMediaTextInvert
-          imageSrc="/src/default_images/Platzhalter_Furhpark.webp"
+          imageSrc="/default_images/Platzhalter_Furhpark.webp"
           imageAlt="Moderner Fuhrpark"
           title="Topmoderner Fuhrpark"
           description="Unser Fahrzeugpark umfasst die neuesten Modelle verschiedener Automarken. Alle Fahrzeuge sind perfekt gewartet und erfüllen höchste Sicherheitsstandards für Ihre optimale Ausbildung."

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from './LayoutComponents';
-import logo from '../default_images/logo_default.webp';
+
+const logo = '/default_images/logo_default.webp';
 
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

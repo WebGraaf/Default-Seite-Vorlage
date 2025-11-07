@@ -1,7 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import LogoDefault from '../default_images/logo_default.webp';
+
+const LogoDefault = '/default_images/logo_default.webp';
 
 gsap.registerPlugin(ScrollTrigger);
 

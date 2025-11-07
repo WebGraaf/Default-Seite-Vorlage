@@ -3,10 +3,11 @@ import { Container, Section } from '../components/LayoutComponents';
 import { KlassenDetailCard } from '../components/KlassenDetailCard';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { Bike, Gauge, Calendar, Users } from 'lucide-react';
-import KlasseAMImage from '../default_images/Klasse_AM_Default.webp';
-import KlasseA1Image from '../default_images/Klasse_A1_Default.webp';
-import KlasseA2Image from '../default_images/Klasse_A2_Default.webp';
-import KlasseAImage from '../default_images/Klasse_A_Default.webp';
+
+const KlasseAMImage = '/default_images/Klasse_AM_Default.webp';
+const KlasseA1Image = '/default_images/Klasse_A1_Default.webp';
+const KlasseA2Image = '/default_images/Klasse_A2_Default.webp';
+const KlasseAImage = '/default_images/Klasse_A_Default.webp';
 
 const KlasseA: React.FC = () => {
   useEffect(() => {

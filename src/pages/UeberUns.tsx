@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 import { Container, Section } from '../components/LayoutComponents';
 import { TeamBilder } from '../components/TeamBilder';
 import { useScrollReveal } from '../hooks/useScrollReveal';
-import LogoDefault from '../default_images/logo_default.webp';
-import PlatzhalterGruppenbildTeam from '../default_images/Platzhalter_Gruppenbild_Team.webp';
-import PlatzhalterFahrschule from '../default_images/Platzhalter_Fahrschule.webp';
-import PlatzhalterTeammitglied from '../default_images/Platzhalter_Teammitglied.webp';
+
+const LogoDefault = '/default_images/logo_default.webp';
+const PlatzhalterGruppenbildTeam = '/default_images/Platzhalter_Gruppenbild_Team.webp';
+const PlatzhalterFahrschule = '/default_images/Platzhalter_Fahrschule.webp';
+const PlatzhalterTeammitglied = '/default_images/Platzhalter_Teammitglied.webp';
 
 const SplitMediaTextCopy: React.FC<{
   imageSrc: string;

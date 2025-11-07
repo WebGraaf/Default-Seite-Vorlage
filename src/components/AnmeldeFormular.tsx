@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { ChevronDown, Calendar, Check, AlertCircle, Loader2 } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import logo from '../default_images/logo_default.webp';
+
+const logo = '/default_images/logo_default.webp';
 
 gsap.registerPlugin(ScrollTrigger);
 interface SelectProps {

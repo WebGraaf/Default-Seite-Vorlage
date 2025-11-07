@@ -3,10 +3,11 @@ import { Container, Section } from '../components/LayoutComponents';
 import { KlassenDetailCard } from '../components/KlassenDetailCard';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { Truck, Scale, Package, FileText, Link } from 'lucide-react';
-import KlasseCImage from '../default_images/Klasse_C_Default.webp';
-import KlasseC1Image from '../default_images/Klasse_C1_Default.webp';
-import KlasseC1EImage from '../default_images/Klasse_C1E_Default.webp';
-import KlasseCEImage from '../default_images/Klasse_CE_Default.webp';
+
+const KlasseCImage = '/default_images/Klasse_C_Default.webp';
+const KlasseC1Image = '/default_images/Klasse_C1_Default.webp';
+const KlasseC1EImage = '/default_images/Klasse_C1E_Default.webp';
+const KlasseCEImage = '/default_images/Klasse_CE_Default.webp';
 
 const KlasseC: React.FC = () => {
   useEffect(() => {

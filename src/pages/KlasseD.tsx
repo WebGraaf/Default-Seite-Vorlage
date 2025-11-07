@@ -3,10 +3,11 @@ import { Container, Section } from '../components/LayoutComponents';
 import { KlassenDetailCard } from '../components/KlassenDetailCard';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { Car, Users, Truck, FileText, Ruler, Scale, Ban, Link } from 'lucide-react';
-import KlasseDImage from '../default_images/Klasse_D_Default.webp';
-import KlasseD1Image from '../default_images/Klasse_D1_Default.webp';
-import KlasseD1EImage from '../default_images/Klasse_D1E_Default.webp';
-import KlasseDEImage from '../default_images/Klasse_DE_Default.webp';
+
+const KlasseDImage = '/default_images/Klasse_D_Default.webp';
+const KlasseD1Image = '/default_images/Klasse_D1_Default.webp';
+const KlasseD1EImage = '/default_images/Klasse_D1E_Default.webp';
+const KlasseDEImage = '/default_images/Klasse_DE_Default.webp';
 
 const KlasseD: React.FC = () => {
   useEffect(() => {

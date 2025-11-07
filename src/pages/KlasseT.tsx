@@ -3,7 +3,8 @@ import { Container, Section } from '../components/LayoutComponents';
 import { KlassenDetailCard } from '../components/KlassenDetailCard';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { Truck, Gauge, Leaf } from 'lucide-react';
-import KlasseTImage from '../default_images/Klasse_T_Default.webp';
+
+const KlasseTImage = '/default_images/Klasse_T_Default.webp';
 
 const KlasseT: React.FC = () => {
   useEffect(() => {
