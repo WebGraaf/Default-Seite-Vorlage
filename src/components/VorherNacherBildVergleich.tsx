@@ -86,9 +86,11 @@ const BeforeAfterSlider = React.forwardRef<HTMLDivElement, BeforeAfterSliderProp
     >
       <div className="absolute inset-0">
         <img src={afterImage} alt={afterLabel} className="w-full h-full object-cover" />
-        <div className="absolute top-4 right-4 bg-black/70 text-white px-3 py-1.5 rounded-full text-sm font-medium">
-          {afterLabel}
-        </div>
+        {afterLabel && (
+          <div className="absolute top-4 right-4 bg-black/70 text-white px-3 py-1.5 rounded-full text-sm font-medium">
+            {afterLabel}
+          </div>
+        )}
       </div>
 
       <div
@@ -96,9 +98,11 @@ const BeforeAfterSlider = React.forwardRef<HTMLDivElement, BeforeAfterSliderProp
         style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
       >
         <img src={beforeImage} alt={beforeLabel} className="w-full h-full object-cover" />
-        <div className="absolute top-4 left-4 bg-black/70 text-white px-3 py-1.5 rounded-full text-sm font-medium">
-          {beforeLabel}
-        </div>
+        {beforeLabel && (
+          <div className="absolute top-4 left-4 bg-black/70 text-white px-3 py-1.5 rounded-full text-sm font-medium">
+            {beforeLabel}
+          </div>
+        )}
       </div>
 
       <div

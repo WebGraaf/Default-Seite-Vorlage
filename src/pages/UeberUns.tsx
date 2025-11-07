@@ -1,7 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Container, Section } from '../components/LayoutComponents';
 import { TeamBilder } from '../components/TeamBilder';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const LogoDefault = '/default_images/logo_default.webp';
 const PlatzhalterGruppenbildTeam = '/default_images/Platzhalter_Gruppenbild_Team.webp';
@@ -25,7 +29,31 @@ const SplitMediaTextCopy: React.FC<{
   variant = 'default',
   className = '',
 }) => {
-  const { elementRef, isVisible } = useScrollReveal();
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(containerRef.current,
+        {
+          opacity: 0,
+          y: 60,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.0,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    });
+
+    return () => ctx.revert();
+  }, []);
 
   const variantClasses = {
     default: 'bg-card-bg border border-card-border',
@@ -35,13 +63,8 @@ const SplitMediaTextCopy: React.FC<{
 
   return (
     <div
-      ref={elementRef as React.RefObject<HTMLDivElement>}
+      ref={containerRef}
       className={`rounded-xl overflow-hidden py-0 px-0 ${variantClasses[variant]} ${className}`}
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
-      }}
     >
       <div
         className={`flex flex-col md:flex-row gap-8 ${
@@ -158,7 +181,7 @@ const UeberUns: React.FC = () => {
             imageAlt="Unsere Werte"
             title="Unsere Werte"
             description="Lernen soll Spaß machen! Deshalb gestalten wir unseren Unterricht abwechslungsreich, praxisnah und auf Augenhöhe. Wir nehmen uns Zeit für deine Fragen und gehen auf deine individuellen Bedürfnisse ein. Dein Erfolg ist unser Antrieb - gemeinsam erreichen wir dein Ziel!"
-            imagePosition="left"
+            imagePosition="right"
             variant="outline"
           />
         </Container>

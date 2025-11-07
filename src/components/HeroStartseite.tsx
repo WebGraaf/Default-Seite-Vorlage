@@ -213,12 +213,12 @@ export const HeroStartseite: React.FC<HeroStartseiteProps> = ({
               </Link>
             </div>
           </div>
-          <div className="col-span-1 md:col-span-2 flex items-center justify-center order-1 md:order-2">
+          <div className="col-span-1 md:col-span-2 flex items-center md:justify-center order-1 md:order-2">
             <img
               ref={imageRef}
               src={logoSrc}
               alt={logoAlt}
-              className="w-full h-auto max-w-xs md:max-w-sm"
+              className="h-auto max-w-xs md:max-w-sm"
               style={{
                 opacity: 0,
                 transform: 'scale(0.3) rotate(-45deg) translateY(80px)',

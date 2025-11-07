@@ -91,8 +91,8 @@ const Home: React.FC = () => {
         title="Vorher Nachher Vergleich"
         beforeImage="/default_images/Platzhalter_Fahrschule.webp"
         afterImage="/default_images/Platzhalter_Furhpark.webp"
-        beforeLabel="Vorher"
-        afterLabel="Nachher"
+        beforeLabel=""
+        afterLabel=""
       />
 
       <StandorteUebersicht
