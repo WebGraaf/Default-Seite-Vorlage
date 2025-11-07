@@ -79,14 +79,14 @@ const Header: React.FC = () => {
       {/* Bottom Bar - Navigation */}
       <div className="bg-primary-500 py-4">
         <Container>
-          <div className="relative flex items-center justify-center md:justify-between">
-            {/* Logo - Hidden on mobile, shown on md+ */}
-            <Link to="/" onClick={closeMenus} className="hidden md:block">
+          <div className="relative flex items-center justify-between md:justify-between">
+            {/* Logo */}
+            <Link to="/" onClick={closeMenus}>
               <img src={logo} alt="Führerschein Website" className="h-12 w-auto" />
             </Link>
 
-            {/* Mobile School Name */}
-            <div className="md:hidden text-header-text font-bold text-lg">
+            {/* Mobile School Name - Centered */}
+            <div className="md:hidden absolute left-1/2 transform -translate-x-1/2 text-header-text font-bold text-lg">
               Deine Fahrschule
             </div>
 
