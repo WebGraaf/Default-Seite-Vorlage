@@ -35,7 +35,7 @@ const Select: React.FC<SelectProps> = ({ label, options, value, onChange, error 
     setIsOpen(false);
   };
 
-  const selectedLabel = options.find(opt => opt.value === selected)?.label || 'Select...';
+  const selectedLabel = options.find(opt => opt.value === selected)?.label || 'Auswählen...';
 
   return (
     <div className="relative" ref={ref}>
@@ -322,7 +322,7 @@ const FormResult: React.FC<FormResultProps> = ({ type, title, message, onClose }
           onClick={onClose}
           className="w-full py-3 bg-white text-black rounded-lg hover:bg-gray-100 transition-colors duration-200 font-medium"
         >
-          Close
+          Schließen
         </button>
       </div>
     </div>
