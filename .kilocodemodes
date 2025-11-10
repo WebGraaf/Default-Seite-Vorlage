@@ -375,6 +375,7 @@ customModes:
     - `/kontakt`
     - `/anmelden`
     - Bitte kein Impressum / Datenschutz im Header aufnehmen.
+    - Bitte passe mobil den Namen der Fahrschule im Header an. 
 
     # Schritt 5 – Überflüssige /fuehrerscheine/* Klassen löschen
     ## Es dürfen nur die Seiten existieren im src/pages, welche auch genutzt werden
@@ -451,10 +452,10 @@ customModes:
 
     # 5) Abschnitt Standorte
     - Alle Standorte aus `kunde_informationen.md` übernehmen (Anzahl, Adresse, Tel.-Nr.).
-    - `tel:`-Links normalisieren (keine Leerzeichen, führendes „+“ optional).
     - Google-Maps-Link einfügen, zur entsprechenden Adresse, welche hinterlegt ist.
     - Wenn mehrere Standorte vorhanden sind, bitte entsprechend die Auswahl erweitern & Informationen für die jeweiligen Standorte aktualisieren. 
     - ist nur ein einziger Standort vorhanden, dann bitte den Auswahlnahmen oben der Stadt entsprechend anpassen & die Überschrift ändern auf "Unser Standort" 
+    - Vermerken die Öffnungszeiten als "Öffnungszeiten Büro"
 
     # 6) Abschnitt Professionelle Fahrausbildung
     - Großbild aus `info.md` → Pfad: `/kunde_bilder_download/<Dateiname>`.
@@ -679,7 +680,8 @@ customModes:
     - Jedes Member bekommt **eine** Kachel – keine leeren, keine Doppelungen.
     - Bildzuordnung: wähle aus `info.md` **nacheinander** Großbilder (Reihenfolge beibehalten); setze  
       `src="/kunde_bilder_download/<Basename>"` – kein `/public/` im Pfad.
-    - Falls keine Bilder mehr vorhanden: Fallback `/default_images/Team_Default.webp` verwenden.
+    - Wenn nicht explizit in der info.md drin steht, dass hier ein Bild vermutet wird von einem Teammitglied, dann ist es besser das Fallback bild zu nutzen.
+    - Fallback `/default_images/Platzhalter_Teammitglied.webp` verwenden.
     - Name **immer** einfügen; Rolle/Text nur, wenn in `kunde_informationen.md` steht – sonst leer lassen.
 
     # 5) Technik & Sicherheit
@@ -736,7 +738,6 @@ customModes:
 
     # 2) Standorte-Sektion spiegeln (1:1-Kopie von Phase 2)
     - Anzahl und Datensätze **exakt** aus `kunde_informationen.md` übernehmen.
-    - `tel:`-Links normalisieren (keine Leerzeichen, ggf. „+“).
     - Maps-Link:
       - Wenn vorhanden → einfügen
       - Nur Adresse → baue Google-Such-Query mit encodeter Adresse:  

@@ -190,7 +190,7 @@ export const HeroStartseite: React.FC<HeroStartseiteProps> = ({
               {subtitle && (
                 <AnimatedText
                   text={subtitle}
-                  className="text-3xl md:text-4xl lg:text-5xl font-bold text-left max-w-2xl text-primary"
+                  className="text-3xl md:text-4xl lg:text-5xl font-bold text-left max-w-2xl text-primary-500"
                   textAlign="left"
                   delay={30}
                   animationFrom={{ opacity: 0, transform: 'translate3d(0,30px,0)' }}
