@@ -375,7 +375,8 @@ customModes:
     - `/kontakt`
     - `/anmelden`
     - Bitte kein Impressum / Datenschutz im Header aufnehmen.
-    - Bitte passe mobil den Namen der Fahrschule im Header an. 
+    - Für die Mobile Ansicht muss im Header der Name "Deine Fahrschule" angepasst werden, auf den richtigen Namen der Fahrschule, welcher zu entnehmen ist aus der kunde_informationen.md
+    - Passe den oberen Bereich des Headers an, entsprechend der neuen Kontaktinformationen vom Kunden.  
 
     # Schritt 5 – Überflüssige /fuehrerscheine/* Klassen löschen
     ## Es dürfen nur die Seiten existieren im src/pages, welche auch genutzt werden
@@ -383,6 +384,7 @@ customModes:
     - Lösche die unterseiten (Oberklassen wie beispielsweise src\pages\KlasseT.tsx) von /fuehrerscheine, welche vom Kunden nicht angeboten werden.
     - Bietet der Kunde keine Führerscheine in einem Bereich, werden die entsprechend Seiten auch nicht benötigt.
     - Beispiel: In der kunde_informationen.md & kunde_seitenstruktur.md steht drin, dass der Kunde alle Klassen bis auf führerscheine der Klasse T & D anbietet, dann sollen die Unterseiten der Klasse T & D komplett gelöscht werden. (src\pages\KlasseT.tsx / src\pages\KlasseL.tsx) 
+    - **Öffne `src/App.tsx` (oder die zentrale Routing-Datei) und entferne alle `import`-Anweisungen sowie alle `<Route ... />`-Einträge, die sich auf die gelöschten EXTRA-Routen beziehen.**
 
     ## Weitere Haupt-Seiten unterbringen
     - Nutze die restlichen Einträge aus DESIRED_ROUTES (z. B. `/preise`, `/standorte`, `/leistungen`, …).
@@ -442,6 +444,7 @@ customModes:
     - Es sind nur die Karten mit den Klassen A, B, C, D, L, T gültig, also die Oberklassen. 
     - Es dürfen keine karten verändert werden. Sie dürfen nur gelöscht werden. 
     - Vermeide Plaketten die Unterklassen abbilden wie CE etc.
+    - Passe die Grid Struktur an, wenn beispielsweise nur 2 Klassen vorhanden sind, sollen auch nur die beiden in der Grid struktur existieren. 
 
     # 4) Abschnitt Vorher-/Nachher-Vergleich
     - Nimm **zwei** große Bilder aus `info.md` (Priorität: Fahrschule selbst, dann Kundenfahrzeuge im optimalfall).
