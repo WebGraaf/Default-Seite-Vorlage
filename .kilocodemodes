@@ -427,8 +427,8 @@ customModes:
     # 2) Abschnitt „Unsere Fahrschule“ (Bilder-Stapel + Text)
     - Wähle aus `info.md` **genau 5 große** Bilder, die Schule, Räume oder Standort zeigen.
     - Verwende den Dateinamen (ohne Pfad) und bilde den Src-Pfad: `/kunde_bilder_download/<Dateiname>`.
-    - Platzhalter-Text durch 3-4 einladende Sätze aus `kunde_informationen.md` ersetzen.
-    - Falls keine sinnvollen Informationen vorhanden sind, Bilde 3-4 einladende und passende Sätze zur Fahrschule. 
+    - Platzhalter-Text durch 4-5 einladende Sätze aus `kunde_informationen.md` ersetzen.
+    - Falls keine sinnvollen Informationen vorhanden sind, Bilde 4-5 einladende und passende Sätze zur Fahrschule. 
     - Versuche plumpe fakten, wie Uhrzeiten oder öffnungszeiten zu vermeiden.
     - Wichtig ist, dass der Satz einladend und nett wirkt und sich von dem vorherigem Abschnitt unterscheidet. 
 
@@ -470,7 +470,11 @@ customModes:
     - Versuche plumpe fakten, wie Uhrzeiten oder öffnungszeiten zu vermeiden.
     - Wichtig ist, dass der Satz einladend und nett wirkt und sich von dem vorherigem Abschnitt unterscheidet. 
 
-    # 8) Bild-Regeln (globale Checkliste)
+    # 8) Abschnitt Haeufig gestellte Fragen
+    - Passe das FAQ im unteren bereich an. 
+    - Schaue dir die kunde_informationen.md an und passe das FAQ ausschließlich auf Fragen ab, welche sinnvoll sind und sich auf den Führerschein beziehen.  
+
+    # 9) Bild-Regeln (globale Checkliste)
     - Nur **große** Bilder verwenden – keine Thumbnails, Icons oder Hintergrundbilder.
     - Bildpfade immer so schreiben:
       - eigene Bilder: `/kunde_bilder_download/<Dateiname>`

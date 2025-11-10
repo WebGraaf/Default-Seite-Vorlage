@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -114,11 +115,12 @@ const BannerAnmelden: React.FC = () => {
               <h2 className="banner-title text-3xl md:text-4xl font-bold mb-4">Bereit für deinen Führerschein?</h2>
               <p className="banner-text text-lg text-text-body mb-8">Starte jetzt deine Fahrschulausbildung bei uns. Professionelle Ausbildung, flexible Termine und erfahrene Fahrlehrer. Wir warten auf dich!</p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <button
-                  className="banner-button px-8 py-4 bg-btn-solid-bg text-btn-solid-fg rounded-lg font-semibold hover:bg-btn-solid-hover transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+                <Link
+                  to="/anmelden"
+                  className="banner-button px-8 py-4 bg-btn-solid-bg text-btn-solid-fg rounded-lg font-semibold hover:bg-btn-solid-hover transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 inline-block text-center"
                 >
                   Jetzt Anmelden
-                </button>
+                </Link>
               </div>
             </div>
             <div className="flex-shrink-0 lg:w-3/10 flex justify-center">

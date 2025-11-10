@@ -131,10 +131,6 @@ export const KlassenUebersichtGridSpotlight: React.FC<KlassenUebersichtGridSpotl
           rotation: 5,
           duration: 0.3,
           ease: "back.out(2)"
-        }, 0)
-        .to(card.querySelector('.card-title'), {
-          color: '#E66900',
-          duration: 0.3
         }, 0);
 
         card.addEventListener('mouseenter', () => hoverTl.play());
