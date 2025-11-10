@@ -463,8 +463,8 @@ export const AnmeldeFormular: React.FC = () => {
     <section ref={sectionRef} className="py-12">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
         <h2 className="form-title text-3xl font-bold text-heading mb-8 text-center">Jetzt Anmelden</h2>
-        <div className="max-w-2xl mx-auto">
-          <div ref={formRef} className="border border-primary-200 rounded-xl p-8 bg-card-bg">
+        <div className="max-w-2xl mx-auto relative">
+          <div ref={formRef} className="border border-primary-200 rounded-xl p-8 bg-card-bg filter grayscale-50 relative">
             {formState === 'idle' && (
               <form onSubmit={handleFormSubmit} className="space-y-6">
                 <HoneypotField />
@@ -524,7 +524,8 @@ export const AnmeldeFormular: React.FC = () => {
 
                 <button
                   type="submit"
-                  className="submit-btn w-full py-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors duration-200 font-semibold shadow-lg hover:shadow-xl"
+                  disabled
+                  className="submit-btn w-full py-3 bg-gray-400 text-gray-600 rounded-lg font-semibold shadow-lg cursor-not-allowed"
                 >
                   Anmeldung abschicken
                 </button>
@@ -532,6 +533,11 @@ export const AnmeldeFormular: React.FC = () => {
             )}
 
             {formState === 'loading' && <FormLoading message="Anmeldung wird verarbeitet..." />}
+            <div className="absolute inset-0 bg-black bg-opacity-50 rounded-xl flex items-start justify-start">
+              <div className="bg-red-600 text-white px-4 py-2 rounded-br-lg font-semibold text-sm">
+                Wird in kürze freigeschaltet
+              </div>
+            </div>
           </div>
         </div>
       </div>

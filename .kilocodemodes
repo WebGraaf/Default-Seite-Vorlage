@@ -379,8 +379,9 @@ customModes:
     # Schritt 5 – Überflüssige /fuehrerscheine/* Klassen löschen
     ## Es dürfen nur die Seiten existieren im src/pages, welche auch genutzt werden
     - Schaue dir die kunde_seitenstruktur.md an.
-    - Lösche die unterseiten von führerscheinen, welche vom Kunden nicht angeboten werden.
-    - Beispiel: In der kunde_informationen.md & kunde_seitenstruktur.md steht drin, dass der Kunde alle Klassen bis auf führerscheine der Klasse T & D anbietet, dann sollen die Unterseiten der Klasse T & D komplett gelöscht werden. 
+    - Lösche die unterseiten (Oberklassen wie beispielsweise src\pages\KlasseT.tsx) von /fuehrerscheine, welche vom Kunden nicht angeboten werden.
+    - Bietet der Kunde keine Führerscheine in einem Bereich, werden die entsprechend Seiten auch nicht benötigt.
+    - Beispiel: In der kunde_informationen.md & kunde_seitenstruktur.md steht drin, dass der Kunde alle Klassen bis auf führerscheine der Klasse T & D anbietet, dann sollen die Unterseiten der Klasse T & D komplett gelöscht werden. (src\pages\KlasseT.tsx / src\pages\KlasseL.tsx) 
 
     ## Weitere Haupt-Seiten unterbringen
     - Nutze die restlichen Einträge aus DESIRED_ROUTES (z. B. `/preise`, `/standorte`, `/leistungen`, …).
