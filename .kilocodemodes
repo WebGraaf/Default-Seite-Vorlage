@@ -106,7 +106,7 @@ customModes:
       - C (Oberklasse): C1, C1E, C, CE
       - D (Oberklasse): D1, D1E, D, DE
       - T (Oberklasse): T
-      - L (Oberklasse): 
+      - L (Oberklasse): L
 
     - Bilde **pro angebotener Oberklasse** eine Route:
       - Beispiel: Klasse **B** wird angeboten → `/fuehrerscheine/klasse-b`
@@ -375,6 +375,12 @@ customModes:
     - `/kontakt`
     - `/anmelden`
 
+    # Schritt 5 – Überflüssige /fuehrerscheine/* Klassen löschen
+    ## Es dürfen nur die Seiten existieren im src/pages, welche auch genutzt werden
+    - Schaue dir die kunde_seitenstruktur.md an.
+    - Lösche die unterseiten von führerscheinen, welche vom Kunden nicht angeboten werden.
+    - Beispiel: In der kunde_informationen.md & kunde_seitenstruktur.md steht drin, dass der Kunde alle Klassen bis auf führerscheine der Klasse T & D anbietet, dann sollen die Unterseiten der Klasse T & D komplett gelöscht werden. 
+
     ## Weitere Haupt-Seiten unterbringen
     - Nutze die restlichen Einträge aus DESIRED_ROUTES (z. B. `/preise`, `/standorte`, `/leistungen`, …).
     - Packe sie als eigene Top-Level-Links oder, bei Platzmangel, in zusätzliche Dropdown-Gruppen (z. B. „Service“).
@@ -406,7 +412,7 @@ customModes:
   roleDefinition: |
     Du bist der Content-Setter für die Startseite.  
     Du nimmst **ausschließlich** die Fakten aus `kunde_informationen.md` und `info.md` und setzt sie an die richtigen Stellen der Home-Page.  
-    Kein Marketing-Floskeln erfinden – nur vorhandene Informationen einbauen und Platzhalter ersetzen.
+    Nur vorhandene Informationen einbauen und Platzhalter ersetzen.
   customInstructions: |
     # 0) Zieldatei finden
     - App-Router: `app/page.tsx` (bzw. `.jsx`)  
@@ -415,17 +421,24 @@ customModes:
     # 1) Hero-Bereich
     - Überschrift „Wir machen dich mobil“ bleibt stehen.
     - Darunter steht bisher „Platzhalter Fahrschule“ → ersetze durch den **offiziellen Namen** der Fahrschule (aus `kunde_informationen.md`).
-    - Unter-Namenszeile: nutze einen kurzen, faktenbasierten Satz aus derselben Datei (z. B. Standorte, Öffnungszeiten, Besonderheiten).
+    - Unter-Namenszeile: nutze einen kurzen, aber einladenden Slogan, welche von den Informationen aus der kunde_informationen.md gestützt wird, oder allegemien gültig ist. 
+    - Wichtig ist, dass der Satz einladend und nett wirkt. 
 
     # 2) Abschnitt „Unsere Fahrschule“ (Bilder-Stapel + Text)
     - Wähle aus `info.md` **genau 5 große** Bilder, die Schule, Räume oder Standort zeigen.
     - Verwende den Dateinamen (ohne Pfad) und bilde den Src-Pfad: `/kunde_bilder_download/<Dateiname>`.
-    - Platzhalter-Text durch 3-4 einladende, faktenbasierte Sätze aus `kunde_informationen.md` ersetzen.
+    - Platzhalter-Text durch 3-4 einladende Sätze aus `kunde_informationen.md` ersetzen.
+    - Falls keine sinnvollen Informationen vorhanden sind, Bilde 3-4 einladende und passende Sätze zur Fahrschule. 
+    - Versuche plumpe fakten, wie Uhrzeiten oder öffnungszeiten zu vermeiden.
+    - Wichtig ist, dass der Satz einladend und nett wirkt und sich von dem vorherigem Abschnitt unterscheidet. 
 
     # 3) Abschnitt Führerschein-Klassen
     - Lösche Karten, deren Klasse **nicht** in `kunde_informationen.md` genannt wird.
     - Behälte nur die angebotenen Oberklassen, welche sich aus der kunde_informationen.md ableiten lassen.
     - Plaketten oder Zusatz-Icons nicht einbauen.
+    - Es sind nur die Karten mit den Klassen A, B, C, D, L, T gültig, also die Oberklassen. 
+    - Es dürfen keine karten verändert werden. Sie dürfen nur gelöscht werden. 
+    - Vermeide Plaketten die Unterklassen abbilden wie CE etc.
 
     # 4) Abschnitt Vorher-/Nachher-Vergleich
     - Nimm **zwei** große Bilder aus `info.md` (Priorität: Fahrschule selbst, dann Kundenfahrzeuge im optimalfall).
@@ -444,12 +457,18 @@ customModes:
     # 6) Abschnitt Professionelle Fahrausbildung
     - Großbild aus `info.md` → Pfad: `/kunde_bilder_download/<Dateiname>`.
     - suche nach einem passenden Bild, welches diesen Abschnitt repräsentieren kann. leite die Informationen hierfür aus der Info.md ab.
-    - Text-Block mit faktenbasierten Inhalten aus `kunde_informationen.md` füllen.
+    - Text-Block mit Inhalten aus `kunde_informationen.md` füllen.
+    - Falls keine sinnvollen Informationen vorhanden sind, Bilde 1-2 einladende und passende Sätze in Bezug auf die Fahrschule. 
+    - Versuche plumpe fakten, wie Uhrzeiten oder öffnungszeiten zu vermeiden.
+    - Wichtig ist, dass der Satz einladend und nett wirkt und sich von dem vorherigem Abschnitt unterscheidet. 
 
     # 7) Abschnitt Topmoderner Fuhrpark
     - Weiteres Großbild (Fahrzeug) aus `info.md` oder Fallback `/default_images/Klasse_B_Default.webp`.
     - suche nach einem passenden Bild, welches diesen Abschnitt repräsentieren kann. leite die Informationen hierfür aus der Info.md ab.
     - Text aus vorhandenen Angaben aus der kunde_informationen.mde zusammensetzen.
+    - Falls keine sinnvollen Informationen vorhanden sind, Bilde 1-2 einladende und passende Sätze in Bezug auf die Fahrschule und den Furhpark, welche allgemein gültig sind. 
+    - Versuche plumpe fakten, wie Uhrzeiten oder öffnungszeiten zu vermeiden.
+    - Wichtig ist, dass der Satz einladend und nett wirkt und sich von dem vorherigem Abschnitt unterscheidet. 
 
     # 8) Bild-Regeln (globale Checkliste)
     - Nur **große** Bilder verwenden – keine Thumbnails, Icons oder Hintergrundbilder.
@@ -583,11 +602,6 @@ customModes:
     - Titel: `Führerschein Klasse {SUPER} – <Offizieller Name der Fahrschule>` (Name aus `kunde_informationen.md`)
     - Description: kurzer, faktenbasierter Satz, **ohne** nicht angebotene Unterklassen.
 
-    # 5) Bilder (falls vorhanden)
-    - Eigene Dateien: `/kunde_bilder_download/<basename>`
-    - Fallbacks: `/default_images/Klasse_A_Default.webp` usw.
-    - **Nie** `/public/` im Pfad – Next.js liefert automatisch.
-
     # 6) Selbst-Check pro Datei
     - Nur erlaubte Unterklassen sichtbar?
     - Keine Fremd-CTAs oder -Verlinkungen mehr?
@@ -632,15 +646,23 @@ customModes:
 
     # 1) Hero-Bereich
     - Überschrift und Intro-Text **direkt aus `kunde_informationen.md`** übernehmen – Ton klar und einladend.
-    - Keine zusätzlichen Floskeln ergänzen.
+    - Falls keine sinnvollen Informationen vorhanden sind, Bilde 2-3 einladende und passende Sätze in Bezug auf die Fahrschule, welche allgemein gültig sind. 
+    - Versuche plumpe fakten, wie Uhrzeiten oder öffnungszeiten zu vermeiden.
+    - Wichtig ist, dass der Satz einladend und nett wirkt. 
 
     # 2) Abschnitt „Unsere Mission“
-    - Missionstext **wortgetreu** aus `kunde_informationen.md` einsetzen – so steht’s da, so kommt es rein. 
+    - Missionstext aus `kunde_informationen.md` einsetzen. 
+    - Falls keine sinnvollen Informationen vorhanden sind, Bilde 2-3 einladende und passende Sätze in Bezug auf die Fahrschule, welche allgemein gültig sind und die Fahrschule beschreiben. 
+    - Versuche plumpe fakten, wie Uhrzeiten oder öffnungszeiten zu vermeiden.
+    - Wichtig ist, dass der Satz einladend und nett wirkt. 
 
     # 3) Abschnitt „Unsere Philosophie“
     - Wähle aus `info.md` ein **großes** Bild (Fahrschule, Räume, Team) und setze es als  
       `/kunde_bilder_download/<Dateiname>` ein.
     - Darunter: Werte/Ansatz/Betreuungstext **aus `kunde_informationen.md`** – nichts dazu erdichten.
+    - Falls keine sinnvollen Informationen vorhanden sind, Bilde 2-3 einladende und passende Sätze in Bezug auf die Fahrschule und ihre Philosophie widerpsiegeln und allgemein gültig sind. 
+    - Versuche plumpe fakten, wie Uhrzeiten oder öffnungszeiten zu vermeiden.
+    - Wichtig ist, dass der Satz einladend und nett wirkt und sich vom vorherigem Abschnitt unterscheidet.
 
     # 4) Team – Member-zu-Kachel 1:1
     - Lese aus `kunde_informationen.md` **exakt die Anzahl** der Team-Mitglieder (Name ist Pflicht, Rolle/Text optional).
