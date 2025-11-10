@@ -374,6 +374,7 @@ customModes:
     - `/ueber-uns`
     - `/kontakt`
     - `/anmelden`
+    - Bitte kein Impressum / Datenschutz im Header aufnehmen.
 
     # Schritt 5 – Überflüssige /fuehrerscheine/* Klassen löschen
     ## Es dürfen nur die Seiten existieren im src/pages, welche auch genutzt werden
