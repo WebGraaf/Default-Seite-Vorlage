@@ -449,6 +449,7 @@ customModes:
       links `/default_images/Klasse_A_Default.webp`,  
       rechts `/default_images/Klasse_B_Default.webp`.
     - Entferne die kleinen „Vorher“/„Nachher“-Badges und die Objekt-Überschrift über dem Bilderpaar.
+    - Entferne die Überschrift Vorher Nachher Vergleich komplett
 
     # 5) Abschnitt Standorte
     - Alle Standorte aus `kunde_informationen.md` übernehmen (Anzahl, Adresse, Tel.-Nr.).

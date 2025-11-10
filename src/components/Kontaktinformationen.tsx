@@ -104,9 +104,15 @@ export function Kontaktinformationen() {
                     {item.label}
                   </div>
                 </div>
-                <div className="text-base text-text-body">
-                  {item.value}
-                </div>
+                {item.label === 'Telefon' ? (
+                  <a href={`tel:${item.value.replace(/\s/g, '')}`} className="text-base text-text-body hover:text-primary-600 transition-colors">
+                    {item.value}
+                  </a>
+                ) : (
+                  <div className="text-base text-text-body">
+                    {item.value}
+                  </div>
+                )}
               </div>
             );
           })}

@@ -86,9 +86,9 @@ const Header: React.FC = () => {
             </Link>
 
             {/* Mobile School Name - Centered */}
-            <div className="md:hidden absolute left-1/2 transform -translate-x-1/2 text-header-text font-bold text-lg">
+            <Link to="/" onClick={closeMenus} className="md:hidden absolute left-1/2 transform -translate-x-1/2 text-header-text font-bold text-lg">
               Deine Fahrschule
-            </div>
+            </Link>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex flex-1 justify-center space-x-6 text-header-text font-bold">

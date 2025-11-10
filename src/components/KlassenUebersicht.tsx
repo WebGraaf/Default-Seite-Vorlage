@@ -181,10 +181,21 @@ export function KlassenUebersicht({
           </p>
           <div className="space-y-3">
             {tabs[activeTab].subclasses.map((subclass, index) => (
-              <div key={index} className="flex items-center gap-3">
-                <CheckCircle className="w-5 h-5 text-primary-600 flex-shrink-0" />
-                <span className="font-bold text-text-heading">{subclass.code}</span>
-                <span className="text-text-body">- {subclass.description}</span>
+              <div key={index}>
+                {/* Desktop layout: inline */}
+                <div className="hidden sm:flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-primary-600 flex-shrink-0" />
+                  <span className="font-bold text-text-heading">{subclass.code}</span>
+                  <span className="text-text-body">- {subclass.description}</span>
+                </div>
+                {/* Mobile layout: stacked */}
+                <div className="flex flex-col gap-3 sm:hidden">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary-600 flex-shrink-0" />
+                    <span className="font-bold text-text-heading">{subclass.code}</span>
+                  </div>
+                  <span className="text-text-body">- {subclass.description}</span>
+                </div>
               </div>
             ))}
           </div>

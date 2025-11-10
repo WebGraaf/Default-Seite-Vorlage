@@ -214,7 +214,9 @@ export function StandorteUebersicht({
               <Phone className="w-5 h-5 text-primary-600" />
               Telefon
             </h4>
-            <p className="text-text-body text-lg font-medium">{locations[activeTab].phone}</p>
+            <a href={`tel:${locations[activeTab].phone.replace(/\s/g, '')}`} className="text-text-body text-lg font-medium hover:text-primary-600 transition-colors">
+              {locations[activeTab].phone}
+            </a>
           </div>
           <div ref={(el) => el && (infoCardsRef.current[2] = el)} className="info-card bg-card-bg backdrop-blur-sm rounded-lg p-4 border border-card-border">
             <h4 className="font-semibold text-text-heading mb-2 text-lg flex items-center gap-2">
