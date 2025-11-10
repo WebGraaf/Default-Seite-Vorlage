@@ -88,7 +88,6 @@ const Home: React.FC = () => {
       <KlassenUebersichtGridSpotlight />
 
       <VorherNacherBildVergleich
-        title="Vorher Nachher Vergleich"
         beforeImage="/default_images/Platzhalter_Fahrschule.webp"
         afterImage="/default_images/Platzhalter_Furhpark.webp"
         beforeLabel=""

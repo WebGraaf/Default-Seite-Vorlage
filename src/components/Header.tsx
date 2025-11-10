@@ -31,9 +31,9 @@ const Header: React.FC = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 pt-0 pb-0">
+    <header className="sticky top-0 z-50 pt-0 pb-0 border-b-4 border-primary-500">
       {/* Top Bar - Contact Information */}
-      <div className="bg-secondary-800 py-1 md:py-2">
+      <div className="bg-primary-500 py-1 md:py-2">
         <Container>
           <div className="flex items-center justify-center">
             <div className="flex md:hidden items-center space-x-2 text-header-text text-xs font-medium">
@@ -77,7 +77,7 @@ const Header: React.FC = () => {
       </div>
 
       {/* Bottom Bar - Navigation */}
-      <div className="bg-primary-500 py-4">
+      <div className="bg-secondary-500 py-4">
         <Container>
           <div className="relative flex items-center justify-between md:justify-between">
             {/* Logo */}
@@ -91,12 +91,12 @@ const Header: React.FC = () => {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex flex-1 justify-center space-x-6 text-header-text font-bold">
-              <Link to="/" className="hover:text-secondary-800 transition-colors font-bold" onClick={closeMenus}>
+            <nav className="hidden md:flex flex-1 justify-center space-x-6 text-white font-bold">
+              <Link to="/" className="hover:text-primary-500 transition-colors font-bold" onClick={closeMenus}>
                 Home
               </Link>
 
-              <Link to="/ueber-uns" className="hover:text-secondary-800 transition-colors font-bold" onClick={closeMenus}>
+              <Link to="/ueber-uns" className="hover:text-primary-500 transition-colors font-bold" onClick={closeMenus}>
                 Über Uns
               </Link>
 
@@ -104,17 +104,17 @@ const Header: React.FC = () => {
               <div className="relative">
                 <button
                   onClick={toggleDropdown}
-                  className="hover:text-secondary-800 transition-colors flex items-center font-bold"
+                  className="hover:text-primary-500 transition-colors flex items-center font-bold"
                 >
                   Führerscheine
                   <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-                <div className={`absolute top-full left-0 mt-2 w-48 bg-secondary-800 border border-secondary-700 rounded-md shadow-lg z-10 transition-all duration-300 ease-in-out ${isDropdownOpen ? 'opacity-100 visible scale-100' : 'opacity-0 invisible scale-95'}`}>
+                <div className={`absolute top-full left-0 mt-2 w-48 bg-secondary-500 border border-secondary-700 rounded-md shadow-lg z-10 transition-all duration-300 ease-in-out ${isDropdownOpen ? 'opacity-100 visible scale-100' : 'opacity-0 invisible scale-95'}`}>
                   <Link
                     to="/fuehrerscheine"
-                    className="block px-4 py-2 text-header-text hover:bg-secondary-700"
+                    className="block px-4 py-2 text-white hover:bg-secondary-700 hover:text-primary-500"
                     onClick={closeMenus}
                   >
                     Übersicht
@@ -123,7 +123,7 @@ const Header: React.FC = () => {
                     <Link
                       key={page.path}
                       to={page.path}
-                      className="block px-4 py-2 text-header-text hover:bg-secondary-700"
+                      className="block px-4 py-2 text-white hover:bg-secondary-700 hover:text-primary-500"
                       onClick={closeMenus}
                     >
                       {page.name}
@@ -132,7 +132,7 @@ const Header: React.FC = () => {
                 </div>
               </div>
 
-              <Link to="/kontakt" className="hover:text-secondary-800 transition-colors font-bold" onClick={closeMenus}>
+              <Link to="/kontakt" className="hover:text-primary-500 transition-colors font-bold" onClick={closeMenus}>
                 Kontakt
               </Link>
             </nav>
@@ -140,7 +140,7 @@ const Header: React.FC = () => {
             {/* CTA Button */}
             <Link
               to="/anmelden"
-              className="hidden md:block bg-secondary-800 text-header-text px-4 py-2 rounded-md hover:bg-secondary-700 transition-colors ml-auto font-bold"
+              className="hidden md:block bg-primary-500 text-white px-4 py-2 rounded-md transition-colors ml-auto font-bold"
               onClick={closeMenus}
             >
               anmelden
@@ -149,7 +149,7 @@ const Header: React.FC = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={toggleMobileMenu}
-              className="md:hidden absolute right-4 top-1/2 transform -translate-y-1/2 text-header-text hover:text-secondary-800 font-bold"
+              className="md:hidden absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-primary-500 font-bold"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -160,12 +160,12 @@ const Header: React.FC = () => {
           {/* Mobile Navigation */}
           {isMobileMenuOpen && (
             <div className="md:hidden mt-4 pb-4 border-t border-secondary-700">
-              <nav className="flex flex-col space-y-2 text-header-text">
-                <Link to="/" className="hover:text-secondary-800 py-2 font-bold" onClick={closeMenus}>
+              <nav className="flex flex-col space-y-2 text-white">
+                <Link to="/" className="hover:text-primary-500 py-2 font-bold" onClick={closeMenus}>
                   Home
                 </Link>
 
-                <Link to="/ueber-uns" className="hover:text-secondary-800 py-2 font-bold" onClick={closeMenus}>
+                <Link to="/ueber-uns" className="hover:text-primary-500 py-2 font-bold" onClick={closeMenus}>
                   Über Uns
                 </Link>
 
@@ -173,7 +173,7 @@ const Header: React.FC = () => {
                 <div>
                   <button
                     onClick={toggleDropdown}
-                    className="hover:text-secondary-800 py-2 flex items-center w-full text-left font-bold"
+                    className="hover:text-primary-500 py-2 flex items-center w-full text-left font-bold"
                   >
                     Führerscheine
                     <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -184,7 +184,7 @@ const Header: React.FC = () => {
                     <div className="ml-4 space-y-1">
                       <Link
                         to="/fuehrerscheine"
-                        className="block text-secondary-300 hover:text-secondary-800 py-1 font-semibold"
+                        className="block text-gray-300 hover:text-primary-500 py-1 font-semibold"
                         onClick={closeMenus}
                       >
                         Übersicht
@@ -193,7 +193,7 @@ const Header: React.FC = () => {
                         <Link
                           key={page.path}
                           to={page.path}
-                          className="block text-secondary-300 hover:text-secondary-800 py-1 font-semibold"
+                          className="block text-gray-300 hover:text-primary-500 py-1 font-semibold"
                           onClick={closeMenus}
                         >
                           {page.name}
@@ -203,10 +203,10 @@ const Header: React.FC = () => {
                   )}
                 </div>
 
-                <Link to="/kontakt" className="hover:text-secondary-800 py-2 font-bold" onClick={closeMenus}>
+                <Link to="/kontakt" className="hover:text-primary-500 py-2 font-bold" onClick={closeMenus}>
                   Kontakt
                 </Link>
-                <Link to="/anmelden" className="bg-secondary-800 text-header-text px-4 py-2 rounded-md hover:bg-secondary-700 transition-colors inline-block font-bold" onClick={closeMenus}>
+                <Link to="/anmelden" className="bg-primary-500 text-white px-4 py-2 rounded-md transition-colors inline-block font-bold" onClick={closeMenus}>
                   anmelden
                 </Link>
               </nav>

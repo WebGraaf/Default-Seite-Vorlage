@@ -158,7 +158,7 @@ export const KlassenUebersichtGridSpotlight: React.FC<KlassenUebersichtGridSpotl
               ref={(el) => (cardsRef.current[index] = el)}
             >
               <KartenSpotlight
-                className="hover:shadow-lg hover:border-primary-500 transition-all duration-300 group flex flex-col h-full p-6"
+                className="hover:bg-primary-50 hover:border-primary-500 transition-all duration-300 group flex flex-col h-full p-6"
                 spotlightColor={feature.spotlightColor || 'primary'}
               >
                 <div className="flex-grow">
