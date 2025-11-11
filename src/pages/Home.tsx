@@ -32,13 +32,15 @@ const Home: React.FC = () => {
       label: 'Hauptstandort',
       address: 'Musterstraße 123, 12345 Musterstadt',
       phone: '+49 123 456789',
-      hours: 'Mo-Fr: 8:00-18:00\nSa: 9:00-14:00\nSo: Geschlossen'
+      hours: 'Mo-Fr: 8:00-18:00\nSa: 9:00-14:00\nSo: Geschlossen',
+      mapSrc: 'https://maps.google.com/maps?q=Musterstra%C3%9Fe%20123,%2012345%20Musterstadt&t=&z=15&ie=UTF8&iwloc=&output=embed'
     },
     {
       label: 'Zweigstelle Nord',
       address: 'Nordstraße 456, 54321 Nordstadt',
       phone: '+49 987 654321',
-      hours: 'Mo-Fr: 9:00-17:00\nSa: 10:00-15:00\nSo: Geschlossen'
+      hours: 'Mo-Fr: 9:00-17:00\nSa: 10:00-15:00\nSo: Geschlossen',
+      mapSrc: 'https://maps.google.com/maps?q=Nordstra%C3%9Fe%20456,%2054321%20Nordstadt&t=&z=15&ie=UTF8&iwloc=&output=embed'
     }
   ];
 

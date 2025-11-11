@@ -5,11 +5,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+import { GoogleMaps } from './GoogleMaps';
+
 export interface Location {
   label: string;
   address: string;
   phone: string;
   hours: string;
+  mapSrc: string;
 }
 
 export interface StandorteUebersichtProps {
@@ -229,16 +232,10 @@ export function StandorteUebersicht({
 
         {/* Google Maps Integration */}
         <div ref={mapRef} className="map-container bg-card-bg rounded-2xl shadow-xl overflow-hidden border border-card-border">
-          <iframe
-            src={`https://maps.google.com/maps?q=${encodeURIComponent(locations[activeTab].address)}&output=embed`}
-            width="100%"
-            height="400"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title={`Karte für ${locations[activeTab].label}`}
-          ></iframe>
+          <GoogleMaps
+            src={locations[activeTab].mapSrc}
+            height="400px"
+          />
         </div>
       </div>
     </section>

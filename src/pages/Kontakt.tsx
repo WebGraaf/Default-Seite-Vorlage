@@ -108,13 +108,15 @@ const Kontakt: React.FC = () => {
                 label: 'Hauptstandort Berlin-Mitte',
                 address: 'Hauptstraße 123, 10115 Berlin',
                 phone: '+49 (0) 30 12345678',
-                hours: 'Mo-Fr 9-18 Uhr, Sa 10-14 Uhr'
+                hours: 'Mo-Fr 9-18 Uhr, Sa 10-14 Uhr',
+                mapSrc: 'https://maps.google.com/maps?q=Hauptstra%C3%9Fe%20123,%2010115%20Berlin&t=&z=15&ie=UTF8&iwloc=&output=embed'
               },
               {
                 label: 'Standort Berlin-Kreuzberg',
                 address: 'Kreuzstraße 45, 10965 Berlin',
                 phone: '+49 (0) 30 98765432',
-                hours: 'Mo-Fr 9-18 Uhr'
+                hours: 'Mo-Fr 9-18 Uhr',
+                mapSrc: 'https://maps.google.com/maps?q=Kreuzstra%C3%9Fe%2045,%2010965%20Berlin&t=&z=15&ie=UTF8&iwloc=&output=embed'
               }
             ]}
           />
