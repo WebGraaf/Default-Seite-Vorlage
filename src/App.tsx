@@ -14,6 +14,7 @@ import Anmelden from './pages/Anmelden';
 import UeberUns from './pages/UeberUns';
 import Kontakt from './pages/Kontakt';
 import Impressum from './pages/Impressum';
+import NotFound from './pages/NotFound';
 
 const App: React.FC = () => {
   return (
@@ -33,6 +34,7 @@ const App: React.FC = () => {
           <Route path="/ueber-uns" element={<UeberUns />} />
           <Route path="/kontakt" element={<Kontakt />} />
           <Route path="/impressum" element={<Impressum />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
     </Router>
