@@ -8,7 +8,7 @@ const Impressum: React.FC = () => {
       <Helmet>
         <title>Impressum - Deine Fahrschule</title>
         <meta name="description" content="Impressum und rechtliche Hinweise für [Fahrschulname]. Hier finden Sie unsere Kontaktdaten, Angaben zum Unternehmen und weitere rechtliche Informationen." />
-        <meta name="robots" content="noindex, follow" />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="[Ihre-Webseiten-URL]/impressum" />
       </Helmet>
       <Section background="card-bg" padding="xl">

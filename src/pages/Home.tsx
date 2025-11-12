@@ -71,6 +71,7 @@ const Home: React.FC = () => {
         <title>Deine Fahrschule - Startseite</title>
         <meta name="description" content="Willkommen bei [Fahrschulname]. Wir machen dich mobil! Erfahre mehr über unsere Führerscheinkurse, unseren modernen Fuhrpark und melde dich noch heute an." />
         <meta name="keywords" content="Fahrschule, Führerschein, Fahrausbildung, Auto, Motorrad, LKW, [Fahrschulname], [Stadt]" />
+        <meta name="robots" content="index, follow" />
         <meta property="og:title" content="Deine Fahrschule - Sicher zum Führerschein" />
         <meta property="og:description" content="Starte deine Fahrausbildung bei [Fahrschulname]. Moderne Fahrzeuge, erfahrene Fahrlehrer und hohe Erfolgsquoten." />
         <meta property="og:type" content="website" />

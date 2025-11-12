@@ -16,6 +16,7 @@ const KlasseL: React.FC = () => {
         <title>Traktorführerschein (Klasse L) - Deine Fahrschule</title>
         <meta name="description" content="Informationen zum Traktorführerschein der Klasse L. Ausbildung für land- und forstwirtschaftliche Zugmaschinen bei [Fahrschulname]." />
         <meta name="keywords" content="Traktorführerschein, Klasse L, Landwirtschaft, Forstwirtschaft, Zugmaschine, Fahrschule, [Fahrschulname]" />
+        <meta name="robots" content="index, follow" />
         <meta property="og:title" content="Traktorführerschein (Klasse L) - Deine Fahrschule" />
         <meta property="og:description" content="Mache deinen Traktorführerschein der Klasse L bei [Fahrschulname]. Wir sind dein Partner für die land- und forstwirtschaftliche Ausbildung." />
         <meta property="og:type" content="website" />

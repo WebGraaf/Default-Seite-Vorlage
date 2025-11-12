@@ -19,6 +19,7 @@ const KlasseD: React.FC = () => {
         <title>Busführerschein (Klasse D) - Deine Fahrschule</title>
         <meta name="description" content="Werde Busfahrer mit der Ausbildung für die Klassen D, D1, DE und D1E bei [Fahrschulname]. Alle Informationen zur Personenbeförderung." />
         <meta name="keywords" content="Busführerschein, Klasse D, D1, DE, D1E, Personenbeförderung, Busfahrer, Fahrschule, [Fahrschulname]" />
+        <meta name="robots" content="index, follow" />
         <meta property="og:title" content="Busführerschein (Klasse D) - Deine Fahrschule" />
         <meta property="og:description" content="Starte deine Karriere in der Personenbeförderung. Wir bilden dich professionell in allen Bus-Klassen aus." />
         <meta property="og:type" content="website" />

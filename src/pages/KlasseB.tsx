@@ -20,6 +20,7 @@ const KlasseB: React.FC = () => {
         <title>Autoführerschein (Klasse B) - Deine Fahrschule</title>
         <meta name="description" content="Informationen zum Autoführerschein der Klasse B und den Erweiterungen BE, B96, B197 und BF17. Mache deinen PKW-Führerschein bei [Fahrschulname]." />
         <meta name="keywords" content="Autoführerschein, Klasse B, BE, B96, B197, BF17, PKW-Führerschein, Fahrschule, [Fahrschulname]" />
+        <meta name="robots" content="index, follow" />
         <meta property="og:title" content="Autoführerschein (Klasse B) - Deine Fahrschule" />
         <meta property="og:description" content="Alle Informationen zum PKW-Führerschein der Klasse B und den zugehörigen Erweiterungen. Starte jetzt deine Ausbildung bei [Fahrschulname]." />
         <meta property="og:type" content="website" />

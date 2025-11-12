@@ -16,6 +16,7 @@ const KlasseT: React.FC = () => {
         <title>Großer Traktorführerschein (Klasse T) - Deine Fahrschule</title>
         <meta name="description" content="Der große Traktorführerschein der Klasse T für schnelle Zugmaschinen bis 60 km/h. Deine Ausbildung für die moderne Land- und Forstwirtschaft bei [Fahrschulname]." />
         <meta name="keywords" content="Traktorführerschein, Klasse T, Landwirtschaft, Forstwirtschaft, Zugmaschine, 60 km/h, Fahrschule, [Fahrschulname]" />
+        <meta name="robots" content="index, follow" />
         <meta property="og:title" content="Großer Traktorführerschein (Klasse T) - Deine Fahrschule" />
         <meta property="og:description" content="Alle Informationen zum Führerschein der Klasse T. Mache deine Ausbildung für schnelle Traktoren bei [Fahrschulname]." />
         <meta property="og:type" content="website" />

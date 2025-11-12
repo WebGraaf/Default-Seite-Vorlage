@@ -13,6 +13,7 @@ const Anmelden: React.FC = () => {
         <title>Anmeldung - Deine Fahrschule</title>
         <meta name="description" content="Melde dich jetzt online für deinen Führerschein an. Fülle das Formular aus und starte deine Ausbildung bei [Fahrschulname]. Wir bieten flexible Termine und eine professionelle Ausbildung." />
         <meta name="keywords" content="Fahrschule, Anmeldung, Führerschein, Online-Anmeldung, Fahrausbildung, [Fahrschulname]" />
+        <meta name="robots" content="index, follow" />
         <meta property="og:title" content="Anmeldung - Deine Fahrschule" />
         <meta property="og:description" content="Melde dich jetzt online für deinen Führerschein an und starte deine Ausbildung bei [Fahrschulname]." />
         <meta property="og:type" content="website" />

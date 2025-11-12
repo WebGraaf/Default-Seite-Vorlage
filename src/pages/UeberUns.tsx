@@ -129,6 +129,7 @@ const UeberUns: React.FC = () => {
         <title>Über Uns - Deine Fahrschule</title>
         <meta name="description" content="Lerne das Team und die Geschichte von [Fahrschulname] kennen. Erfahre mehr über unsere Mission, unsere Werte und warum wir die richtige Wahl für deine Fahrausbildung sind." />
         <meta name="keywords" content="Über uns, Fahrschule, Team, Geschichte, Mission, Werte, [Fahrschulname]" />
+        <meta name="robots" content="index, follow" />
         <meta property="og:title" content="Über Uns - Dein Team für den Führerschein" />
         <meta property="og:description" content="Wir sind [Fahrschulname] – lerne uns und unsere Philosophie kennen." />
         <meta property="og:type" content="website" />

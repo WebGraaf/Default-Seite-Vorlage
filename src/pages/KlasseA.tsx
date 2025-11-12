@@ -19,6 +19,7 @@ const KlasseA: React.FC = () => {
         <title>Motorrad Führerschein (Klasse A) - Deine Fahrschule</title>
         <meta name="description" content="Alles zum Motorradführerschein der Klassen A, A1, A2 und AM. Starte deine Ausbildung bei [Fahrschulname] und erlebe die Freiheit auf zwei Rädern. Jetzt informieren!" />
         <meta name="keywords" content="Motorradführerschein, Klasse A, Klasse A1, Klasse A2, Klasse AM, Fahrschule, Motorrad, Ausbildung, [Fahrschulname]" />
+        <meta name="robots" content="index, follow" />
         <meta property="og:title" content="Motorrad Führerschein (Klasse A) - Deine Fahrschule" />
         <meta property="og:description" content="Erfahre alles über die Motorrad-Führerscheinklassen und beginne deine Ausbildung bei [Fahrschulname]." />
         <meta property="og:type" content="website" />

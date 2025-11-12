@@ -62,6 +62,7 @@ const Kontakt: React.FC = () => {
         <title>Kontakt - Deine Fahrschule</title>
         <meta name="description" content="Nimm Kontakt mit uns auf. Hier findest du unsere Adressen, Telefonnummern und Öffnungszeiten. Wir von [Fahrschulname] freuen uns auf deine Nachricht." />
         <meta name="keywords" content="Kontakt, Fahrschule, Adresse, Telefon, Öffnungszeiten, [Fahrschulname]" />
+        <meta name="robots" content="index, follow" />
         <meta property="og:title" content="Kontakt - Deine Fahrschule" />
         <meta property="og:description" content="Fragen zur Ausbildung oder Anmeldung? Kontaktiere uns – wir helfen dir gerne weiter." />
         <meta property="og:type" content="website" />

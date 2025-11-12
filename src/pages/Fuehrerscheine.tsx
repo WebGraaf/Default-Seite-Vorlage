@@ -9,6 +9,7 @@ const Fuehrerscheine: React.FC = () => {
         <title>Führerscheinklassen - Deine Fahrschule</title>
         <meta name="description" content="Informiere dich über alle Führerscheinklassen, die wir anbieten. Von Auto (Klasse B) über Motorrad (Klasse A) bis LKW (Klasse C) – finde die passende Ausbildung bei [Fahrschulname]." />
         <meta name="keywords" content="Führerscheinklassen, Fahrschule, Klasse A, Klasse B, Klasse C, Klasse D, LKW-Führerschein, Motorradführerschein, [Fahrschulname]" />
+        <meta name="robots" content="index, follow" />
         <meta property="og:title" content="Führerscheinklassen - Deine Fahrschule" />
         <meta property="og:description" content="Entdecke alle Führerscheinklassen bei [Fahrschulname] und starte deine Ausbildung." />
         <meta property="og:type" content="website" />

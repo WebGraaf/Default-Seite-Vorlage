@@ -19,6 +19,7 @@ const KlasseC: React.FC = () => {
         <title>LKW Führerschein (Klasse C) - Deine Fahrschule</title>
         <meta name="description" content="Alle Informationen zum LKW-Führerschein der Klassen C, C1, CE und C1E. Werde Berufskraftfahrer mit der Ausbildung bei [Fahrschulname]." />
         <meta name="keywords" content="LKW-Führerschein, Klasse C, C1, CE, C1E, Berufskraftfahrer, Fahrschule, [Fahrschulname]" />
+        <meta name="robots" content="index, follow" />
         <meta property="og:title" content="LKW Führerschein (Klasse C) - Deine Fahrschule" />
         <meta property="og:description" content="Mache deinen LKW-Führerschein bei [Fahrschulname]. Wir bilden dich in allen C-Klassen professionell aus." />
         <meta property="og:type" content="website" />
