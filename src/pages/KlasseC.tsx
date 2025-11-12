@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Container, Section } from '../components/LayoutComponents';
 import { KlassenDetailCard } from '../components/KlassenDetailCard';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -10,23 +11,21 @@ const KlasseC1EImage = '/default_images/Klasse_C1E_Default.webp';
 const KlasseCEImage = '/default_images/Klasse_CE_Default.webp';
 
 const KlasseC: React.FC = () => {
-  useEffect(() => {
-    document.title = 'Lkw-Führerscheine - Klasse C und Varianten';
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Professionelle Lkw-Ausbildung für alle C-Klassen. Von leichten Transportern bis zu schweren Lastzügen - finde die passende Führerscheinklasse für deinen Beruf.');
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = 'Professionelle Lkw-Ausbildung für alle C-Klassen. Von leichten Transportern bis zu schweren Lastzügen - finde die passende Führerscheinklasse für deinen Beruf.';
-      document.head.appendChild(meta);
-    }
-  }, []);
-
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollReveal();
 
   return (
     <div className="bg-page-bg">
+      <Helmet>
+        <title>LKW Führerschein (Klasse C) - Deine Fahrschule</title>
+        <meta name="description" content="Alle Informationen zum LKW-Führerschein der Klassen C, C1, CE und C1E. Werde Berufskraftfahrer mit der Ausbildung bei [Fahrschulname]." />
+        <meta name="keywords" content="LKW-Führerschein, Klasse C, C1, CE, C1E, Berufskraftfahrer, Fahrschule, [Fahrschulname]" />
+        <meta property="og:title" content="LKW Führerschein (Klasse C) - Deine Fahrschule" />
+        <meta property="og:description" content="Mache deinen LKW-Führerschein bei [Fahrschulname]. Wir bilden dich in allen C-Klassen professionell aus." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="[Ihre-Webseiten-URL]/klasse-c" />
+        <meta property="og:image" content="[Ihre-Webseiten-URL]/og-image-klasse-c.jpg" />
+        <link rel="canonical" href="[Ihre-Webseiten-URL]/klasse-c" />
+      </Helmet>
       <Section background="card-bg" padding="xl" className="pb-0">
         <Container>
           <div

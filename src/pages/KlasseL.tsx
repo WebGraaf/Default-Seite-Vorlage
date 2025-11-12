@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Container, Section } from '../components/LayoutComponents';
 import { KlassenDetailCard } from '../components/KlassenDetailCard';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -7,23 +8,21 @@ import { Truck, Cog, Leaf } from 'lucide-react';
 const KlasseLImage = '/default_images/Klasse_L_Default.webp';
 
 const KlasseL: React.FC = () => {
-  useEffect(() => {
-    document.title = 'Land- und Forstwirtschaftliche Führerscheine - Klasse L';
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Professionelle Ausbildung für land- und forstwirtschaftliche Fahrzeuge. Traktoren und Arbeitsmaschinen - spezialisiert auf landwirtschaftliche Anforderungen.');
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = 'Professionelle Ausbildung für land- und forstwirtschaftliche Fahrzeuge. Traktoren und Arbeitsmaschinen - spezialisiert auf landwirtschaftliche Anforderungen.';
-      document.head.appendChild(meta);
-    }
-  }, []);
-
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollReveal();
 
   return (
     <div className="bg-page-bg">
+      <Helmet>
+        <title>Traktorführerschein (Klasse L) - Deine Fahrschule</title>
+        <meta name="description" content="Informationen zum Traktorführerschein der Klasse L. Ausbildung für land- und forstwirtschaftliche Zugmaschinen bei [Fahrschulname]." />
+        <meta name="keywords" content="Traktorführerschein, Klasse L, Landwirtschaft, Forstwirtschaft, Zugmaschine, Fahrschule, [Fahrschulname]" />
+        <meta property="og:title" content="Traktorführerschein (Klasse L) - Deine Fahrschule" />
+        <meta property="og:description" content="Mache deinen Traktorführerschein der Klasse L bei [Fahrschulname]. Wir sind dein Partner für die land- und forstwirtschaftliche Ausbildung." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="[Ihre-Webseiten-URL]/klasse-l" />
+        <meta property="og:image" content="[Ihre-Webseiten-URL]/og-image-klasse-l.jpg" />
+        <link rel="canonical" href="[Ihre-Webseiten-URL]/klasse-l" />
+      </Helmet>
       <Section background="card-bg" padding="xl" className="pb-0">
         <Container>
           <div

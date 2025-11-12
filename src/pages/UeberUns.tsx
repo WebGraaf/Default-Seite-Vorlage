@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Container, Section } from '../components/LayoutComponents';
 import { TeamBilder } from '../components/TeamBilder';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -89,19 +90,6 @@ const SplitMediaTextCopy: React.FC<{
 };
 
 const UeberUns: React.FC = () => {
-  useEffect(() => {
-    document.title = 'Über uns - Fahrschule DriveAcademy';
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Erfahre mehr über unsere Fahrschule. Seit über 20 Jahren bilden wir Fahrschüler aus. Lerne unser Team kennen und unsere Philosophie.');
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = 'Erfahre mehr über unsere Fahrschule. Seit über 20 Jahren bilden wir Fahrschüler aus. Lerne unser Team kennen und unsere Philosophie.';
-      document.head.appendChild(meta);
-    }
-  }, []);
-
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollReveal();
   const { elementRef: teamHeaderRef, isVisible: teamHeaderVisible } = useScrollReveal();
 
@@ -137,6 +125,17 @@ const UeberUns: React.FC = () => {
 
   return (
     <div className="bg-page-bg">
+      <Helmet>
+        <title>Über Uns - Deine Fahrschule</title>
+        <meta name="description" content="Lerne das Team und die Geschichte von [Fahrschulname] kennen. Erfahre mehr über unsere Mission, unsere Werte und warum wir die richtige Wahl für deine Fahrausbildung sind." />
+        <meta name="keywords" content="Über uns, Fahrschule, Team, Geschichte, Mission, Werte, [Fahrschulname]" />
+        <meta property="og:title" content="Über Uns - Dein Team für den Führerschein" />
+        <meta property="og:description" content="Wir sind [Fahrschulname] – lerne uns und unsere Philosophie kennen." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="[Ihre-Webseiten-URL]/ueber-uns" />
+        <meta property="og:image" content="[Ihre-Webseiten-URL]/og-image-ueber-uns.jpg" />
+        <link rel="canonical" href="[Ihre-Webseiten-URL]/ueber-uns" />
+      </Helmet>
       <Section background="card-bg" padding="xl">
         <Container>
           <div

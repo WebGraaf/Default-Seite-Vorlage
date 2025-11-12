@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Container, Section } from '../components/LayoutComponents';
 import { Kontaktinformationen } from '../components/Kontaktinformationen';
 import { StandorteUebersicht } from '../components/StandorteUebersicht';
@@ -53,23 +54,21 @@ const BannerAnmeldenCopy: React.FC = () => {
 };
 
 const Kontakt: React.FC = () => {
-  useEffect(() => {
-    document.title = 'Kontakt - Fahrschule DriveAcademy';
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Kontaktiere uns! Finde unsere Standorte, Telefonnummern und Öffnungszeiten. Wir helfen dir gerne bei Fragen zu deiner Fahrschulausbildung.');
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = 'Kontaktiere uns! Finde unsere Standorte, Telefonnummern und Öffnungszeiten. Wir helfen dir gerne bei Fragen zu deiner Fahrschulausbildung.';
-      document.head.appendChild(meta);
-    }
-  }, []);
-
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollReveal();
 
   return (
     <div className="bg-page-bg">
+      <Helmet>
+        <title>Kontakt - Deine Fahrschule</title>
+        <meta name="description" content="Nimm Kontakt mit uns auf. Hier findest du unsere Adressen, Telefonnummern und Öffnungszeiten. Wir von [Fahrschulname] freuen uns auf deine Nachricht." />
+        <meta name="keywords" content="Kontakt, Fahrschule, Adresse, Telefon, Öffnungszeiten, [Fahrschulname]" />
+        <meta property="og:title" content="Kontakt - Deine Fahrschule" />
+        <meta property="og:description" content="Fragen zur Ausbildung oder Anmeldung? Kontaktiere uns – wir helfen dir gerne weiter." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="[Ihre-Webseiten-URL]/kontakt" />
+        <meta property="og:image" content="[Ihre-Webseiten-URL]/og-image-kontakt.jpg" />
+        <link rel="canonical" href="[Ihre-Webseiten-URL]/kontakt" />
+      </Helmet>
       <Section background="card-bg" padding="sm">
         <Container>
           <div

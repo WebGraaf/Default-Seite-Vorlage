@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Container, Section } from '../components/LayoutComponents';
 import { KlassenDetailCard } from '../components/KlassenDetailCard';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -7,23 +8,21 @@ import { Truck, Gauge, Leaf } from 'lucide-react';
 const KlasseTImage = '/default_images/Klasse_T_Default.webp';
 
 const KlasseT: React.FC = () => {
-  useEffect(() => {
-    document.title = 'Land- und Forstwirtschaftliche Führerscheine - Klasse T';
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Professionelle Ausbildung für schnelle land- und forstwirtschaftliche Fahrzeuge. Traktoren bis 60 km/h und Erntemaschinen - für moderne Landwirtschaft.');
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = 'Professionelle Ausbildung für schnelle land- und forstwirtschaftliche Fahrzeuge. Traktoren bis 60 km/h und Erntemaschinen - für moderne Landwirtschaft.';
-      document.head.appendChild(meta);
-    }
-  }, []);
-
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollReveal();
 
   return (
     <div className="bg-page-bg">
+      <Helmet>
+        <title>Großer Traktorführerschein (Klasse T) - Deine Fahrschule</title>
+        <meta name="description" content="Der große Traktorführerschein der Klasse T für schnelle Zugmaschinen bis 60 km/h. Deine Ausbildung für die moderne Land- und Forstwirtschaft bei [Fahrschulname]." />
+        <meta name="keywords" content="Traktorführerschein, Klasse T, Landwirtschaft, Forstwirtschaft, Zugmaschine, 60 km/h, Fahrschule, [Fahrschulname]" />
+        <meta property="og:title" content="Großer Traktorführerschein (Klasse T) - Deine Fahrschule" />
+        <meta property="og:description" content="Alle Informationen zum Führerschein der Klasse T. Mache deine Ausbildung für schnelle Traktoren bei [Fahrschulname]." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="[Ihre-Webseiten-URL]/klasse-t" />
+        <meta property="og:image" content="[Ihre-Webseiten-URL]/og-image-klasse-t.jpg" />
+        <link rel="canonical" href="[Ihre-Webseiten-URL]/klasse-t" />
+      </Helmet>
       <Section background="card-bg" padding="xl" className="pb-0">
         <Container>
           <div

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { HeroStartseite } from '../components/HeroStartseite';
 import { TextGalerieStapel } from '../components/TextGalerieStapel';
 import { KlassenUebersichtGridSpotlight } from '../components/KlassenUebersichtGridSpotlight';
@@ -66,6 +67,17 @@ const Home: React.FC = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Deine Fahrschule - Startseite</title>
+        <meta name="description" content="Willkommen bei [Fahrschulname]. Wir machen dich mobil! Erfahre mehr über unsere Führerscheinkurse, unseren modernen Fuhrpark und melde dich noch heute an." />
+        <meta name="keywords" content="Fahrschule, Führerschein, Fahrausbildung, Auto, Motorrad, LKW, [Fahrschulname], [Stadt]" />
+        <meta property="og:title" content="Deine Fahrschule - Sicher zum Führerschein" />
+        <meta property="og:description" content="Starte deine Fahrausbildung bei [Fahrschulname]. Moderne Fahrzeuge, erfahrene Fahrlehrer und hohe Erfolgsquoten." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="[Ihre-Webseiten-URL]" />
+        <meta property="og:image" content="[Ihre-Webseiten-URL]/og-image-home.jpg" />
+        <link rel="canonical" href="[Ihre-Webseiten-URL]" />
+      </Helmet>
       <HeroStartseite
         title="Wir machen dich Mobil"
         subtitle="Platzhalter Fahrschule"

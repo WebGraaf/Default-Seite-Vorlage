@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { HeroStartseite } from '../components/HeroStartseite';
 import { KlassenUebersichtGridSpotlight } from '../components/KlassenUebersichtGridSpotlight';
 import { KlassenUebersicht } from '../components/KlassenUebersicht';
@@ -42,6 +43,10 @@ import notificationAnimation from '../lottie/Notification.json';
 const ComponentsTest: React.FC = () => {
   return (
     <div>
+      <Helmet>
+        <title>Component Test Page</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <HeroStartseite
         title="Wir machen dich mobil!"
         subtitle="Deine Fahrschule"
@@ -162,19 +167,22 @@ const ComponentsTest: React.FC = () => {
             label: 'Köln',
             address: 'Domkloster 4, 50667 Köln',
             phone: '+49 221 12345678',
-            hours: 'Mo-Fr: 9:00-18:00\nSa: 10:00-16:00\nSo: geschlossen'
+            hours: 'Mo-Fr: 9:00-18:00\nSa: 10:00-16:00\nSo: geschlossen',
+            mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2514.381238421374!2d6.955932615749427!3d50.941278979546!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bf25a8d8ee0685%3A0x40dabd2a4b6d3e0!2sK%C3%B6lner%20Dom!5e0!3m2!1sde!2sde!4v1620000000000!5m2!1sde!2sde'
           },
           {
             label: 'Stuttgart',
             address: 'Königstraße 1, 70173 Stuttgart',
             phone: '+49 711 98765432',
-            hours: 'Mo-Fr: 9:00-18:00\nSa: 10:00-16:00\nSo: geschlossen'
+            hours: 'Mo-Fr: 9:00-18:00\nSa: 10:00-16:00\nSo: geschlossen',
+            mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.0000000000005!2d9.175!3d48.775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4799db4387474307%3A0x43a7daf5f6567a49!2sK%C3%B6nigstra%C3%9Fe%201%2C%2070173%20Stuttgart!5e0!3m2!1sde!2sde!4v1620000000000!5m2!1sde!2sde'
           },
           {
             label: 'Düsseldorf',
             address: 'Schadowstraße 1, 40212 Düsseldorf',
             phone: '+49 211 11223344',
-            hours: 'Mo-Fr: 9:00-18:00\nSa: 10:00-16:00\nSo: geschlossen'
+            hours: 'Mo-Fr: 9:00-18:00\nSa: 10:00-16:00\nSo: geschlossen',
+            mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2490.0000000000005!2d6.7833333!3d51.2166667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b8ca12a4e8a4c3%3A0x6d2c3b8e3a0b4d1!2sSchadowstra%C3%9Fe%201%2C%2040212%20D%C3%BCsseldorf!5e0!3m2!1sde!2sde!4v1620000000000!5m2!1sde!2sde'
           }
         ]}
       />

@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Container, Section } from '../components/LayoutComponents';
 import { KlassenDetailCard } from '../components/KlassenDetailCard';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -10,23 +11,21 @@ const KlasseA2Image = '/default_images/Klasse_A2_Default.webp';
 const KlasseAImage = '/default_images/Klasse_A_Default.webp';
 
 const KlasseA: React.FC = () => {
-  useEffect(() => {
-    document.title = 'Motorrad-Führerscheine - Klasse A, A1, A2, AM';
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Professionelle Motorradausbildung für alle Klassen. Von Roller bis zum schweren Motorrad - finde die passende Führerscheinklasse für dich.');
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = 'Professionelle Motorradausbildung für alle Klassen. Von Roller bis zum schweren Motorrad - finde die passende Führerscheinklasse für dich.';
-      document.head.appendChild(meta);
-    }
-  }, []);
-
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollReveal();
 
   return (
     <div className="bg-page-bg">
+      <Helmet>
+        <title>Motorrad Führerschein (Klasse A) - Deine Fahrschule</title>
+        <meta name="description" content="Alles zum Motorradführerschein der Klassen A, A1, A2 und AM. Starte deine Ausbildung bei [Fahrschulname] und erlebe die Freiheit auf zwei Rädern. Jetzt informieren!" />
+        <meta name="keywords" content="Motorradführerschein, Klasse A, Klasse A1, Klasse A2, Klasse AM, Fahrschule, Motorrad, Ausbildung, [Fahrschulname]" />
+        <meta property="og:title" content="Motorrad Führerschein (Klasse A) - Deine Fahrschule" />
+        <meta property="og:description" content="Erfahre alles über die Motorrad-Führerscheinklassen und beginne deine Ausbildung bei [Fahrschulname]." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="[Ihre-Webseiten-URL]/klasse-a" />
+        <meta property="og:image" content="[Ihre-Webseiten-URL]/og-image-klasse-a.jpg" />
+        <link rel="canonical" href="[Ihre-Webseiten-URL]/klasse-a" />
+      </Helmet>
       <Section background="card-bg" padding="xl" className="pb-0">
         <Container>
           <div

@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Container, Section } from '../components/LayoutComponents';
 import { KlassenDetailCard } from '../components/KlassenDetailCard';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -10,23 +11,21 @@ const KlasseD1EImage = '/default_images/Klasse_D1E_Default.webp';
 const KlasseDEImage = '/default_images/Klasse_DE_Default.webp';
 
 const KlasseD: React.FC = () => {
-  useEffect(() => {
-    document.title = 'Bus-Führerscheine - Klasse D und Varianten';
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Professionelle Bus-Ausbildung für alle D-Klassen. Von Minibussen bis zu Reisebussen - starte deine Ausbildung für Personenbeförderung bei uns.');
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = 'Professionelle Bus-Ausbildung für alle D-Klassen. Von Minibussen bis zu Reisebussen - starte deine Ausbildung für Personenbeförderung bei uns.';
-      document.head.appendChild(meta);
-    }
-  }, []);
-
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollReveal();
 
   return (
     <div className="bg-page-bg">
+      <Helmet>
+        <title>Busführerschein (Klasse D) - Deine Fahrschule</title>
+        <meta name="description" content="Werde Busfahrer mit der Ausbildung für die Klassen D, D1, DE und D1E bei [Fahrschulname]. Alle Informationen zur Personenbeförderung." />
+        <meta name="keywords" content="Busführerschein, Klasse D, D1, DE, D1E, Personenbeförderung, Busfahrer, Fahrschule, [Fahrschulname]" />
+        <meta property="og:title" content="Busführerschein (Klasse D) - Deine Fahrschule" />
+        <meta property="og:description" content="Starte deine Karriere in der Personenbeförderung. Wir bilden dich professionell in allen Bus-Klassen aus." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="[Ihre-Webseiten-URL]/klasse-d" />
+        <meta property="og:image" content="[Ihre-Webseiten-URL]/og-image-klasse-d.jpg" />
+        <link rel="canonical" href="[Ihre-Webseiten-URL]/klasse-d" />
+      </Helmet>
       <Section background="card-bg" padding="xl" className="pb-0">
         <Container>
           <div

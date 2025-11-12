@@ -1,23 +1,21 @@
-import React, { useEffect } from 'react';
-import { Container, Section } from '../components/LayoutComponents';
+import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { KlassenUebersicht } from '../components/KlassenUebersicht';
 
 const Fuehrerscheine: React.FC = () => {
-  useEffect(() => {
-    document.title = 'Führerscheine Übersicht - Alle Führerscheinklassen';
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Übersicht aller verfügbaren Führerscheinklassen bei unserer Fahrschule. Von Klasse B bis Klasse A - finde die passende Ausbildung für dich.');
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = 'Übersicht aller verfügbaren Führerscheinklassen bei unserer Fahrschule. Von Klasse B bis Klasse A - finde die passende Ausbildung für dich.';
-      document.head.appendChild(meta);
-    }
-  }, []);
-
   return (
     <div>
+      <Helmet>
+        <title>Führerscheinklassen - Deine Fahrschule</title>
+        <meta name="description" content="Informiere dich über alle Führerscheinklassen, die wir anbieten. Von Auto (Klasse B) über Motorrad (Klasse A) bis LKW (Klasse C) – finde die passende Ausbildung bei [Fahrschulname]." />
+        <meta name="keywords" content="Führerscheinklassen, Fahrschule, Klasse A, Klasse B, Klasse C, Klasse D, LKW-Führerschein, Motorradführerschein, [Fahrschulname]" />
+        <meta property="og:title" content="Führerscheinklassen - Deine Fahrschule" />
+        <meta property="og:description" content="Entdecke alle Führerscheinklassen bei [Fahrschulname] und starte deine Ausbildung." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="[Ihre-Webseiten-URL]/fuehrerscheine" />
+        <meta property="og:image" content="[Ihre-Webseiten-URL]/og-image-fuehrerscheine.jpg" />
+        <link rel="canonical" href="[Ihre-Webseiten-URL]/fuehrerscheine" />
+      </Helmet>
       <KlassenUebersicht
         tabs={[
           {

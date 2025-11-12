@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Container, Section } from '../components/LayoutComponents';
 import { KlassenDetailCard } from '../components/KlassenDetailCard';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -11,23 +12,21 @@ const KlasseB96Image = '/default_images/Klasse_B96_Default.webp';
 const KlasseB197Image = '/default_images/Klasse_B197_Default.webp';
 
 const KlasseB: React.FC = () => {
-  useEffect(() => {
-    document.title = 'Pkw-Führerscheine - Klasse B und Varianten';
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Professionelle Pkw-Ausbildung für alle B-Klassen. Von Standard-Führerschein bis zu speziellen Varianten wie BF17 oder B96 - starte deine Fahrausbildung bei uns.');
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = 'Professionelle Pkw-Ausbildung für alle B-Klassen. Von Standard-Führerschein bis zu speziellen Varianten wie BF17 oder B96 - starte deine Fahrausbildung bei uns.';
-      document.head.appendChild(meta);
-    }
-  }, []);
-
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollReveal();
 
   return (
     <div className="bg-page-bg">
+      <Helmet>
+        <title>Autoführerschein (Klasse B) - Deine Fahrschule</title>
+        <meta name="description" content="Informationen zum Autoführerschein der Klasse B und den Erweiterungen BE, B96, B197 und BF17. Mache deinen PKW-Führerschein bei [Fahrschulname]." />
+        <meta name="keywords" content="Autoführerschein, Klasse B, BE, B96, B197, BF17, PKW-Führerschein, Fahrschule, [Fahrschulname]" />
+        <meta property="og:title" content="Autoführerschein (Klasse B) - Deine Fahrschule" />
+        <meta property="og:description" content="Alle Informationen zum PKW-Führerschein der Klasse B und den zugehörigen Erweiterungen. Starte jetzt deine Ausbildung bei [Fahrschulname]." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="[Ihre-Webseiten-URL]/klasse-b" />
+        <meta property="og:image" content="[Ihre-Webseiten-URL]/og-image-klasse-b.jpg" />
+        <link rel="canonical" href="[Ihre-Webseiten-URL]/klasse-b" />
+      </Helmet>
       <Section background="card-bg" padding="xl" className="pb-0">
         <Container>
           <div
