@@ -107,7 +107,7 @@ const BannerAnmelden: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-12">
+    <section ref={sectionRef} className="">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
         <div className="bg-card-bg rounded-2xl p-8 md:p-12 text-card-fg">
           <div className="flex flex-col lg:flex-row items-center gap-8">

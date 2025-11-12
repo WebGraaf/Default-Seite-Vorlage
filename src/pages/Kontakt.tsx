@@ -13,7 +13,7 @@ const BannerAnmeldenCopy: React.FC = () => {
   return (
     <section
       ref={elementRef as React.RefObject<HTMLElement>}
-      className="py-12"
+      className=""
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
@@ -70,7 +70,7 @@ const Kontakt: React.FC = () => {
         <meta property="og:image" content="[Ihre-Webseiten-URL]/og-image-kontakt.jpg" />
         <link rel="canonical" href="[Ihre-Webseiten-URL]/kontakt" />
       </Helmet>
-      <Section background="card-bg" padding="sm">
+      <section className="py-16">
         <Container>
           <div
             ref={headerRef as React.RefObject<HTMLDivElement>}
@@ -92,15 +92,15 @@ const Kontakt: React.FC = () => {
             </p>
           </div>
         </Container>
-      </Section>
+      </section>
 
-      <Section background="page-bg" padding="sm">
+      <section className="py-16">
         <Container>
           <Kontaktinformationen />
         </Container>
-      </Section>
+      </section>
 
-      <Section background="page-bg" padding="sm">
+      <section className="py-16">
         <Container>
           <StandorteUebersicht
             locations={[
@@ -121,13 +121,13 @@ const Kontakt: React.FC = () => {
             ]}
           />
         </Container>
-      </Section>
+      </section>
 
-      <Section background="page-bg" padding="sm">
+      <section className="py-16">
         <Container>
           <BannerAnmeldenCopy />
         </Container>
-      </Section>
+      </section>
     </div>
   );
 };

@@ -137,7 +137,7 @@ const UeberUns: React.FC = () => {
         <meta property="og:image" content="[Ihre-Webseiten-URL]/og-image-ueber-uns.jpg" />
         <link rel="canonical" href="[Ihre-Webseiten-URL]/ueber-uns" />
       </Helmet>
-      <Section background="card-bg" padding="xl">
+      <section className="py-16">
         <Container>
           <div
             ref={headerRef as React.RefObject<HTMLDivElement>}
@@ -159,9 +159,9 @@ const UeberUns: React.FC = () => {
             </p>
           </div>
         </Container>
-      </Section>
+      </section>
 
-      <Section background="page-bg" padding="lg">
+      <section className="py-16">
         <Container>
           <SplitMediaTextCopy
             imageSrc={LogoDefault}
@@ -172,9 +172,9 @@ const UeberUns: React.FC = () => {
             variant="muted"
           />
         </Container>
-      </Section>
+      </section>
 
-      <Section background="page-bg" padding="lg">
+      <section className="py-16">
         <Container>
           <SplitMediaTextCopy
             imageSrc={PlatzhalterFahrschule}
@@ -185,9 +185,9 @@ const UeberUns: React.FC = () => {
             variant="outline"
           />
         </Container>
-      </Section>
+      </section>
 
-      <Section background="page-bg" padding="xl">
+      <section className="py-16">
         <Container>
           <div
             ref={teamHeaderRef as React.RefObject<HTMLDivElement>}
@@ -211,9 +211,9 @@ const UeberUns: React.FC = () => {
             <TeamBilder teams={teamMembers2} variant="muted" />
           </div>
         </Container>
-      </Section>
+      </section>
 
-      <Section background="card-bg" padding="lg">
+      <section className="py-16">
         <Container>
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold text-text-heading mb-4">
@@ -230,7 +230,7 @@ const UeberUns: React.FC = () => {
             </a>
           </div>
         </Container>
-      </Section>
+      </section>
     </div>
   );
 };

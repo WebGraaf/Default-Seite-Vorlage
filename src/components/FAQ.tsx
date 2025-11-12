@@ -128,7 +128,7 @@ export function FAQ({ title = "Häufig gestellte Fragen", faqs, defaultOpenIndex
   };
 
   return (
-    <section ref={sectionRef} className="py-12">
+    <section ref={sectionRef} className="">
       <div className="max-w-4xl mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="faq-title text-4xl font-bold text-heading mb-4">

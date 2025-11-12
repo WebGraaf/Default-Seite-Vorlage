@@ -1,37 +1,78 @@
 import { Phone, Clock, MapPin } from 'lucide-react';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+export interface Location {
+  label: string;
+  address: string;
+  phone: string;
+  hours: string;
+}
+
 export function Kontaktinformationen() {
+  const [activeTab, setActiveTab] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const contactRefs = useRef<HTMLDivElement[]>([]);
+  const tabsRef = useRef<HTMLButtonElement[]>([]);
+
+  const locations: Location[] = [
+    {
+      label: 'Berlin',
+      address: 'Musterstraße 123, 12345 Berlin, Germany',
+      phone: '+49 123 456 7890',
+      hours: 'Mo-Fr 9-18 Uhr\nSa 9-14 Uhr'
+    },
+    {
+      label: 'Hamburg',
+      address: 'Beispielweg 456, 20095 Hamburg, Germany',
+      phone: '+49 987 654 3210',
+      hours: 'Mo-Fr 8-17 Uhr\nSa 10-15 Uhr'
+    }
+  ];
 
   const contactItems = [
     {
       icon: Phone,
       label: 'Telefon',
-      value: '+49 123 456 7890',
+      value: locations[activeTab].phone,
       color: 'primary'
     },
     {
       icon: Clock,
       label: 'Öffnungszeiten',
-      value: 'Mo-Fr 9-18 Uhr',
+      value: locations[activeTab].hours,
       color: 'primary'
     },
     {
       icon: MapPin,
       label: 'Adresse',
-      value: 'Musterstraße 123, 12345 Berlin, Germany',
+      value: locations[activeTab].address,
       color: 'primary'
     }
   ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Animate tabs
+      gsap.fromTo(tabsRef.current.filter(Boolean),
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
       // Animate contact cards with stagger
       gsap.fromTo(contactRefs.current.filter(Boolean),
         { opacity: 0, y: 60, scale: 0.9 },
@@ -44,7 +85,7 @@ export function Kontaktinformationen() {
           ease: "back.out(1.7)",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 75%",
+            start: "top 70%",
             toggleActions: "play none none reverse"
           }
         }
@@ -80,9 +121,54 @@ export function Kontaktinformationen() {
     return () => ctx.revert();
   }, []);
 
+  const handleTabChange = (index: number) => {
+    // Animate contact cards transition
+    if (contactRefs.current.length > 0) {
+      gsap.to(contactRefs.current, {
+        opacity: 0,
+        scale: 0.95,
+        y: 20,
+        duration: 0.2,
+        ease: "power2.in",
+        onComplete: () => {
+          setActiveTab(index);
+          gsap.to(contactRefs.current, {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: 0.4,
+            ease: "back.out(1.7)"
+          });
+        }
+      });
+    } else {
+      setActiveTab(index);
+    }
+  };
+
   return (
-    <section ref={sectionRef} className="py-12">
+    <section ref={sectionRef} className="">
       <div className="max-w-6xl mx-auto px-4">
+        <div className="flex flex-wrap gap-2 justify-center mb-8 border-b border-border-default">
+          {locations.map((location, index) => (
+            <button
+              key={index}
+              ref={(el) => (tabsRef.current[index] = el!)}
+              onClick={() => handleTabChange(index)}
+              className={`location-tab flex items-center gap-2 px-6 py-3 font-semibold transition-all relative ${
+                activeTab === index
+                  ? 'text-primary-600'
+                  : 'text-text-body hover:text-text-heading'
+              }`}
+            >
+              {location.label}
+              {activeTab === index && (
+                <div className="tab-indicator absolute bottom-0 left-0 right-0 h-0.5 bg-primary-600"></div>
+              )}
+            </button>
+          ))}
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {contactItems.map((item, index) => {
             const Icon = item.icon;
@@ -108,8 +194,12 @@ export function Kontaktinformationen() {
                   <a href={`tel:${item.value.replace(/\s/g, '')}`} className="text-base text-text-body hover:text-primary-600 transition-colors">
                     {item.value}
                   </a>
+                ) : item.label === 'Adresse' ? (
+                  <a href={`https://maps.google.com/?q=${encodeURIComponent(item.value)}`} target="_blank" rel="noopener noreferrer" className="text-base text-text-body hover:text-primary-600 transition-colors">
+                    {item.value}
+                  </a>
                 ) : (
-                  <div className="text-base text-text-body">
+                  <div className="text-base text-text-body whitespace-pre-line">
                     {item.value}
                   </div>
                 )}

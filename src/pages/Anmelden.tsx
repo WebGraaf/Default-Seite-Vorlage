@@ -21,7 +21,7 @@ const Anmelden: React.FC = () => {
         <meta property="og:image" content="[Ihre-Webseiten-URL]/og-image-anmeldung.jpg" />
         <link rel="canonical" href="[Ihre-Webseiten-URL]/anmelden" />
       </Helmet>
-      <Section background="card-bg" padding="sm">
+      <section className="py-16">
         <Container>
           <div
             ref={headerRef as React.RefObject<HTMLDivElement>}
@@ -43,7 +43,7 @@ const Anmelden: React.FC = () => {
             </p>
           </div>
         </Container>
-      </Section>
+      </section>
 
       <AnmeldeFormular />
     </div>

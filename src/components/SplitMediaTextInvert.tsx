@@ -81,7 +81,7 @@ export const SplitMediaTextInvert: React.FC<SplitMediaTextInvertProps> = ({
   };
 
   return (
-    <section ref={containerRef} className="py-12">
+    <section ref={containerRef} className="">
       <div
         className={`rounded-xl overflow-hidden ${variantClasses[variant]} ${className}`}
       >

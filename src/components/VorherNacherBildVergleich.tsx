@@ -193,7 +193,7 @@ const VorherNacherBildVergleich: React.FC<VorherNacherBildVergleichProps> = ({
   }, []);
 
   return (
-    <section ref={sectionRef} className={`py-12 ${className}`}>
+    <section ref={sectionRef} className={className}>
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
         {title && <h2 className="slider-title text-3xl font-bold text-neutral-900 mb-8 text-center">{title}</h2>}
         <div className="max-w-4xl mx-auto">

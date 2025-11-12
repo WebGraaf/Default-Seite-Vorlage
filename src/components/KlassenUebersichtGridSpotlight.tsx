@@ -142,7 +142,7 @@ export const KlassenUebersichtGridSpotlight: React.FC<KlassenUebersichtGridSpotl
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-12">
+    <section ref={sectionRef} className="">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
         <h2 className="text-3xl font-bold text-heading mb-8 text-center">
           {title.split(' ').map((word, index) => (

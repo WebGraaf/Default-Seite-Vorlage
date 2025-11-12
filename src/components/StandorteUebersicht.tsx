@@ -169,7 +169,7 @@ export function StandorteUebersicht({
   };
 
   return (
-    <section ref={sectionRef} className="py-12">
+    <section ref={sectionRef} className="">
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="locations-title text-4xl font-bold text-text-heading mb-4">

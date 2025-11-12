@@ -27,18 +27,18 @@ export const Section: React.FC<SectionProps> = ({
   className = ''
 }) => {
   const paddingClasses = {
-    sm: 'py-4',
-    md: 'py-8',
-    lg: 'py-12',
+    sm: 'py-16',
+    md: 'py-16',
+    lg: 'py-16',
     xl: 'py-16'
   };
 
   const backgroundClasses = {
     transparent: '',
-    white: 'bg-white',
-    gray: 'bg-gray-50',
-    blue: 'bg-blue-50',
-    'page-bg': 'bg-page-bg'
+    white: '',
+    gray: '',
+    blue: '',
+    'page-bg': ''
   };
 
   return (

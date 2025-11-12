@@ -100,49 +100,65 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <KlassenUebersichtGridSpotlight />
+      <section className="py-16">
+        <KlassenUebersichtGridSpotlight />
+      </section>
 
-      <VorherNacherBildVergleich
-        beforeImage="/default_images/Platzhalter_Fahrschule.webp"
-        afterImage="/default_images/Platzhalter_Furhpark.webp"
-        beforeLabel=""
-        afterLabel=""
-      />
-
-      <StandorteUebersicht
-        title="Unsere Standorte"
-        subtitle="Finden Sie den nächstgelegenen Standort"
-        locations={locations}
-      />
-
-      <BannerAnmelden />
-
-      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SplitMediaText
-          imageSrc="/default_images/Platzhalter_Fahrschule.webp"
-          imageAlt="Fahrschule Ausbildung"
-          title="Professionelle Fahrausbildung"
-          description="Bei uns erhalten Sie eine erstklassige Fahrausbildung von zertifizierten Fahrlehrern. Wir legen Wert auf individuelle Betreuung und moderne Lehrmethoden, um Sie sicher auf die Straße zu bringen."
-          imagePosition="left"
+      <section className="py-16">
+        <VorherNacherBildVergleich
+          beforeImage="/default_images/Platzhalter_Fahrschule.webp"
+          afterImage="/default_images/Platzhalter_Furhpark.webp"
+          beforeLabel=""
+          afterLabel=""
         />
-      </div>
+      </section>
 
-      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SplitMediaTextInvert
-          imageSrc="/default_images/Platzhalter_Furhpark.webp"
-          imageAlt="Moderner Fuhrpark"
-          title="Topmoderner Fuhrpark"
-          description="Unser Fahrzeugpark umfasst die neuesten Modelle verschiedener Automarken. Alle Fahrzeuge sind perfekt gewartet und erfüllen höchste Sicherheitsstandards für Ihre optimale Ausbildung."
-          imagePosition="right"
+      <section className="py-16">
+        <StandorteUebersicht
+          title="Unsere Standorte"
+          subtitle="Finden Sie den nächstgelegenen Standort"
+          locations={locations}
         />
-      </div>
+      </section>
 
-      <FAQ
-        title="Häufig gestellte Fragen"
-        faqs={faqs}
-      />
+      <section className="py-16 overflow-hidden">
+        <BannerAnmelden />
+      </section>
 
-      <BannerAnmelden />
+      <section className="py-16">
+        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SplitMediaText
+            imageSrc="/default_images/Platzhalter_Fahrschule.webp"
+            imageAlt="Fahrschule Ausbildung"
+            title="Professionelle Fahrausbildung"
+            description="Bei uns erhalten Sie eine erstklassige Fahrausbildung von zertifizierten Fahrlehrern. Wir legen Wert auf individuelle Betreuung und moderne Lehrmethoden, um Sie sicher auf die Straße zu bringen."
+            imagePosition="left"
+          />
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SplitMediaTextInvert
+            imageSrc="/default_images/Platzhalter_Furhpark.webp"
+            imageAlt="Moderner Fuhrpark"
+            title="Topmoderner Fuhrpark"
+            description="Unser Fahrzeugpark umfasst die neuesten Modelle verschiedener Automarken. Alle Fahrzeuge sind perfekt gewartet und erfüllen höchste Sicherheitsstandards für Ihre optimale Ausbildung."
+            imagePosition="right"
+          />
+        </div>
+      </section>
+
+      <section className="py-16">
+        <FAQ
+          title="Häufig gestellte Fragen"
+          faqs={faqs}
+        />
+      </section>
+
+      <section className="py-16 overflow-hidden">
+        <BannerAnmelden />
+      </section>
     </div>
   );
 };

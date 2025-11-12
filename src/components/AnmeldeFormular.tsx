@@ -460,7 +460,7 @@ export const AnmeldeFormular: React.FC = () => {
   };
 
   return (
-    <section ref={sectionRef} className="py-12">
+    <section ref={sectionRef} className="py-16">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
         <h2 className="form-title text-3xl font-bold text-heading mb-8 text-center">Jetzt Anmelden</h2>
         <div className="max-w-2xl mx-auto relative">
