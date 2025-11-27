@@ -14,70 +14,6 @@ interface SelectProps {
   error?: string;
 }
 
-const Select: React.FC<SelectProps> = ({ label, options, value, onChange, error }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState(value || '');
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  const handleSelect = (optionValue: string) => {
-    setSelected(optionValue);
-    onChange?.(optionValue);
-    setIsOpen(false);
-  };
-
-  const selectedLabel = options.find(opt => opt.value === selected)?.label || 'Auswählen...';
-
-  return (
-    <div className="relative" ref={ref}>
-      <label className="block text-sm font-medium text-neutral-700 mb-2">{label}</label>
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className={`w-full px-4 py-2.5 text-left bg-white border rounded-lg transition-all duration-200 flex items-center justify-between hover:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-          error ? 'border-red-400' : 'border-blue-300'
-        }`}
-      >
-        <span className={selected ? 'text-neutral-900' : 'text-neutral-500'}>{selectedLabel}</span>
-        <ChevronDown className={`w-5 h-5 text-neutral-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
-      </button>
-
-      {isOpen && (
-        <div className="absolute z-50 w-full mt-2 bg-white border border-blue-200 rounded-lg shadow-lg max-h-60 overflow-auto animate-in fade-in slide-in-from-top-2 duration-200">
-          {options.map(option => (
-            <button
-              key={option.value}
-              type="button"
-              onClick={() => handleSelect(option.value)}
-              className={`w-full px-4 py-2.5 text-left hover:bg-gray-100 transition-colors flex items-center justify-between ${
-                selected === option.value ? 'bg-gray-100 text-blue-700' : 'text-neutral-700'
-              }`}
-            >
-              {option.label}
-              {selected === option.value && <Check className="w-5 h-5" />}
-            </button>
-          ))}
-        </div>
-      )}
-
-      {error && (
-        <div className="flex items-center mt-2 text-sm text-red-600 animate-in fade-in slide-in-from-top-1 duration-200">
-          <AlertCircle className="w-4 h-4 mr-1" />
-          {error}
-        </div>
-      )}
-    </div>
-  );
-};
 
 interface CheckboxProps {
   label: string;
@@ -356,6 +292,18 @@ const FormLoading: React.FC<FormLoadingProps> = ({ message = 'Submitting...' }) 
 
 export const AnmeldeFormular: React.FC = () => {
   const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [formData, setFormData] = useState({
+    vorname: '',
+    nachname: '',
+    email: '',
+    telefon: '',
+    geburtsdatum: '',
+    klasse: '',
+    starttermin: '',
+    nachricht: ''
+  });
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
   const sectionRef = useRef<HTMLElement>(null);
   const formRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLImageElement>(null);
@@ -451,12 +399,44 @@ export const AnmeldeFormular: React.FC = () => {
     return () => ctx.revert();
   }, []);
 
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+    if (!formData.vorname.trim()) newErrors.vorname = 'Vorname ist erforderlich';
+    if (!formData.nachname.trim()) newErrors.nachname = 'Nachname ist erforderlich';
+    if (!formData.email.trim()) newErrors.email = 'E-Mail-Adresse ist erforderlich';
+    if (!formData.telefon.trim()) newErrors.telefon = 'Telefonnummer ist erforderlich';
+    return newErrors;
+  };
+
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const validationErrors = validateForm();
+    setErrors(validationErrors);
+    if (Object.keys(validationErrors).length > 0) {
+      // Mark all fields as touched to show errors
+      const allTouched = Object.keys(formData).reduce((acc, key) => ({ ...acc, [key]: true }), {});
+      setTouched(allTouched);
+      return;
+    }
     setFormState('loading');
     setTimeout(() => {
       setFormState('success');
     }, 2000);
+  };
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: '' }));
+    }
+  };
+
+  const handleInputBlur = (field: string) => {
+    setTouched(prev => ({ ...prev, [field]: true }));
+    const fieldErrors = validateForm();
+    if (fieldErrors[field]) {
+      setErrors(prev => ({ ...prev, [field]: fieldErrors[field] }));
+    }
   };
 
   return (
@@ -474,39 +454,82 @@ export const AnmeldeFormular: React.FC = () => {
                     <img ref={logoRef} src={logo} alt="Logo" className="h-16 w-auto" />
                   </div>
                   <div ref={(el) => el && (fieldsRef.current[0] = el)}>
-                    <Input label="Vorname" placeholder="Max" required error="Vorname ist erforderlich" />
+                    <Input
+                      label="Vorname"
+                      placeholder="Max"
+                      required
+                      value={formData.vorname}
+                      onChange={(value) => handleInputChange('vorname', value)}
+                      error={touched.vorname ? errors.vorname : ''}
+                    />
                   </div>
                   <div ref={(el) => el && (fieldsRef.current[1] = el)}>
-                    <Input label="Nachname" placeholder="Mustermann" required error="Nachname ist erforderlich" />
+                    <Input
+                      label="Nachname"
+                      placeholder="Mustermann"
+                      required
+                      value={formData.nachname}
+                      onChange={(value) => handleInputChange('nachname', value)}
+                      error={touched.nachname ? errors.nachname : ''}
+                    />
                   </div>
                   <div ref={(el) => el && (fieldsRef.current[2] = el)}>
-                    <Input label="E-Mail-Adresse" type="email" placeholder="max@example.com" required />
+                    <Input
+                      label="E-Mail-Adresse"
+                      type="email"
+                      placeholder="max@example.com"
+                      required
+                      value={formData.email}
+                      onChange={(value) => handleInputChange('email', value)}
+                      error={touched.email ? errors.email : ''}
+                    />
                   </div>
                   <div ref={(el) => el && (fieldsRef.current[3] = el)}>
-                    <Input label="Telefonnummer" type="tel" placeholder="+49 123 456789" required />
+                    <Input
+                      label="Telefonnummer"
+                      type="tel"
+                      placeholder="+49 123 456789"
+                      required
+                      value={formData.telefon}
+                      onChange={(value) => handleInputChange('telefon', value)}
+                      error={touched.telefon ? errors.telefon : ''}
+                    />
                   </div>
                   <div ref={(el) => el && (fieldsRef.current[4] = el)}>
-                    <DatePicker label="Geburtsdatum" />
+                    <DatePicker
+                      label="Geburtsdatum"
+                      value={formData.geburtsdatum}
+                      onChange={(value) => handleInputChange('geburtsdatum', value)}
+                    />
                   </div>
                 </fieldset>
 
                 <fieldset className="space-y-4">
                   <legend className="text-lg font-semibold text-heading mb-4">Kursdetails</legend>
                   <div ref={(el) => el && (fieldsRef.current[5] = el)}>
-                    <Select
-                      label="Gewünschte Klasse"
-                      options={[
-                        { value: 'a', label: 'Klasse A' },
-                        { value: 'b', label: 'Klasse B' },
-                        { value: 'c', label: 'Klasse C' },
-                        { value: 'd', label: 'Klasse D' },
-                        { value: 'l', label: 'Klasse L' },
-                        { value: 't', label: 'Klasse T' },
-                      ]}
-                    />
+                    <label className="block text-sm font-medium text-neutral-700 mb-2">Gewünschte Klasse</label>
+                    <div className="relative">
+                      <select
+                        value={formData.klasse}
+                        onChange={(e) => handleInputChange('klasse', e.target.value)}
+                        className="w-full px-4 py-2.5 pr-10 bg-blue-50 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-neutral-900 appearance-none"
+                      >
+                        <option value="a">Klasse A (Motorrad)</option>
+                        <option value="b">Klasse B (Auto)</option>
+                        <option value="c">Klasse C (LKW)</option>
+                        <option value="d">Klasse D (Bus)</option>
+                        <option value="l">Klasse L (Landwirtschaft)</option>
+                        <option value="t">Klasse T (Traktor)</option>
+                      </select>
+                      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400 pointer-events-none" />
+                    </div>
                   </div>
                   <div ref={(el) => el && (fieldsRef.current[6] = el)}>
-                    <DatePicker label="Gewünschter Starttermin" />
+                    <DatePicker
+                      label="Gewünschter Starttermin"
+                      value={formData.starttermin}
+                      onChange={(value) => handleInputChange('starttermin', value)}
+                    />
                   </div>
                 </fieldset>
 
@@ -518,14 +541,15 @@ export const AnmeldeFormular: React.FC = () => {
                       className="w-full px-3 py-2 border border-field-border rounded-lg focus:ring-2 focus:ring-field-focus-ring focus:border-transparent bg-field-bg text-field-fg placeholder-field-placeholder"
                       rows={4}
                       placeholder="Ihre Nachricht..."
+                      value={formData.nachricht}
+                      onChange={(e) => handleInputChange('nachricht', e.target.value)}
                     />
                   </div>
                 </fieldset>
 
                 <button
                   type="submit"
-                  disabled
-                  className="submit-btn w-full py-3 bg-gray-400 text-gray-600 rounded-lg font-semibold shadow-lg cursor-not-allowed"
+                  className="submit-btn w-full py-3 bg-primary-500 text-white rounded-lg font-semibold shadow-lg hover:bg-primary-600 transition-colors duration-200"
                 >
                   Anmeldung abschicken
                 </button>
@@ -533,11 +557,6 @@ export const AnmeldeFormular: React.FC = () => {
             )}
 
             {formState === 'loading' && <FormLoading message="Anmeldung wird verarbeitet..." />}
-            <div className="absolute inset-0 bg-black bg-opacity-50 rounded-xl flex items-start justify-start">
-              <div className="bg-red-600 text-white px-4 py-2 rounded-br-lg font-semibold text-sm">
-                Wird in kürze freigeschaltet
-              </div>
-            </div>
           </div>
         </div>
       </div>

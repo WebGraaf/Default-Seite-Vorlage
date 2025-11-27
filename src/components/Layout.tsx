@@ -64,9 +64,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <main className="flex-grow">{children}</main>
       <footer className="bg-secondary-800 text-white py-8">
         <Container>
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col md:flex-row justify-between md:items-center items-center space-y-4 md:space-y-0">
             <p>&copy; 2025 Führerschein Website</p>
-            <div className="space-x-4">
+            <div className="flex space-x-4">
               <button onClick={() => setIsSettingsOpen(true)} className="hover:text-primary-300">Privatsphäre</button>
               <Link to="/impressum" className="hover:text-primary-300">Impressum</Link>
             </div>

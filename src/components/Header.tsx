@@ -35,56 +35,70 @@ const Header: React.FC = () => {
       <div className="relative">
         {/* White Bar on the left side */}
         <div className="absolute left-0 top-0 w-[30%] md:w-1/5 bg-white z-10 h-[110%]" style={{ clipPath: 'polygon(0 0, 100% 0, 80% 100%, 0 100%)', boxShadow: '4px 4px 10px rgba(0,0,0,0.1)' }}>
-          <Link to="/" onClick={closeMenus} className="absolute inset-0 flex items-center justify-center py-2.5">
+          <Link to="/" onClick={closeMenus} className="absolute inset-0 flex items-center justify-center py-1">
             <img src={logo} alt="Führerschein Website" className="w-full h-full object-contain" />
           </Link>
         </div>
         {/* Top Bar - Contact Information */}
-        <div className="bg-primary-500 py-1 md:py-2">
+        <div className="bg-primary-500 py-3 md:py-2 pl-[30%] md:pl-[20%]">
           <Container>
-            <div className="flex items-center justify-center">
-              <div className="flex md:hidden items-center space-x-2 text-header-text text-xs font-medium">
-                <div className="flex items-center space-x-1">
-                  <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
-                  </svg>
-                  <span>0123 456789</span>
+            <div className="flex items-center justify-between md:justify-center">
+              <div className="flex items-center">
+                <div className="flex md:hidden items-center space-x-2 text-header-text text-xs font-medium">
+                  <div className="flex items-center space-x-1">
+                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                    </svg>
+                    <span>0123 456789</span>
+                  </div>
+                  <Link to="/anmelden" className="bg-white text-primary-500 px-2 py-1 rounded text-xs hover:bg-primary-600 hover:text-white transition-colors">
+                    Online Anmelden
+                  </Link>
+                  <div className="hidden sm:flex items-center space-x-1">
+                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                    </svg>
+                    <span>info@fuehrerschein.de</span>
+                  </div>
                 </div>
-                <div className="hidden sm:flex items-center space-x-1">
-                  <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
-                  </svg>
-                  <span>info@fuehrerschein.de</span>
+                <div className="hidden md:flex items-center space-x-4 text-header-text text-sm font-semibold">
+                  <div className="flex items-center space-x-1">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                    </svg>
+                    <span>0123 456789</span>
+                  </div>
+                  <div className="flex items-center space-x-1">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                    </svg>
+                    <span>info@fuehrerschein.de</span>
+                  </div>
+                  <div className="flex items-center space-x-1">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
+                    </svg>
+                    <span>Berlin</span>
+                  </div>
                 </div>
               </div>
-              <div className="hidden md:flex items-center space-x-4 text-header-text text-sm font-semibold">
-                <div className="flex items-center space-x-1">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
-                  </svg>
-                  <span>0123 456789</span>
-                </div>
-                <div className="flex items-center space-x-1">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
-                  </svg>
-                  <span>info@fuehrerschein.de</span>
-                </div>
-                <div className="flex items-center space-x-1">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
-                  </svg>
-                  <span>Berlin</span>
-                </div>
-              </div>
+              {/* Mobile Menu Button */}
+              <button
+                onClick={toggleMobileMenu}
+                className="md:hidden text-white hover:opacity-75 font-bold p-1 rounded transition-opacity"
+              >
+                <svg className={`w-6 h-6 transition-transform duration-300 ${isMobileMenuOpen ? 'rotate-90' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
             </div>
           </Container>
         </div>
 
         {/* Bottom Bar - Navigation */}
-        <div className="bg-secondary-500 py-4">
+        <div className="bg-secondary-500 py-4 hidden md:block">
           <Container>
             <div className="relative flex items-center justify-between md:justify-between">
               {/* Mobile School Name - Centered */}
@@ -147,23 +161,12 @@ const Header: React.FC = () => {
               >
                 anmelden
               </Link>
-
-              {/* Mobile Menu Button */}
-              <button
-                onClick={toggleMobileMenu}
-                className="md:hidden absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-primary-500 font-bold"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              </button>
             </div>
           </Container>
         </div>
       </div>
       {/* Mobile Navigation */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-secondary-500">
+      <div className={`md:hidden bg-secondary-500 z-60 transition-all duration-300 ${isMobileMenuOpen ? 'opacity-100 max-h-screen' : 'opacity-0 max-h-0 overflow-hidden'}`}>
           <Container>
             <div className="pb-4 border-t border-secondary-700">
                 <nav className="flex flex-col space-y-2 text-white">
@@ -219,7 +222,6 @@ const Header: React.FC = () => {
               </div>
           </Container>
         </div>
-      )}
     </header>
   );
 };

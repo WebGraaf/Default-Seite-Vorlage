@@ -141,6 +141,103 @@ export const KlassenUebersichtGridSpotlight: React.FC<KlassenUebersichtGridSpotl
     return () => ctx.revert();
   }, []);
 
+  // Determine grid layout based on number of features
+  const featureCount = features.length;
+
+  // Get grid classes based on feature count
+  const getGridClasses = () => {
+    switch (featureCount) {
+      case 1:
+        return 'flex justify-center';
+      case 2:
+        return 'grid grid-cols-1 md:grid-cols-2 gap-8';
+      case 3:
+        return 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8';
+      case 4:
+        return 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8';
+      case 5:
+        return ''; // Special layout handled separately
+      case 6:
+      default:
+        return 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8';
+    }
+  };
+
+  // Render card component
+  const renderCard = (feature: Feature, index: number, customWidth?: string) => (
+    <div
+      key={index}
+      ref={(el) => (cardsRef.current[index] = el)}
+      className={customWidth}
+    >
+      <KartenSpotlight
+        className="hover:bg-primary-50 hover:border-primary-500 transition-all duration-300 group flex flex-col h-full p-6"
+        spotlightColor={feature.spotlightColor || 'primary'}
+      >
+        <div className="flex-grow">
+          <div className="card-icon bg-primary-50 w-14 h-14 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-primary-200">
+            <feature.icon className="w-7 h-7 text-primary-600" />
+          </div>
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="card-title text-xl font-bold text-heading group-hover:text-primary-600 transition-colors">{feature.title}</h3>
+          </div>
+          <p className="text-text-body mb-4">{feature.description}</p>
+        </div>
+        <Link
+          to={feature.link}
+          className="inline-block w-full px-4 py-2 bg-card text-primary-600 rounded-lg hover:bg-primary-500 hover:text-white hover:border-transparent border border-primary-500 transition-colors font-semibold mt-auto text-center"
+        >
+          Mehr erfahren
+        </Link>
+      </KartenSpotlight>
+    </div>
+  );
+
+  // Render grid based on feature count
+  const renderGrid = () => {
+    if (featureCount === 1) {
+      // Single item: centered, 40% width on desktop
+      return (
+        <div className="flex justify-center">
+          <div className="w-full md:w-[40%]">
+            {renderCard(features[0], 0)}
+          </div>
+        </div>
+      );
+    }
+
+    if (featureCount === 5) {
+      // Special layout: 3 on top, 2 centered below
+      const topRow = features.slice(0, 3);
+      const bottomRow = features.slice(3, 5);
+
+      return (
+        <div className="flex flex-col gap-8">
+          {/* Top row: 3 items */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {topRow.map((feature, index) => renderCard(feature, index))}
+          </div>
+          {/* Bottom row: 2 items centered with same width as top items */}
+          <div className="flex justify-center gap-8">
+            <div className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)]">
+              {renderCard(features[3], 3)}
+            </div>
+            <div className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)]">
+              {renderCard(features[4], 4)}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // Default grid layout for 2, 3, 4, 6 items
+    return (
+      <div className={getGridClasses()}>
+        {features.map((feature, index) => renderCard(feature, index))}
+      </div>
+    );
+  };
+
   return (
     <section ref={sectionRef} className="">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
@@ -151,35 +248,7 @@ export const KlassenUebersichtGridSpotlight: React.FC<KlassenUebersichtGridSpotl
             </span>
           ))}
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              ref={(el) => (cardsRef.current[index] = el)}
-            >
-              <KartenSpotlight
-                className="hover:bg-primary-50 hover:border-primary-500 transition-all duration-300 group flex flex-col h-full p-6"
-                spotlightColor={feature.spotlightColor || 'primary'}
-              >
-                <div className="flex-grow">
-                  <div className="card-icon bg-primary-50 w-14 h-14 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-primary-200">
-                    <feature.icon className="w-7 h-7 text-primary-600" />
-                  </div>
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="card-title text-xl font-bold text-heading group-hover:text-primary-600 transition-colors">{feature.title}</h3>
-                  </div>
-                  <p className="text-text-body mb-4">{feature.description}</p>
-                </div>
-                <Link
-                  to={feature.link}
-                  className="inline-block w-full px-4 py-2 bg-card text-primary-600 rounded-lg hover:bg-primary-500 hover:text-white hover:border-transparent border border-primary-500 transition-colors font-semibold mt-auto text-center"
-                >
-                  Mehr erfahren
-                </Link>
-              </KartenSpotlight>
-            </div>
-          ))}
-        </div>
+        {renderGrid()}
       </div>
     </section>
   );
