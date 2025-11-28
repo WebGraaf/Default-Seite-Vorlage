@@ -10,6 +10,11 @@ const Header: React.FC = () => {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
 
   useEffect(() => {
+    if (isMobileMenuOpen) {
+      setIsHeaderVisible(true);
+      return; // Do not add scroll listener when menu is open
+    }
+
     let lastScrollY = window.scrollY;
 
     const handleScroll = () => {
@@ -32,7 +37,7 @@ const Header: React.FC = () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isMobileMenuOpen]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
