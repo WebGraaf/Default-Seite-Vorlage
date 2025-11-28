@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from './LayoutComponents';
 
@@ -7,6 +7,32 @@ const logo = '/default_images/logo_default.webp';
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      if (window.innerWidth >= 768) return; // Nur auf Mobile anwenden
+
+      const currentScrollY = window.scrollY;
+      const scrollDifference = currentScrollY - lastScrollY;
+
+      // Ignoriere kleine Scroll-Bewegungen, um "Hängen" zu vermeiden
+      if (Math.abs(scrollDifference) < 10) return;
+
+      if (scrollDifference > 0 && currentScrollY > 100) {
+        setIsHeaderVisible(false);
+      } else if (scrollDifference < 0) {
+        setIsHeaderVisible(true);
+      }
+
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -31,7 +57,7 @@ const Header: React.FC = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 pt-0 pb-0 border-b-4 border-primary-500 relative shadow-lg">
+    <header className={`sticky top-0 z-50 pt-0 pb-0 border-b-4 border-primary-500 relative shadow-lg ${isHeaderVisible ? '' : '-translate-y-full'} transition-transform duration-300`}>
       <div className="relative">
         {/* White Bar on the left side */}
         <div className="absolute left-0 top-0 w-[30%] md:w-1/5 bg-white z-10 h-[110%]" style={{ clipPath: 'polygon(0 0, 100% 0, 80% 100%, 0 100%)', boxShadow: '4px 4px 10px rgba(0,0,0,0.1)' }}>
