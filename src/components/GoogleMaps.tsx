@@ -47,7 +47,7 @@ export const GoogleMaps = ({
       style={{ width, height }}
     >
       <p className="text-text-body text-center mb-4">
-        Um die Karte anzuzeigen, müssen Sie externe Medien von Google Maps erlauben.
+        Um die Karte anzuzeigen, musst du externe Medien von Google Maps erlauben.
       </p>
       <div className="flex gap-4">
         <button

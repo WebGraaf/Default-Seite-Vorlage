@@ -49,18 +49,18 @@ const Home: React.FC = () => {
   const faqs = [
     {
       question: 'Wie melde ich mich für einen Führerscheinkurs an?',
-      answer: 'Sie können sich ganz einfach online über unsere Website anmelden oder persönlich in einer unserer Filialen vorbeikommen.'
+      answer: 'Du kannst dich ganz einfach online über unsere Website anmelden oder persönlich in einer unserer Filialen vorbeikommen.'
     },
     {
       question: 'Welche Voraussetzungen muss ich erfüllen?',
-      answer: 'Sie müssen mindestens 17 Jahre alt sein und einen gültigen Personalausweis oder Reisepass vorlegen.'
+      answer: 'Du musst mindestens 17 Jahre alt sein und einen gültigen Personalausweis oder Reisepass vorlegen.'
     },
     {
       question: 'Wie lange dauert die Ausbildung?',
-      answer: 'Die Dauer hängt von der Führerscheinklasse ab und variiert zwischen 2-6 Monaten, abhängig von Ihren Vorkenntnissen und der Verfügbarkeit von Fahrstunden.'
+      answer: 'Die Dauer hängt von der Führerscheinklasse ab und variiert zwischen 2-6 Monaten, abhängig von deinen Vorkenntnissen und der Verfügbarkeit von Fahrstunden.'
     },
     {
-      question: 'Bieten Sie auch Intensivkurse an?',
+      question: 'Werden Intensivkurse angeboten?',
       answer: 'Ja, wir bieten verschiedene Intensivkurse an, die Ihnen helfen, Ihren Führerschein schneller zu erhalten.'
     }
   ];
@@ -82,7 +82,7 @@ const Home: React.FC = () => {
       <HeroStartseite
         title="Wir machen dich Mobil"
         subtitle="Platzhalter Fahrschule"
-        description="Erfahren Sie mehr über unsere moderne Fahrschulausbildung und unsere erfahrenen Fahrlehrer."
+        description="Erfahre mehr über unsere moderne Fahrschulausbildung und unsere erfahrenen Fahrlehrer."
         buttonText="Jetzt anmelden"
         buttonLink="/anmelden"
         logoSrc="/default_images/logo_default.webp"
@@ -93,7 +93,7 @@ const Home: React.FC = () => {
         <div className="max-w-6xl mx-auto px-4">
           <TextGalerieStapel
             title="Unsere Fahrschule"
-            description="Erfahren Sie mehr über unsere moderne Fahrschulausbildung und unsere erfahrenen Fahrlehrer."
+            description="Erfahre mehr über unsere moderne Fahrschulausbildung und unsere erfahrenen Fahrlehrer."
             images={galleryImages}
             imagePosition="left"
           />
@@ -131,7 +131,7 @@ const Home: React.FC = () => {
             imageSrc="/default_images/Platzhalter_Fahrschule.webp"
             imageAlt="Fahrschule Ausbildung"
             title="Professionelle Fahrausbildung"
-            description="Bei uns erhalten Sie eine erstklassige Fahrausbildung von zertifizierten Fahrlehrern. Wir legen Wert auf individuelle Betreuung und moderne Lehrmethoden, um Sie sicher auf die Straße zu bringen."
+            description="Bei uns erhältst du eine erstklassige Fahrausbildung von zertifizierten Fahrlehrern. Wir legen Wert auf individuelle Betreuung und moderne Lehrmethoden, um dich sicher auf die Straße zu bringen."
             imagePosition="left"
           />
         </div>

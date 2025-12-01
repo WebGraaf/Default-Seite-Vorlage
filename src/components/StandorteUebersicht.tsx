@@ -23,7 +23,7 @@ export interface StandorteUebersichtProps {
 
 export function StandorteUebersicht({
   title = "Unsere Standorte",
-  subtitle = "Finden Sie den nächstgelegenen Standort",
+  subtitle = "Finde den nächstgelegenen Standort",
   locations
 }: StandorteUebersichtProps) {
   const [activeTab, setActiveTab] = useState(0);

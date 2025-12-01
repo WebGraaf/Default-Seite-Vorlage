@@ -1,4 +1,4 @@
-import { Phone, Clock, MapPin } from 'lucide-react';
+import { Phone, Clock, MapPin, Mail } from 'lucide-react';
 import { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -50,6 +50,12 @@ export function Kontaktinformationen() {
       icon: MapPin,
       label: 'Adresse',
       value: locations[activeTab].address,
+      color: 'primary'
+    },
+    {
+      icon: Mail,
+      label: 'E-Mail',
+      value: 'info@fahrschule.de',
       color: 'primary'
     }
   ];
@@ -169,7 +175,7 @@ export function Kontaktinformationen() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {contactItems.map((item, index) => {
             const Icon = item.icon;
             const colorClasses = {
@@ -196,6 +202,10 @@ export function Kontaktinformationen() {
                   </a>
                 ) : item.label === 'Adresse' ? (
                   <a href={`https://maps.google.com/?q=${encodeURIComponent(item.value)}`} target="_blank" rel="noopener noreferrer" className="text-base text-text-body hover:text-primary-600 transition-colors">
+                    {item.value}
+                  </a>
+                ) : item.label === 'E-Mail' ? (
+                  <a href={`mailto:${item.value}`} className="text-base text-text-body hover:text-primary-600 transition-colors">
                     {item.value}
                   </a>
                 ) : (

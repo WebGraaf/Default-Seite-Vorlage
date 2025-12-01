@@ -220,7 +220,7 @@ const UeberUns: React.FC = () => {
               Werde Teil unserer Familie
             </h2>
             <p className="text-lg text-text-body mb-8">
-              Tausende zufriedene Fahrschüler haben bereits bei uns ihren Führerschein gemacht. Jetzt bist du an der Reihe! Melde dich noch heute an und starte deine Fahrt in die Zukunft.
+              Hunderte zufriedene Fahrschüler haben bereits bei uns ihren Führerschein gemacht. Jetzt bist du an der Reihe! Melde dich noch heute an und starte deine Fahrt in die Zukunft.
             </p>
             <a
               href="/anmelden"

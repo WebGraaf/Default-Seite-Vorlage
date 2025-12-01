@@ -549,7 +549,8 @@ export const AnmeldeFormular: React.FC = () => {
 
                 <button
                   type="submit"
-                  className="submit-btn w-full py-3 bg-primary-500 text-white rounded-lg font-semibold shadow-lg hover:bg-primary-600 transition-colors duration-200"
+                  disabled={true}
+                  className="submit-btn w-full py-3 bg-primary-500 text-white rounded-lg font-semibold shadow-lg hover:bg-primary-600 transition-colors duration-200 disabled:bg-gray-400 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Anmeldung abschicken
                 </button>
