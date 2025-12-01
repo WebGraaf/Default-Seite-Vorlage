@@ -162,33 +162,33 @@ export const ConsentSettings = ({ isOpen, onClose }: ConsentSettingsProps) => {
           )}
         </div>
 
-        {/* Footer with buttons */}
+        {/* Footer with buttons - GDPR compliant: equal visual weight */}
         <div className="sticky bottom-0 bg-card-bg border-t border-border-divider px-5 py-4 sm:px-6">
           <div className="flex flex-col sm:flex-row gap-3">
             <button
               onClick={handleDeclineAll}
-              className="w-full sm:w-auto order-3 sm:order-1 px-4 py-2.5 rounded-lg text-sm font-medium
-                         bg-secondary-100 text-secondary-700 hover:bg-secondary-200
-                         border border-secondary-300 transition-colors duration-200
+              className="w-full sm:w-auto order-2 sm:order-1 px-4 py-2.5 rounded-lg text-sm font-medium
+                         bg-secondary-800 text-white hover:bg-secondary-700
+                         border border-secondary-800 transition-colors duration-200
                          focus:outline-none focus:ring-2 focus:ring-secondary-400 focus:ring-offset-2"
             >
               Alle ablehnen
             </button>
             <button
               onClick={handleSave}
-              className="w-full sm:w-auto order-2 px-4 py-2.5 rounded-lg text-sm font-medium
-                         text-btn-outline-fg border border-btn-outline-border
+              className="w-full sm:w-auto order-3 sm:order-2 px-4 py-2.5 rounded-lg text-sm font-medium
+                         bg-white text-secondary-800 border border-secondary-300
                          hover:bg-secondary-50 transition-colors duration-200
-                         focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2"
+                         focus:outline-none focus:ring-2 focus:ring-secondary-400 focus:ring-offset-2"
             >
               Auswahl speichern
             </button>
             <button
               onClick={handleAcceptAll}
               className="w-full sm:w-auto sm:ml-auto order-1 sm:order-3 px-4 py-2.5 rounded-lg text-sm font-medium
-                         bg-btn-solid-bg text-btn-solid-fg hover:bg-btn-solid-hover
-                         transition-colors duration-200 shadow-sm
-                         focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2"
+                         bg-secondary-800 text-white hover:bg-secondary-700
+                         border border-secondary-800 transition-colors duration-200
+                         focus:outline-none focus:ring-2 focus:ring-secondary-400 focus:ring-offset-2"
             >
               Alle akzeptieren
             </button>
