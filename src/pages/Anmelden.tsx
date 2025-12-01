@@ -1,27 +1,36 @@
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import React, { useEffect } from 'react';
 import { Container, Section } from '../components/LayoutComponents';
 import { AnmeldeFormular } from '../components/AnmeldeFormular';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
 const Anmelden: React.FC = () => {
+  useEffect(() => {
+    document.title = 'Anmeldung - Fahrschule Ralf Brauer';
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Melde dich jetzt für deine Fahrschulausbildung an. Fülle das Formular aus und wir kontaktieren dich zeitnah. Flexible Termine und professionelle Ausbildung warten auf dich.');
+    } else {
+      const meta = document.createElement('meta');
+      meta.name = 'description';
+      meta.content = 'Melde dich jetzt für deine Fahrschulausbildung an. Fülle das Formular aus und wir kontaktieren dich zeitnah. Flexible Termine und professionelle Ausbildung warten auf dich.';
+      document.head.appendChild(meta);
+    }
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+      metaKeywords.setAttribute('content', 'Anmeldung, Fahrschule, Führerschein, Ralf Brauer, Leverkusen, Fahrausbildung');
+    } else {
+      const meta = document.createElement('meta');
+      meta.name = 'keywords';
+      meta.content = 'Anmeldung, Fahrschule, Führerschein, Ralf Brauer, Leverkusen, Fahrausbildung';
+      document.head.appendChild(meta);
+    }
+  }, []);
+
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollReveal();
 
   return (
     <div className="bg-page-bg">
-      <Helmet>
-        <title>Anmeldung - Deine Fahrschule</title>
-        <meta name="description" content="Melde dich jetzt online für deinen Führerschein an. Fülle das Formular aus und starte deine Ausbildung bei [Fahrschulname]. Wir bieten flexible Termine und eine professionelle Ausbildung." />
-        <meta name="keywords" content="Fahrschule, Anmeldung, Führerschein, Online-Anmeldung, Fahrausbildung, [Fahrschulname]" />
-        <meta name="robots" content="index, follow" />
-        <meta property="og:title" content="Anmeldung - Deine Fahrschule" />
-        <meta property="og:description" content="Melde dich jetzt online für deinen Führerschein an und starte deine Ausbildung bei [Fahrschulname]." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="[Ihre-Webseiten-URL]/anmelden" />
-        <meta property="og:image" content="[Ihre-Webseiten-URL]/og-image-anmeldung.jpg" />
-        <link rel="canonical" href="[Ihre-Webseiten-URL]/anmelden" />
-      </Helmet>
-      <section className="py-16">
+      <Section background="card-bg" padding="sm">
         <Container>
           <div
             ref={headerRef as React.RefObject<HTMLDivElement>}
@@ -43,7 +52,7 @@ const Anmelden: React.FC = () => {
             </p>
           </div>
         </Container>
-      </section>
+      </Section>
 
       <AnmeldeFormular />
     </div>

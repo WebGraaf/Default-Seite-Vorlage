@@ -71,9 +71,9 @@ const Header: React.FC = () => {
           </Link>
         </div>
         {/* Top Bar - Contact Information */}
-        <div className="bg-primary-500 py-3 md:py-2 pl-[30%] md:pl-[20%]">
-          <Container>
-            <div className="flex items-center justify-between md:justify-center">
+        <div className="bg-primary-500 py-3 md:py-2 pl-[30%] md:pl-[22%] md:pr-[300px]">
+          <div className="px-4">
+            <div className="flex items-center justify-between md:justify-center md:pr-[100px]">
               <div className="flex items-center">
                 <div className="flex md:hidden items-center space-x-2 text-header-text text-xs font-medium">
                   <div className="flex items-center space-x-1">
@@ -125,18 +125,13 @@ const Header: React.FC = () => {
                 </svg>
               </button>
             </div>
-          </Container>
+          </div>
         </div>
 
         {/* Bottom Bar - Navigation */}
-        <div className="bg-secondary-500 py-4 hidden md:block">
-          <Container>
-            <div className="relative flex items-center justify-between md:justify-between">
-              {/* Mobile School Name - Centered */}
-              <Link to="/" onClick={closeMenus} className="md:hidden absolute left-1/2 transform -translate-x-[40%] text-header-text font-bold text-lg">
-                Deine Fahrschule
-              </Link>
-
+        <div className="bg-secondary-500 py-4 hidden md:block pl-[22%] pr-[300px]">
+          <div className="px-4">
+            <div className="relative flex items-center justify-between">
               {/* Desktop Navigation */}
               <nav className="hidden md:flex flex-1 justify-center space-x-6 text-white font-bold">
                 <Link to="/" className="hover:text-primary-500 transition-colors font-bold" onClick={closeMenus}>
@@ -193,7 +188,7 @@ const Header: React.FC = () => {
                 anmelden
               </Link>
             </div>
-          </Container>
+          </div>
         </div>
       </div>
       {/* Mobile Navigation */}
