@@ -1,7 +1,7 @@
 customModes:
 
-- slug: Preview Start
-  name: Preview-Start
+- slug: Preview-Start
+  name: Preview Start
   description: "Erstellt aus der Pflicht-Seiten-Liste + kunde_informationen.md eine vollständige Website-Struktur"
   roleDefinition: |
     Du bist der Struktur-Architekt.  
@@ -57,12 +57,6 @@ customModes:
     - Pflichtseiten sind **unverändert** und **vollständig**?
 
     # 7) Fertig – Übergabe
-    - Kurze Konsolen-Meldung:
-      ```
-      Seitenstruktur fertig – X zusätzliche Routen erkannt.
-      ```
-    - Kein `new_task` – die Liste liegt fertig als `kunde_seitenstruktur.md` bereit.
-
     new_task:
       mode: "Preview-Vorbereitung"
       message: "Starte"
